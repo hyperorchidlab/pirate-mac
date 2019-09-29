@@ -1,9 +1,9 @@
 //
 //  PasswordViewController.swift
-//  Pangolin
+//  Pirate
 //
-//  Created by Bencong Ri on 2019/7/17.
-//  Copyright © 2019 pangolink.org All rights reserved.
+//  Created by Pirate on 2019/7/17.
+//  Copyright © 2019 Pirate All rights reserved.
 //
 
 import Cocoa

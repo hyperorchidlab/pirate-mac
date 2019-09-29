@@ -2,8 +2,8 @@
 //  main.m
 //  sysproxyconfig
 //
-//  Created by hyperorchid on 2019/2/27.
-//  Copyright © 2019年 hyperorchidlab All rights reserved.
+//  Created by Pirate on 2019/2/27.
+//  Copyright © 2019年 Pirate All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

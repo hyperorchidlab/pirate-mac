@@ -1,9 +1,9 @@
 //
 //  MinerPoolController.swift
-//  Pangolin
+//  Pirate
 //
-//  Created by Bencong Ri on 2019/8/29.
-//  Copyright © 2019年 pangolink.org All rights reserved.
+//  Created by Pirate on 2019/8/29.
+//  Copyright © 2019年 Pirate All rights reserved.
 //
 
 import Cocoa

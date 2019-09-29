@@ -15,6 +15,6 @@ target 'Pirate' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for Pangolin
+  # Pods for Pirate
   pod "GCDWebServer", "~> 3.0"
 end

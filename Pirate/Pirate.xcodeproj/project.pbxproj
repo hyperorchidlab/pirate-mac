@@ -190,6 +190,7 @@
 		BB10825023406B5C004CBB54 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				BB10825123406B76004CBB54 /* MenuController.swift */,
 				BBD7125523409B12003C80E9 /* PacketMarketController.swift */,
 				BBD7125A23409B13003C80E9 /* PacketMarketController.xib */,
 				BBD7125323409B12003C80E9 /* PasswordViewController.swift */,
@@ -200,7 +201,6 @@
 				BBD7125823409B12003C80E9 /* TransferViewController.xib */,
 				BBD7125923409B12003C80E9 /* WalletController.swift */,
 				BBD7125223409B12003C80E9 /* WalletController.xib */,
-				BB10825123406B76004CBB54 /* MenuController.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";

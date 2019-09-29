@@ -2,8 +2,8 @@
 //  SysProxyConfig.h
 //  sysproxyconfig
 //
-//  Created by hyperorchid on 2019/3/6.
-//  Copyright © 2019 hyperorchidlab All rights reserved.
+//  Created by Pirate on 2019/3/6.
+//  Copyright © 2019 Pirate All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

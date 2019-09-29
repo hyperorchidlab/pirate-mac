@@ -1,16 +1,16 @@
 //
 //  TransferViewController.swift
-//  Pangolin
+//  Pirate
 //
-//  Created by wsli on 2019/9/4.
-//  Copyright © 2019年 com.nbs. All rights reserved.
+//  Created by Pirate on 2019/9/4.
+//  Copyright © 2019年 Pirate All rights reserved.
 //
 
 import Cocoa
 
 class TransferViewController: NSViewController {
         
-        var tokenTypeArr:[String] = ["ETH", "LIN"]
+        var tokenTypeArr:[String] = ["ETH", "Token"]
         var tokenType:Int = -1
         
         @IBOutlet weak var TokenBalanceField: NSTextField!

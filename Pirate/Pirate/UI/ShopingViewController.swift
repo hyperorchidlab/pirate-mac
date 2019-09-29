@@ -1,9 +1,9 @@
 //
 //  ShopingViewController.swift
-//  Pangolin
+//  Pirate
 //
-//  Created by wsli on 2019/9/22.
-//  Copyright © 2019 com.nbs. All rights reserved.
+//  Created by Pirate on 2019/9/22.
+//  Copyright © 2019 Pirate. All rights reserved.
 //
 
 import Cocoa

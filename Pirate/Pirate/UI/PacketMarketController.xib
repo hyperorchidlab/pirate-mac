@@ -6,7 +6,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="PacketMarketController" customModule="Pangolin" customModuleProvider="target">
+        <customObject id="-2" userLabel="File's Owner" customClass="PacketMarketController" customModule="Pirate" customModuleProvider="target">
             <connections>
                 <outlet property="BuyForAddrField" destination="hQE-E1-ORk" id="V6h-Ja-96H"/>
                 <outlet property="EthBalance" destination="z4G-DG-VG0" id="OP6-Zo-h3a"/>
@@ -133,7 +133,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dgn-SI-nk8">
-                        <rect key="frame" x="346" y="448" width="356" height="21"/>
+                        <rect key="frame" x="319" y="448" width="383" height="21"/>
                         <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" borderStyle="border" alignment="center" id="NUT-fr-Dme">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -149,8 +149,8 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3Y9-W2-Sy5">
-                        <rect key="frame" x="246" y="452" width="94" height="17"/>
-                        <textFieldCell key="cell" lineBreakMode="clipping" title="Mortaged(Lin):" id="hZw-Jk-lCJ">
+                        <rect key="frame" x="246" y="452" width="67" height="17"/>
+                        <textFieldCell key="cell" lineBreakMode="clipping" title="Mortaged:" id="hZw-Jk-lCJ">
                             <font key="font" usesAppearanceFont="YES"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -248,9 +248,9 @@
                         <rect key="frame" x="240" y="272" width="482" height="5"/>
                     </box>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="vDZ-UJ-abj">
-                        <rect key="frame" x="483" y="169" width="35" height="17"/>
+                        <rect key="frame" x="483" y="169" width="41" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" lineBreakMode="clipping" title="Lin:" id="j06-Fc-tKX">
+                        <textFieldCell key="cell" lineBreakMode="clipping" title="Token" id="j06-Fc-tKX">
                             <font key="font" usesAppearanceFont="YES"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -267,7 +267,7 @@
                         </connections>
                     </button>
                     <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="k0O-N6-mkL">
-                        <rect key="frame" x="524" y="165" width="178" height="21"/>
+                        <rect key="frame" x="530" y="165" width="172" height="21"/>
                         <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" borderStyle="border" alignment="center" id="RIi-bA-izO">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>

@@ -2,8 +2,8 @@
 //  MenuController.swift
 //  Pirate
 //
-//  Created by hyperorchid on 2019/9/29.
-//  Copyright © 2019年 hyperorchid. All rights reserved.
+//  Created by Pirate on 2019/9/29.
+//  Copyright © 2019年 Pirate. All rights reserved.
 //
 
 import Cocoa
