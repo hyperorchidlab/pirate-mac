@@ -3,17 +3,51 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6A36A7D801E362061B402737 /* Pods_sysproxyconfig.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F66B4ECC0A09EA30ADA0099 /* Pods_sysproxyconfig.framework */; };
 		BB10824323406B31004CBB54 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB10824223406B31004CBB54 /* AppDelegate.swift */; };
 		BB10824523406B37004CBB54 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB10824423406B37004CBB54 /* Assets.xcassets */; };
 		BB10824823406B37004CBB54 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB10824623406B37004CBB54 /* MainMenu.xib */; };
 		BB10825223406B76004CBB54 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB10825123406B76004CBB54 /* MenuController.swift */; };
 		BBD7122E234093C9003C80E9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD7122C234093C9003C80E9 /* main.m */; };
-		BBD71230234094D3003C80E9 /* scripts in Resources */ = {isa = PBXBuildFile; fileRef = BBD7122F234094D3003C80E9 /* scripts */; };
+		BBD7123A234096FA003C80E9 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD71232234096FA003C80E9 /* Service.swift */; };
+		BBD7123B234096FA003C80E9 /* ServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD71233234096FA003C80E9 /* ServiceError.swift */; };
+		BBD7123C234096FA003C80E9 /* SysProxyHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD71234234096FA003C80E9 /* SysProxyHelper.swift */; };
+		BBD7123D234096FA003C80E9 /* Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD71235234096FA003C80E9 /* Wallet.swift */; };
+		BBD7123E234096FA003C80E9 /* utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD71236234096FA003C80E9 /* utils.swift */; };
+		BBD7123F234096FA003C80E9 /* MicroPayChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD71237234096FA003C80E9 /* MicroPayChannel.swift */; };
+		BBD71240234096FA003C80E9 /* MinerPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD71238234096FA003C80E9 /* MinerPool.swift */; };
+		BBD71241234096FA003C80E9 /* PacServerBean.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD71239234096FA003C80E9 /* PacServerBean.swift */; };
+		BBD71246234097E3003C80E9 /* dss.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BBD71245234097E3003C80E9 /* dss.a */; };
+		BBD7124B2340995A003C80E9 /* fix_dir_owner.sh in Resources */ = {isa = PBXBuildFile; fileRef = BBD712482340995A003C80E9 /* fix_dir_owner.sh */; };
+		BBD7124C2340995A003C80E9 /* gfw.js in Resources */ = {isa = PBXBuildFile; fileRef = BBD712492340995A003C80E9 /* gfw.js */; };
+		BBD7124D2340995A003C80E9 /* install_proxy_helper.sh in Resources */ = {isa = PBXBuildFile; fileRef = BBD7124A2340995A003C80E9 /* install_proxy_helper.sh */; };
+		BBD7124E23409978003C80E9 /* sysproxyconfig in Resources */ = {isa = PBXBuildFile; fileRef = BBD71224234093AC003C80E9 /* sysproxyconfig */; };
+		BBD7125B23409B13003C80E9 /* PasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBD7125123409B12003C80E9 /* PasswordViewController.xib */; };
+		BBD7125C23409B13003C80E9 /* WalletController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBD7125223409B12003C80E9 /* WalletController.xib */; };
+		BBD7125D23409B13003C80E9 /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD7125323409B12003C80E9 /* PasswordViewController.swift */; };
+		BBD7125E23409B13003C80E9 /* ShopingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD7125423409B12003C80E9 /* ShopingViewController.swift */; };
+		BBD7125F23409B13003C80E9 /* PacketMarketController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD7125523409B12003C80E9 /* PacketMarketController.swift */; };
+		BBD7126023409B13003C80E9 /* ShopingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBD7125623409B12003C80E9 /* ShopingViewController.xib */; };
+		BBD7126123409B13003C80E9 /* TransferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD7125723409B12003C80E9 /* TransferViewController.swift */; };
+		BBD7126223409B13003C80E9 /* TransferViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBD7125823409B12003C80E9 /* TransferViewController.xib */; };
+		BBD7126323409B13003C80E9 /* WalletController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD7125923409B12003C80E9 /* WalletController.swift */; };
+		BBD7126423409B13003C80E9 /* PacketMarketController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBD7125A23409B13003C80E9 /* PacketMarketController.xib */; };
+		D05C6370FD014BD8D31A153F /* Pods_Pirate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 253E4BA7E0494070A79F68E1 /* Pods_Pirate.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BBD7124F23409993003C80E9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BB10823723406B31004CBB54 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BBD71223234093AC003C80E9;
+			remoteInfo = sysproxyconfig;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		BBD71222234093AC003C80E9 /* CopyFiles */ = {
@@ -28,6 +62,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0AF297507DDAAA64D192512F /* Pods-Pirate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pirate.release.xcconfig"; path = "Target Support Files/Pods-Pirate/Pods-Pirate.release.xcconfig"; sourceTree = "<group>"; };
+		253E4BA7E0494070A79F68E1 /* Pods_Pirate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pirate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7493AD175ACDFD9706837C3D /* Pods-Pirate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pirate.debug.xcconfig"; path = "Target Support Files/Pods-Pirate/Pods-Pirate.debug.xcconfig"; sourceTree = "<group>"; };
+		7F66B4ECC0A09EA30ADA0099 /* Pods_sysproxyconfig.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sysproxyconfig.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB10823F23406B31004CBB54 /* Pirate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pirate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB10824223406B31004CBB54 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BB10824423406B37004CBB54 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -36,10 +74,36 @@
 		BB10824A23406B37004CBB54 /* Pirate.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Pirate.entitlements; sourceTree = "<group>"; };
 		BB10825123406B76004CBB54 /* MenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
 		BBD71224234093AC003C80E9 /* sysproxyconfig */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = sysproxyconfig; sourceTree = BUILT_PRODUCTS_DIR; };
-		BBD7122B234093C8003C80E9 /* sysproxyconfig-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "sysproxyconfig-Bridging-Header.h"; sourceTree = "<group>"; };
+		BBD7122B234093C8003C80E9 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		BBD7122C234093C9003C80E9 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		BBD7122D234093C9003C80E9 /* SysProxyConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SysProxyConfig.h; sourceTree = "<group>"; };
-		BBD7122F234094D3003C80E9 /* scripts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = scripts; sourceTree = SOURCE_ROOT; };
+		BBD71232234096FA003C80E9 /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		BBD71233234096FA003C80E9 /* ServiceError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceError.swift; sourceTree = "<group>"; };
+		BBD71234234096FA003C80E9 /* SysProxyHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SysProxyHelper.swift; sourceTree = "<group>"; };
+		BBD71235234096FA003C80E9 /* Wallet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wallet.swift; sourceTree = "<group>"; };
+		BBD71236234096FA003C80E9 /* utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = utils.swift; sourceTree = "<group>"; };
+		BBD71237234096FA003C80E9 /* MicroPayChannel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MicroPayChannel.swift; sourceTree = "<group>"; };
+		BBD71238234096FA003C80E9 /* MinerPool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinerPool.swift; sourceTree = "<group>"; };
+		BBD71239234096FA003C80E9 /* PacServerBean.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PacServerBean.swift; sourceTree = "<group>"; };
+		BBD71242234097AD003C80E9 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = SOURCE_ROOT; };
+		BBD71243234097E3003C80E9 /* callback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = callback.h; sourceTree = "<group>"; };
+		BBD71244234097E3003C80E9 /* dss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dss.h; sourceTree = "<group>"; };
+		BBD71245234097E3003C80E9 /* dss.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = dss.a; sourceTree = "<group>"; };
+		BBD712482340995A003C80E9 /* fix_dir_owner.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = fix_dir_owner.sh; sourceTree = "<group>"; };
+		BBD712492340995A003C80E9 /* gfw.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = gfw.js; sourceTree = "<group>"; };
+		BBD7124A2340995A003C80E9 /* install_proxy_helper.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = install_proxy_helper.sh; sourceTree = "<group>"; };
+		BBD7125123409B12003C80E9 /* PasswordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PasswordViewController.xib; sourceTree = "<group>"; };
+		BBD7125223409B12003C80E9 /* WalletController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WalletController.xib; sourceTree = "<group>"; };
+		BBD7125323409B12003C80E9 /* PasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordViewController.swift; sourceTree = "<group>"; };
+		BBD7125423409B12003C80E9 /* ShopingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopingViewController.swift; sourceTree = "<group>"; };
+		BBD7125523409B12003C80E9 /* PacketMarketController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PacketMarketController.swift; sourceTree = "<group>"; };
+		BBD7125623409B12003C80E9 /* ShopingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShopingViewController.xib; sourceTree = "<group>"; };
+		BBD7125723409B12003C80E9 /* TransferViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransferViewController.swift; sourceTree = "<group>"; };
+		BBD7125823409B12003C80E9 /* TransferViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TransferViewController.xib; sourceTree = "<group>"; };
+		BBD7125923409B12003C80E9 /* WalletController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletController.swift; sourceTree = "<group>"; };
+		BBD7125A23409B13003C80E9 /* PacketMarketController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PacketMarketController.xib; sourceTree = "<group>"; };
+		CCC365C376B35BF42AEE2C85 /* Pods-sysproxyconfig.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sysproxyconfig.debug.xcconfig"; path = "Target Support Files/Pods-sysproxyconfig/Pods-sysproxyconfig.debug.xcconfig"; sourceTree = "<group>"; };
+		DEEB7CF616F65E46FB9C9654 /* Pods-sysproxyconfig.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sysproxyconfig.release.xcconfig"; path = "Target Support Files/Pods-sysproxyconfig/Pods-sysproxyconfig.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +111,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBD71246234097E3003C80E9 /* dss.a in Frameworks */,
+				D05C6370FD014BD8D31A153F /* Pods_Pirate.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,18 +120,44 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A36A7D801E362061B402737 /* Pods_sysproxyconfig.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7428D099AB984B1657E0A53E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BBD71243234097E3003C80E9 /* callback.h */,
+				BBD71245234097E3003C80E9 /* dss.a */,
+				BBD71244234097E3003C80E9 /* dss.h */,
+				253E4BA7E0494070A79F68E1 /* Pods_Pirate.framework */,
+				7F66B4ECC0A09EA30ADA0099 /* Pods_sysproxyconfig.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AFD477FE6FDCF52B3CF515AD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7493AD175ACDFD9706837C3D /* Pods-Pirate.debug.xcconfig */,
+				0AF297507DDAAA64D192512F /* Pods-Pirate.release.xcconfig */,
+				CCC365C376B35BF42AEE2C85 /* Pods-sysproxyconfig.debug.xcconfig */,
+				DEEB7CF616F65E46FB9C9654 /* Pods-sysproxyconfig.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		BB10823623406B31004CBB54 = {
 			isa = PBXGroup;
 			children = (
 				BB10824123406B31004CBB54 /* Pirate */,
 				BBD71225234093AC003C80E9 /* sysproxyconfig */,
 				BB10824023406B31004CBB54 /* Products */,
+				AFD477FE6FDCF52B3CF515AD /* Pods */,
+				7428D099AB984B1657E0A53E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -81,7 +173,10 @@
 		BB10824123406B31004CBB54 /* Pirate */ = {
 			isa = PBXGroup;
 			children = (
-				BBD7122F234094D3003C80E9 /* scripts */,
+				BBD712472340995A003C80E9 /* scripts */,
+				BBD71242234097AD003C80E9 /* module.modulemap */,
+				BBD7122B234093C8003C80E9 /* Bridging-Header.h */,
+				BBD7123123409642003C80E9 /* service */,
 				BB10825023406B5C004CBB54 /* UI */,
 				BB10824223406B31004CBB54 /* AppDelegate.swift */,
 				BB10824423406B37004CBB54 /* Assets.xcassets */,
@@ -95,6 +190,16 @@
 		BB10825023406B5C004CBB54 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				BBD7125523409B12003C80E9 /* PacketMarketController.swift */,
+				BBD7125A23409B13003C80E9 /* PacketMarketController.xib */,
+				BBD7125323409B12003C80E9 /* PasswordViewController.swift */,
+				BBD7125123409B12003C80E9 /* PasswordViewController.xib */,
+				BBD7125423409B12003C80E9 /* ShopingViewController.swift */,
+				BBD7125623409B12003C80E9 /* ShopingViewController.xib */,
+				BBD7125723409B12003C80E9 /* TransferViewController.swift */,
+				BBD7125823409B12003C80E9 /* TransferViewController.xib */,
+				BBD7125923409B12003C80E9 /* WalletController.swift */,
+				BBD7125223409B12003C80E9 /* WalletController.xib */,
 				BB10825123406B76004CBB54 /* MenuController.swift */,
 			);
 			path = UI;
@@ -105,10 +210,34 @@
 			children = (
 				BBD7122C234093C9003C80E9 /* main.m */,
 				BBD7122D234093C9003C80E9 /* SysProxyConfig.h */,
-				BBD7122B234093C8003C80E9 /* sysproxyconfig-Bridging-Header.h */,
 			);
 			path = sysproxyconfig;
 			sourceTree = "<group>";
+		};
+		BBD7123123409642003C80E9 /* service */ = {
+			isa = PBXGroup;
+			children = (
+				BBD71237234096FA003C80E9 /* MicroPayChannel.swift */,
+				BBD71238234096FA003C80E9 /* MinerPool.swift */,
+				BBD71239234096FA003C80E9 /* PacServerBean.swift */,
+				BBD71232234096FA003C80E9 /* Service.swift */,
+				BBD71233234096FA003C80E9 /* ServiceError.swift */,
+				BBD71234234096FA003C80E9 /* SysProxyHelper.swift */,
+				BBD71236234096FA003C80E9 /* utils.swift */,
+				BBD71235234096FA003C80E9 /* Wallet.swift */,
+			);
+			path = service;
+			sourceTree = "<group>";
+		};
+		BBD712472340995A003C80E9 /* scripts */ = {
+			isa = PBXGroup;
+			children = (
+				BBD712482340995A003C80E9 /* fix_dir_owner.sh */,
+				BBD712492340995A003C80E9 /* gfw.js */,
+				BBD7124A2340995A003C80E9 /* install_proxy_helper.sh */,
+			);
+			path = scripts;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -117,13 +246,16 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BB10824D23406B37004CBB54 /* Build configuration list for PBXNativeTarget "Pirate" */;
 			buildPhases = (
+				2A69D47DD8B55064201B8891 /* [CP] Check Pods Manifest.lock */,
 				BB10823B23406B31004CBB54 /* Sources */,
 				BB10823C23406B31004CBB54 /* Frameworks */,
 				BB10823D23406B31004CBB54 /* Resources */,
+				CC9C383F94056CBF4B73FE53 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				BBD7125023409993003C80E9 /* PBXTargetDependency */,
 			);
 			name = Pirate;
 			productName = Pirate;
@@ -134,6 +266,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BBD7122A234093AC003C80E9 /* Build configuration list for PBXNativeTarget "sysproxyconfig" */;
 			buildPhases = (
+				DFAAA81443615343CC5C9613 /* [CP] Check Pods Manifest.lock */,
 				BBD71220234093AC003C80E9 /* Sources */,
 				BBD71221234093AC003C80E9 /* Frameworks */,
 				BBD71222234093AC003C80E9 /* CopyFiles */,
@@ -190,21 +323,106 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BBD71230234094D3003C80E9 /* scripts in Resources */,
+				BBD7124E23409978003C80E9 /* sysproxyconfig in Resources */,
+				BBD7126023409B13003C80E9 /* ShopingViewController.xib in Resources */,
 				BB10824523406B37004CBB54 /* Assets.xcassets in Resources */,
+				BBD7126223409B13003C80E9 /* TransferViewController.xib in Resources */,
+				BBD7126423409B13003C80E9 /* PacketMarketController.xib in Resources */,
+				BBD7125C23409B13003C80E9 /* WalletController.xib in Resources */,
+				BBD7124C2340995A003C80E9 /* gfw.js in Resources */,
+				BBD7124B2340995A003C80E9 /* fix_dir_owner.sh in Resources */,
 				BB10824823406B37004CBB54 /* MainMenu.xib in Resources */,
+				BBD7124D2340995A003C80E9 /* install_proxy_helper.sh in Resources */,
+				BBD7125B23409B13003C80E9 /* PasswordViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2A69D47DD8B55064201B8891 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Pirate-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CC9C383F94056CBF4B73FE53 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Pirate/Pods-Pirate-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Pirate/Pods-Pirate-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Pirate/Pods-Pirate-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DFAAA81443615343CC5C9613 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-sysproxyconfig-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		BB10823B23406B31004CBB54 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBD7123D234096FA003C80E9 /* Wallet.swift in Sources */,
+				BBD7126123409B13003C80E9 /* TransferViewController.swift in Sources */,
+				BBD7125E23409B13003C80E9 /* ShopingViewController.swift in Sources */,
+				BBD7126323409B13003C80E9 /* WalletController.swift in Sources */,
+				BBD7123E234096FA003C80E9 /* utils.swift in Sources */,
+				BBD7123B234096FA003C80E9 /* ServiceError.swift in Sources */,
+				BBD7125F23409B13003C80E9 /* PacketMarketController.swift in Sources */,
+				BBD7125D23409B13003C80E9 /* PasswordViewController.swift in Sources */,
+				BBD71240234096FA003C80E9 /* MinerPool.swift in Sources */,
 				BB10825223406B76004CBB54 /* MenuController.swift in Sources */,
+				BBD71241234096FA003C80E9 /* PacServerBean.swift in Sources */,
 				BB10824323406B31004CBB54 /* AppDelegate.swift in Sources */,
+				BBD7123F234096FA003C80E9 /* MicroPayChannel.swift in Sources */,
+				BBD7123C234096FA003C80E9 /* SysProxyHelper.swift in Sources */,
+				BBD7123A234096FA003C80E9 /* Service.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -217,6 +435,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BBD7125023409993003C80E9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BBD71223234093AC003C80E9 /* sysproxyconfig */;
+			targetProxy = BBD7124F23409993003C80E9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		BB10824623406B37004CBB54 /* MainMenu.xib */ = {
@@ -347,42 +573,69 @@
 		};
 		BB10824E23406B37004CBB54 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7493AD175ACDFD9706837C3D /* Pods-Pirate.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Pirate/Pirate.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GCDWebServer\"",
+					"$(PROJECT_DIR)/sysproxyconfig/",
+				);
 				INFOPLIST_FILE = Pirate/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = comd.hyperorchid.Pirate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INCLUDE_PATHS = "${SRCROOT}";
+				SWIFT_OBJC_BRIDGING_HEADER = "Pirate/Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
 		BB10824F23406B37004CBB54 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0AF297507DDAAA64D192512F /* Pods-Pirate.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Pirate/Pirate.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GCDWebServer\"",
+					"$(PROJECT_DIR)/sysproxyconfig/",
+				);
 				INFOPLIST_FILE = Pirate/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = comd.hyperorchid.Pirate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INCLUDE_PATHS = "${SRCROOT}";
+				SWIFT_OBJC_BRIDGING_HEADER = "Pirate/Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
 		BBD71228234093AC003C80E9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CCC365C376B35BF42AEE2C85 /* Pods-sysproxyconfig.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -400,6 +653,7 @@
 		};
 		BBD71229234093AC003C80E9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DEEB7CF616F65E46FB9C9654 /* Pods-sysproxyconfig.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;

@@ -1,0 +1,5 @@
+module DecentralizedShadowSocks {
+    header "dss.h"
+    link "dss"
+    export *
+}
