@@ -11,7 +11,21 @@
 		BB10824523406B37004CBB54 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB10824423406B37004CBB54 /* Assets.xcassets */; };
 		BB10824823406B37004CBB54 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB10824623406B37004CBB54 /* MainMenu.xib */; };
 		BB10825223406B76004CBB54 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB10825123406B76004CBB54 /* MenuController.swift */; };
+		BBD7122E234093C9003C80E9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD7122C234093C9003C80E9 /* main.m */; };
+		BBD71230234094D3003C80E9 /* scripts in Resources */ = {isa = PBXBuildFile; fileRef = BBD7122F234094D3003C80E9 /* scripts */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		BBD71222234093AC003C80E9 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		BB10823F23406B31004CBB54 /* Pirate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pirate.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -21,10 +35,22 @@
 		BB10824923406B37004CBB54 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BB10824A23406B37004CBB54 /* Pirate.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Pirate.entitlements; sourceTree = "<group>"; };
 		BB10825123406B76004CBB54 /* MenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
+		BBD71224234093AC003C80E9 /* sysproxyconfig */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = sysproxyconfig; sourceTree = BUILT_PRODUCTS_DIR; };
+		BBD7122B234093C8003C80E9 /* sysproxyconfig-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "sysproxyconfig-Bridging-Header.h"; sourceTree = "<group>"; };
+		BBD7122C234093C9003C80E9 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		BBD7122D234093C9003C80E9 /* SysProxyConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SysProxyConfig.h; sourceTree = "<group>"; };
+		BBD7122F234094D3003C80E9 /* scripts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = scripts; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		BB10823C23406B31004CBB54 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BBD71221234093AC003C80E9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -38,6 +64,7 @@
 			isa = PBXGroup;
 			children = (
 				BB10824123406B31004CBB54 /* Pirate */,
+				BBD71225234093AC003C80E9 /* sysproxyconfig */,
 				BB10824023406B31004CBB54 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -46,6 +73,7 @@
 			isa = PBXGroup;
 			children = (
 				BB10823F23406B31004CBB54 /* Pirate.app */,
+				BBD71224234093AC003C80E9 /* sysproxyconfig */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -53,6 +81,7 @@
 		BB10824123406B31004CBB54 /* Pirate */ = {
 			isa = PBXGroup;
 			children = (
+				BBD7122F234094D3003C80E9 /* scripts */,
 				BB10825023406B5C004CBB54 /* UI */,
 				BB10824223406B31004CBB54 /* AppDelegate.swift */,
 				BB10824423406B37004CBB54 /* Assets.xcassets */,
@@ -69,6 +98,16 @@
 				BB10825123406B76004CBB54 /* MenuController.swift */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		BBD71225234093AC003C80E9 /* sysproxyconfig */ = {
+			isa = PBXGroup;
+			children = (
+				BBD7122C234093C9003C80E9 /* main.m */,
+				BBD7122D234093C9003C80E9 /* SysProxyConfig.h */,
+				BBD7122B234093C8003C80E9 /* sysproxyconfig-Bridging-Header.h */,
+			);
+			path = sysproxyconfig;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -91,6 +130,23 @@
 			productReference = BB10823F23406B31004CBB54 /* Pirate.app */;
 			productType = "com.apple.product-type.application";
 		};
+		BBD71223234093AC003C80E9 /* sysproxyconfig */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BBD7122A234093AC003C80E9 /* Build configuration list for PBXNativeTarget "sysproxyconfig" */;
+			buildPhases = (
+				BBD71220234093AC003C80E9 /* Sources */,
+				BBD71221234093AC003C80E9 /* Frameworks */,
+				BBD71222234093AC003C80E9 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = sysproxyconfig;
+			productName = sysproxyconfig;
+			productReference = BBD71224234093AC003C80E9 /* sysproxyconfig */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -103,6 +159,10 @@
 				TargetAttributes = {
 					BB10823E23406B31004CBB54 = {
 						CreatedOnToolsVersion = 10.1;
+					};
+					BBD71223234093AC003C80E9 = {
+						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1010;
 					};
 				};
 			};
@@ -120,6 +180,7 @@
 			projectRoot = "";
 			targets = (
 				BB10823E23406B31004CBB54 /* Pirate */,
+				BBD71223234093AC003C80E9 /* sysproxyconfig */,
 			);
 		};
 /* End PBXProject section */
@@ -129,6 +190,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBD71230234094D3003C80E9 /* scripts in Resources */,
 				BB10824523406B37004CBB54 /* Assets.xcassets in Resources */,
 				BB10824823406B37004CBB54 /* MainMenu.xib in Resources */,
 			);
@@ -143,6 +205,14 @@
 			files = (
 				BB10825223406B76004CBB54 /* MenuController.swift in Sources */,
 				BB10824323406B31004CBB54 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BBD71220234093AC003C80E9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BBD7122E234093C9003C80E9 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -311,6 +381,39 @@
 			};
 			name = Release;
 		};
+		BBD71228234093AC003C80E9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "sysproxyconfig/sysproxyconfig-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
+			};
+			name = Debug;
+		};
+		BBD71229234093AC003C80E9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "sysproxyconfig/sysproxyconfig-Bridging-Header.h";
+				SWIFT_VERSION = 4.2;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -328,6 +431,15 @@
 			buildConfigurations = (
 				BB10824E23406B37004CBB54 /* Debug */,
 				BB10824F23406B37004CBB54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BBD7122A234093AC003C80E9 /* Build configuration list for PBXNativeTarget "sysproxyconfig" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BBD71228234093AC003C80E9 /* Debug */,
+				BBD71229234093AC003C80E9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
