@@ -156,8 +156,6 @@ struct NewWallet_return {
 
 extern struct NewWallet_return NewWallet(GoString p0);
 
-//TODO::refactor
-
 extern char* SyncWalletBalance(GoString p0);
 
 extern char* ImportWalletFrom(GoString p0, GoString p1);

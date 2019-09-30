@@ -15,7 +15,7 @@ let KEY_FOR_CURRENT_POOL_INUSE    = "KEY_FOR_CURRENT_SEL_POOL_v2"
 
 public let TOKEN_ADDRESS = "0x7001563e8f2ec996361b72f746468724e1f1276c"
 public let MICROPAY_SYSTEM_ADDRESS = "0x572b89B86D37A990E828F45c85e31b8e8Ae222eF"
-public let BLOCKCHAIN_API_URL = "https://ropsten.infura.io/v3/8b8db3cca50a4fcf97173b7619b1c4c3"
+public let BLOCKCHAIN_API_URL = "https://ropsten.infura.io/v3/f3245cef90ed440897e43efc6b3dd0f7"
 public let BaseEtherScanUrl = "https://ropsten.etherscan.io"  //"https://ropsten.etherscan.io"//"https://etherscan.io"
 
 public let PoolsInMarketChanged = Notification.Name(rawValue: "PoolsInMarketChanged")
