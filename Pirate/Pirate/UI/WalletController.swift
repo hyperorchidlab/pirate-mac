@@ -47,7 +47,7 @@ class WalletController: NSWindowController {
         func updateWallet(){
                 let w = Wallet.sharedInstance
                 
-                MainAddressField.stringValue = "0x" + w.MainAddress
+                MainAddressField.stringValue = w.MainAddress
                 SubAddressField.stringValue = w.SubAddress
                 EthBalanceField.doubleValue = w.EthBalance.CoinValue()
                 TokenBalanceField.doubleValue = w.TokenBalance.CoinValue()
