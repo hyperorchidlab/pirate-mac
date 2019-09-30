@@ -180,7 +180,6 @@
 				BB10825023406B5C004CBB54 /* UI */,
 				BB10824223406B31004CBB54 /* AppDelegate.swift */,
 				BB10824423406B37004CBB54 /* Assets.xcassets */,
-				BB10824623406B37004CBB54 /* MainMenu.xib */,
 				BB10824923406B37004CBB54 /* Info.plist */,
 				BB10824A23406B37004CBB54 /* Pirate.entitlements */,
 			);
@@ -191,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				BB10825123406B76004CBB54 /* MenuController.swift */,
+				BB10824623406B37004CBB54 /* MainMenu.xib */,
 				BBD7125523409B12003C80E9 /* PacketMarketController.swift */,
 				BBD7125A23409B13003C80E9 /* PacketMarketController.xib */,
 				BBD7125323409B12003C80E9 /* PasswordViewController.swift */,
