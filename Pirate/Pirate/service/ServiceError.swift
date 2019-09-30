@@ -17,7 +17,8 @@ enum ServiceError:Error {
         
         case NewWalletErr(String)
         case EmptyWalletErr
-        case InvalidWalletErr
+        case ExportWalletErr(String)
+        case ImportWalletErr(String)
         case OpenWalletErr
         
         case NoPaymentChanErr
@@ -42,8 +43,10 @@ extension ServiceError: LocalizedError {
                         return str
                 case .EmptyWalletErr:
                         return NSLocalizedString("Empty walllet error".localized, comment: "Wallet Error")
-                case .InvalidWalletErr:
-                        return NSLocalizedString("Invalid walllet error".localized, comment: "Wallet Error")
+                case .ExportWalletErr(let str):
+                        return NSLocalizedString(str.localized, comment: "Wallet Error")
+                case .ImportWalletErr(let str):
+                        return NSLocalizedString(str.localized, comment: "Wallet Error")
                 case .OpenWalletErr:
                         return NSLocalizedString("Open walllet error".localized, comment: "Wallet Error")
                 case .NoPaymentChanErr:

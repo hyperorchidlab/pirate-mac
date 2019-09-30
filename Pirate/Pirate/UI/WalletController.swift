@@ -114,8 +114,7 @@ class WalletController: NSWindowController {
                         }
                         
                         do {
-                                let jsonStr = try String.init(contentsOf: openPanel.url!)
-                                try Wallet.sharedInstance.ImportWallet(json:jsonStr , password: password)
+                                try Wallet.sharedInstance.ImportWallet(path:openPanel.url!.path , password: password)
                                 dialogOK(question: "Success", text: "Import wallet success!")
                                 self.updateWallet()
                                 

@@ -12,6 +12,7 @@
 		BB10824523406B37004CBB54 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB10824423406B37004CBB54 /* Assets.xcassets */; };
 		BB10824823406B37004CBB54 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB10824623406B37004CBB54 /* MainMenu.xib */; };
 		BB10825223406B76004CBB54 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB10825123406B76004CBB54 /* MenuController.swift */; };
+		BB2354FB2341D74500108482 /* AccountBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2354FA2341D74500108482 /* AccountBook.swift */; };
 		BBD7122E234093C9003C80E9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD7122C234093C9003C80E9 /* main.m */; };
 		BBD7123A234096FA003C80E9 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD71232234096FA003C80E9 /* Service.swift */; };
 		BBD7123B234096FA003C80E9 /* ServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD71233234096FA003C80E9 /* ServiceError.swift */; };
@@ -73,6 +74,7 @@
 		BB10824923406B37004CBB54 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BB10824A23406B37004CBB54 /* Pirate.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Pirate.entitlements; sourceTree = "<group>"; };
 		BB10825123406B76004CBB54 /* MenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
+		BB2354FA2341D74500108482 /* AccountBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountBook.swift; sourceTree = "<group>"; };
 		BBD71224234093AC003C80E9 /* sysproxyconfig */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = sysproxyconfig; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBD7122B234093C8003C80E9 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		BBD7122C234093C9003C80E9 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 				BBD71234234096FA003C80E9 /* SysProxyHelper.swift */,
 				BBD71236234096FA003C80E9 /* utils.swift */,
 				BBD71235234096FA003C80E9 /* Wallet.swift */,
+				BB2354FA2341D74500108482 /* AccountBook.swift */,
 			);
 			path = service;
 			sourceTree = "<group>";
@@ -412,6 +415,7 @@
 				BBD7126123409B13003C80E9 /* TransferViewController.swift in Sources */,
 				BBD7125E23409B13003C80E9 /* ShopingViewController.swift in Sources */,
 				BBD7126323409B13003C80E9 /* WalletController.swift in Sources */,
+				BB2354FB2341D74500108482 /* AccountBook.swift in Sources */,
 				BBD7123E234096FA003C80E9 /* utils.swift in Sources */,
 				BBD7123B234096FA003C80E9 /* ServiceError.swift in Sources */,
 				BBD7125F23409B13003C80E9 /* PacketMarketController.swift in Sources */,

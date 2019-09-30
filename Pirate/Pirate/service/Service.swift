@@ -163,8 +163,7 @@ class Service: NSObject {
                 }
                 
                 serviceQueue.async {
-                        
-                        let ret = startService("127.0.0.1:\(ProxyLocalPort)".toGoString(),
+                        let ret = startServing("127.0.0.1:\(ProxyLocalPort)".toGoString(),
                                                password.toGoString(),
                                                pool.toGoString())
                        

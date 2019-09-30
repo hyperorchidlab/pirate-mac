@@ -28,7 +28,6 @@ typedef struct { const char *p; ptrdiff_t n; } _GoString_;
 
 
 
-
 /* End of preamble from import "C" comments.  */
 
 
@@ -89,13 +88,13 @@ extern void asyncAppDataFromBlockChain();
 
 extern GoInt64 SysPacketPrice();
 
-/* Return type for startService */
-struct startService_return {
+/* Return type for startServing */
+struct startServing_return {
 	GoInt r0;
 	char* r1;
 };
 
-extern struct startService_return startService(GoString p0, GoString p1, GoString p2);
+extern struct startServing_return startServing(GoString p0, GoString p1, GoString p2);
 
 extern void stopService();
 
@@ -131,16 +130,6 @@ extern char* PoolInfosInMarket();
 
 extern void AsyncLoadMarketData();
 
-extern char* OpenMicroPayChannel(GoString p0, GoString p1, GoString p2, GoString p3);
-
-extern void CloseMicroPayChannel();
-
-extern char* RunVpnService(GoString p0);
-
-extern void StopVpnService();
-
-extern GoUint8 WalletVerify(GoString p0, GoString p1);
-
 /* Return type for TransferEth */
 struct TransferEth_return {
 	char* r0;
@@ -157,9 +146,7 @@ struct TransferLinToken_return {
 
 extern struct TransferLinToken_return TransferLinToken(GoString p0, GoString p1, GoFloat64 p2);
 
-extern void SyncWalletInfo();
-
-extern char* LoadWalletInfo();
+extern char* LoadAccountBook(GoString p0, GoString p1);
 
 /* Return type for NewWallet */
 struct NewWallet_return {
@@ -168,6 +155,22 @@ struct NewWallet_return {
 };
 
 extern struct NewWallet_return NewWallet(GoString p0);
+
+//TODO::refactor
+
+extern char* SyncWalletBalance(GoString p0);
+
+extern char* ImportWalletFrom(GoString p0, GoString p1);
+
+extern char* ExportWalletTo(GoString p0);
+
+/* Return type for WalletAddress */
+struct WalletAddress_return {
+	char* r0;
+	char* r1;
+};
+
+extern struct WalletAddress_return WalletAddress();
 
 #ifdef __cplusplus
 }

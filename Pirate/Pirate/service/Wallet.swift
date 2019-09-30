@@ -16,18 +16,26 @@ class Wallet:NSObject{
         var defaults = UserDefaults.standard
         var MainAddress:String = ""
         var SubAddress:String = ""
+        
         var EthBalance:NSNumber = 0
         var TokenBalance:NSNumber = 0
         var HasApproved:NSNumber = 0
-        var ciphereTxt:Data?
-        var Counter:Int = 0
-        var InRecharge: Int = 0
-        var Nonce   :   Int = 0
-        var UnClaimed:  Int64  = 0
         
         override init() {
                 super.init()
-                loadWalletData()
+                loadWalletInfo()
+        }
+        
+        
+        func loadWalletInfo(){
+                let ret = WalletAddress()
+                
+                guard let mainData = ret.r0 else {
+                        return
+                }
+                self.MainAddress = String(cString: mainData)
+                self.SubAddress = String(cString: ret.r1)
+                syncWalletData()
         }
         
         class var sharedInstance: Wallet {
@@ -48,7 +56,7 @@ class Wallet:NSObject{
                                 let err = String(cString:ret.r1)
                                 throw ServiceError.NewWalletErr(err)
                         }
-                        loadWalletData()
+                        loadWalletInfo()
                 }catch let err{
                         dialogOK(question: "Error", text: err.localizedDescription)
                         return false
@@ -59,52 +67,43 @@ class Wallet:NSObject{
         }
         
         func syncWalletData() {
-                SyncWalletInfo()
-        }
-        
-        func loadWalletData() {
-                guard let ret = LoadWalletInfo() else{
+                if self.MainAddress == ""{
                         return
                 }
+                
+                guard let ret = SyncWalletBalance(self.MainAddress.toGoString()) else{
+                        return
+                }
+                
                 guard let data = String(cString:ret).data(using: .utf8) else{
                         return
                 }
-                
                 guard let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String:Any]else{
                         return
                 }
-                
-                self.MainAddress = json["mainAddress"] as? String ?? ""
-                self.SubAddress = json["subAddress"] as? String ?? ""
-                let eth = json["eth"] as? NSNumber ?? 0
-                let lin = json["token"] as? NSNumber ?? 0
-                let app = json["approved"] as? NSNumber ?? 0
-                print("\n\n\teth:\(eth)\tlin:\(lin)\tapp:\(app)\n\n")
-                
-                
                 self.EthBalance = json["eth"] as? NSNumber ?? 0
                 self.TokenBalance = json["token"] as? NSNumber ?? 0
                 self.HasApproved = json["approved"] as? NSNumber ?? 0
-                self.ciphereTxt = json["cipher"] as? Data
-                self.Counter =  json["counter"] as? Int ?? 0
-                self.InRecharge = json["charging"] as? Int ?? 0
-                self.Nonce = json["nonce"] as? Int ?? 0
-                self.UnClaimed  = json["unclaimed"] as? Int64 ?? 0
         }
         
+   
         func ExportWallet(dst:URL?) throws{
                 
-                guard let data = self.ciphereTxt  else {
-                        throw ServiceError.InvalidWalletErr
+                guard let err = ExportWalletTo(dst!.path.toGoString()) else{
+                        return
                 }
-                try data.write(to: dst!, options: .atomicWrite)
+                let str = String(cString:err)
+                throw ServiceError.ExportWalletErr(str)
         }
         
-        func ImportWallet(json: String, password:String) throws{
-                guard WalletVerify(json.toGoString(), password.toGoString()) != 0 else {
-                        throw ServiceError.InvalidWalletErr
+        func ImportWallet(path: String, password:String) throws{
+                guard let err = ImportWalletFrom(path.toGoString(), password.toGoString())  else {
+                        loadWalletInfo()
+                        return
                 }
-                loadWalletData()
+                
+                let str = String(cString:err)
+                throw ServiceError.ImportWalletErr(str)
         }
         func EthTransfer(password:String, target:String, no:Double){
                 Service.sharedInstance.contractQueue.async {
