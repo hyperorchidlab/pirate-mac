@@ -46,7 +46,7 @@ class WalletController: NSWindowController {
         
         func updateWallet(){
                 let w = Wallet.sharedInstance
-                
+                w.loadWalletInfo()
                 MainAddressField.stringValue = w.MainAddress
                 SubAddressField.stringValue = w.SubAddress
                 EthBalanceField.doubleValue = w.EthBalance.CoinValue()
@@ -155,7 +155,7 @@ class WalletController: NSWindowController {
         @IBAction func SyncEthereumAction(_ sender: Any) {
                 WaitingTip.isHidden = false
                 Service.sharedInstance.contractQueue.async {
-                        Wallet.sharedInstance.syncWalletData()
+                        Wallet.sharedInstance.loadWalletInfo()
                         MPCManager.loadMyChannels()
                         DispatchQueue.main.async {
                                 self.WaitingTip.isHidden = true
