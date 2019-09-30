@@ -11,32 +11,92 @@
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
-        <customObject id="-3" userLabel="Application"/>
-        <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Pirate" customModuleProvider="target"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Pangolin" customModuleProvider="target"/>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
-        <customObject id="WBB-sJ-5qg" customClass="MenuController" customModule="Pirate" customModuleProvider="target">
+        <customObject id="MrV-Ey-DwV" customClass="MenuController" customModule="Pangolin" customModuleProvider="target">
             <connections>
-                <outlet property="statusMenu" destination="RHq-WL-401" id="18V-iU-udu"/>
+                <outlet property="ConfigMenu" destination="6Aa-8n-00U" id="uq0-UT-3KO"/>
+                <outlet property="allPayChannels" destination="wBT-o3-yXY" id="b4V-4f-q0p"/>
+                <outlet property="channelName" destination="CPn-B5-6Vi" id="omQ-9T-9GL"/>
+                <outlet property="globalModel" destination="CDL-O9-gLJ" id="O0o-NX-RwJ"/>
+                <outlet property="minerPoolMenu" destination="vbi-aX-P3T" id="f84-3c-0Vc"/>
+                <outlet property="smartModel" destination="dun-4t-46q" id="InF-5x-HBA"/>
+                <outlet property="statusMenu" destination="jSI-9o-dzW" id="PEK-73-eDY"/>
+                <outlet property="switchBtn" destination="OF0-0M-VrQ" id="nES-MM-RvC"/>
+                <outlet property="walletMenu" destination="6XY-as-n9m" id="yEJ-I2-Xiu"/>
             </connections>
         </customObject>
-        <menu id="RHq-WL-401">
+        <menu id="jSI-9o-dzW">
             <items>
-                <menuItem title="Item 1" id="03L-0t-OXq">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                </menuItem>
-                <menuItem title="Item 2" id="cq0-q1-SDd">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                </menuItem>
-                <menuItem title="Quit" id="trf-LB-ol5">
+                <menuItem title="Turn On" id="OF0-0M-VrQ">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="quitClickedWithSender:" target="WBB-sJ-5qg" id="7O4-3y-Aad"/>
+                        <action selector="switchTurnOnOff:" target="MrV-Ey-DwV" id="dOK-FC-en3"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="mce-7C-PoB"/>
+                <menuItem title="Smart" state="on" id="dun-4t-46q">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="changeModel:" target="MrV-Ey-DwV" id="BIZ-88-Z3X"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Global" tag="1" id="CDL-O9-gLJ">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="changeModel:" target="MrV-Ey-DwV" id="Lt7-lt-ose"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Config-&gt;" id="CPn-B5-6Vi">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="Config-&gt;" id="wBT-o3-yXY">
+                        <items>
+                            <menuItem title="Config" id="6Aa-8n-00U">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="ConfigChannels:" target="MrV-Ey-DwV" id="Dbp-gW-25F"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="71j-XL-pZ9"/>
+                        </items>
+                    </menu>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="a8M-0p-ROJ"/>
+                <menuItem title="Wallet" id="6XY-as-n9m">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="ShowWalletView:" target="MrV-Ey-DwV" id="Dsn-A4-DRH"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Market" id="vbi-aX-P3T">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="ShowMinerPoolView:" target="MrV-Ey-DwV" id="bIY-rj-8sQ"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="8ae-iU-biQ"/>
+                <menuItem title="Update" id="Zi5-w1-m89">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem title="Help" id="eFg-by-ANE">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem title="About" id="qy9-uU-fo5">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="wri-Fy-XeK"/>
+                <menuItem title="Quit" id="aIl-gQ-IUl">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="finish:" target="MrV-Ey-DwV" id="6nJ-st-VDU"/>
                     </connections>
                 </menuItem>
             </items>
             <connections>
-                <outlet property="delegate" destination="WBB-sJ-5qg" id="BwE-Qu-Eog"/>
+                <outlet property="delegate" destination="MrV-Ey-DwV" id="zWe-4O-8Ka"/>
             </connections>
+            <point key="canvasLocation" x="135.5" y="148"/>
         </menu>
     </objects>
 </document>
