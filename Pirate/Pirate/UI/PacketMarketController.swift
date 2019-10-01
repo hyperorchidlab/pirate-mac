@@ -44,7 +44,7 @@ class PacketMarketController: NSWindowController {
                 self.EthBalance.doubleValue = Wallet.sharedInstance.EthBalance.CoinValue()
                 self.avgPriceField.doubleValue = Double(Service.sharedInstance.srvConf.packetPrice)
                 self.approvedField.doubleValue = Wallet.sharedInstance.HasApproved.CoinValue()
-                self.BuyForAddrField.stringValue = "0x" + Wallet.sharedInstance.MainAddress
+                self.BuyForAddrField.stringValue = Wallet.sharedInstance.MainAddress
                 WaitingTip.isHidden = false
                 self.loadPoolsData()
                 MinerPool.asyncFreshMarketData()
@@ -66,6 +66,7 @@ class PacketMarketController: NSWindowController {
                         self.WaitingTip.isHidden = true
                 }
                 ShowTransResult(notification:notification)
+                MPCManager.loadMyPoolsFromBlockChain()
         }
         
         @IBAction func Exit(_ sender: Any) {

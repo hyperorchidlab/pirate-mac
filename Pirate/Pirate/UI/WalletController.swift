@@ -156,7 +156,7 @@ class WalletController: NSWindowController {
                 WaitingTip.isHidden = false
                 Service.sharedInstance.contractQueue.async {
                         Wallet.sharedInstance.loadWalletInfo()
-                        MPCManager.loadMyChannels()
+                        MPCManager.loadMyPoolsFromBlockChain()
                         DispatchQueue.main.async {
                                 self.WaitingTip.isHidden = true
                                 self.PoolTableView.reloadData()
