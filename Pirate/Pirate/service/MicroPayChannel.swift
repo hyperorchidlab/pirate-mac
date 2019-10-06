@@ -52,7 +52,7 @@ class MPCManager:NSObject{
         }
         
         static func parseSubPools(data:Data) -> Void {
-                guard let chanMap = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) as! NSDictionary else {
+                guard let chanMap = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? NSDictionary else {
                         return
                 }
                 

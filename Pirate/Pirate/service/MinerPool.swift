@@ -37,7 +37,7 @@ class MinerPool: NSObject {
         } 
         
         static private func parsePoolsData(data:Data){
-                guard let poolMap = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) as! NSDictionary else {
+                guard let poolMap = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? NSDictionary else {
                         return
                 }
                 

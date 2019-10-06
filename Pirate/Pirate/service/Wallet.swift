@@ -78,7 +78,7 @@ class Wallet:NSObject{
                 guard let data = String(cString:ret).data(using: .utf8) else{
                         return
                 }
-                guard let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String:Any]else{
+                guard let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String:Any]else{
                         return
                 }
                 self.EthBalance = json["eth"] as? NSNumber ?? 0
