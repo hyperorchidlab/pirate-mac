@@ -11,11 +11,12 @@ import DecentralizedShadowSocks
 
 let KEY_FOR_SWITCH_STATE          = "KEY_FOR_SWITCH_STATE"
 let KEY_FOR_Pirate_MODEL        = "KEY_FOR_Pirate_MODEL"
+let KEY_FOR_DNS_IP        = "KEY_FOR_DNS_IP"
 let KEY_FOR_CURRENT_POOL_INUSE    = "KEY_FOR_CURRENT_SEL_POOL_v2"
 
-public let TOKEN_ADDRESS = "0x7001563e8f2ec996361b72f746468724e1f1276c"
-public let MICROPAY_SYSTEM_ADDRESS = "0x572b89B86D37A990E828F45c85e31b8e8Ae222eF"
-public let BLOCKCHAIN_API_URL = "https://ropsten.infura.io/v3/f3245cef90ed440897e43efc6b3dd0f7"
+public let TOKEN_ADDRESS = "0x7001563e8f2ec996361b72f746468724e1f1276c".toGoString()
+public let MICROPAY_SYSTEM_ADDRESS = "0x572b89B86D37A990E828F45c85e31b8e8Ae222eF".toGoString()
+public let BLOCKCHAIN_API_URL = "https://ropsten.infura.io/v3/f3245cef90ed440897e43efc6b3dd0f7".toGoString()
 public let BaseEtherScanUrl = "https://ropsten.etherscan.io"  //"https://ropsten.etherscan.io"//"https://etherscan.io"
 
 public let PoolsInMarketChanged = Notification.Name(rawValue: "PoolsInMarketChanged")
@@ -29,11 +30,13 @@ struct BasicConfig{
         var isGlobal:Bool = false
         var packetPrice:Int64 = -1
         var baseDir:String = ".Pirate"
+        var dns:String = "167.179.112.108"
         var poolInUsed:String? = nil
         
         mutating func loadConf(){
                 self.isGlobal = UserDefaults.standard.bool(forKey: KEY_FOR_Pirate_MODEL)
                 self.poolInUsed = UserDefaults.standard.string(forKey: KEY_FOR_CURRENT_POOL_INUSE)
+                self.dns = UserDefaults.standard.string(forKey: KEY_FOR_DNS_IP) ?? "167.179.112.108"
                 do {
                         self.baseDir = try touchDirectory(directory: ".Pirate").path
                 }catch let err{
@@ -48,7 +51,6 @@ struct BasicConfig{
         }
         
         func save(){
-//                UserDefaults.standard.set(isTurnon, forKey: KEY_FOR_SWITCH_STATE)
                 UserDefaults.standard.set(isGlobal, forKey: KEY_FOR_Pirate_MODEL)
         }
 }
@@ -56,33 +58,20 @@ struct BasicConfig{
 class Service: NSObject {
         
         var srvConf = BasicConfig()
-        var systemCallBack:SystemActionCallBack = {typ, v in
-                switch typ {
-                case Int32(BalanceSynced.rawValue):
-                        NotificationCenter.default.post(name: WalletDataChangedNoti, object: nil)
-                        print("BalanceSynced")
-                        return
-                default:
-                        print("unknown system call back typ:", typ)
-                        return
-                }
-        }
         
-        var blockchainSynced:BlockChainDataSyncNotifier = {typ, v in
-                
-                switch typ {
-                case Int32(SubPoolSynced.rawValue):
-                        MPCManager.loadMyChannels()
-                        NotificationCenter.default.post(name: PayChannelChangedNoti, object: nil)
-                        print("SubPoolSynced")
+        var systemCallBack:UserInterfaceAPI = {actTyp, logTyp, v in
+                switch actTyp {
+                case Int32(Log.rawValue):
+                        print("log")
                         return
-                case Int32(MarketPoolSynced.rawValue):
-                        MinerPool.PoolInfoInMarket()
-                        NotificationCenter.default.post(name: PoolsInMarketChanged, object: nil)
-                        print("MarketPoolSynced")
+                case Int32(Notification.rawValue):
+                        print("log")
+                        return
+                case Int32(ExitByErr.rawValue):
+                        print("log")
                         return
                 default:
-                        print("unknown data service call back typ:", typ)
+                        print("unknown system call back typ:", actTyp)
                         return
                 }
         }
@@ -112,21 +101,22 @@ class Service: NSObject {
         }
         
         public func amountService() throws{
-                srvConf.loadConf()
-                let ret = initApp(TOKEN_ADDRESS.toGoString(),
-                                  MICROPAY_SYSTEM_ADDRESS.toGoString(),
-                                  BLOCKCHAIN_API_URL.toGoString(),
-                                  srvConf.baseDir.toGoString(),
-                                  systemCallBack,
-                                  blockchainSynced)
-                if ret.r0 != 0 {
-                        throw ServiceError.SdkActionErr("init app err: no:[\(ret.r0)] msg:[\(String(cString:ret.r1))]")
+                let ret = initConf(srvConf.baseDir.toGoString(),
+                         TOKEN_ADDRESS,
+                         MICROPAY_SYSTEM_ADDRESS,
+                         BLOCKCHAIN_API_URL,
+                         srvConf.dns.toGoString(),
+                         systemCallBack)
+                
+                if ret != nil{
+                        throw ServiceError.SdkActionErr("init config err: msg:[\(String(cString:ret!))]")
                 }
                 
-                self.srvConf.packetPrice = SysPacketPrice()
-                self.contractQueue.async {
-                        asyncAppDataFromBlockChain()
+                let ret2  = initDataSrv()
+                if ret2.r0 != 0 {
+                        throw ServiceError.SdkActionErr("init data cache service err: no:[\(ret2.r0)] msg:[\(String(cString:ret2.r1))]")
                 }
+  
                 
                 try  ensureLaunchAgentsDirOwner()
                 if !SysProxyHelper.install(){
@@ -134,6 +124,15 @@ class Service: NSObject {
                 }
                 
                 try pacServ.startPACServer()
+                
+                if !Wallet.CurrentWallet.IsEmpty() {
+                        return
+                }
+
+                let ret3 = initHopSrv()
+                if ret3.r0 != 0 {
+                        throw ServiceError.SdkActionErr("init hyper orchid protocol err: no:[\(ret3.r0)] msg:[\(String(cString:ret3.r1))]")
+                }
         }
         
         public func StopServer() throws{
@@ -149,7 +148,7 @@ class Service: NSObject {
         
         public func StartServer(password:String) throws{
                 
-                if Wallet.sharedInstance.IsEmpty(){
+                if Wallet.CurrentWallet.IsEmpty(){
                         throw ServiceError.EmptyWalletErr
                 }
                 

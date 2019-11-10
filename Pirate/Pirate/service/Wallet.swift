@@ -13,9 +13,6 @@ class Wallet:NSObject{
         
         public static var CurrentWallet:Wallet = Wallet()
         
-        let BALANCE_TOKEN_KEY = "BALANCE_TOKEN_KEY"
-        let BALANCE_ETH_KEY = "BALANCE_ETH_KEY"
-        
         var MainAddress:String = ""
         var SubAddress:String = ""
         var EthBalance:NSNumber = 0

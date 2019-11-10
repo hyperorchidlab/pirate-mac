@@ -76,7 +76,7 @@ extern "C" {
 #endif
 
 
-extern GoInterface initConf(GoString p0, GoString p1, GoString p2, GoString p3, GoString p4, UserInterfaceAPI p5);
+extern char* initConf(GoString p0, GoString p1, GoString p2, GoString p3, GoString p4, UserInterfaceAPI p5);
 
 /* Return type for initDataSrv */
 struct initDataSrv_return {
