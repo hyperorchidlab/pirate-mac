@@ -86,12 +86,6 @@ struct initApp_return {
 
 extern struct initApp_return initApp(UserInterfaceAPI p0);
 
-extern GoUint8 isWalletOpen();
-
-extern char* openWallet(GoString p0);
-
-extern char* minerSeeds(GoString p0, GoInt p1, GoInt p2);
-
 /* Return type for startServing */
 struct startServing_return {
 	GoInt r0;
@@ -134,6 +128,10 @@ extern char* PoolDetails(GoString p0);
 
 extern char* PoolInfosInMarket();
 
+extern char* MinerSeeds(GoString p0, GoInt p1, GoInt p2);
+
+extern char* UserDataOfPool(GoString p0, GoString p1);
+
 /* Return type for TransferEth */
 struct TransferEth_return {
 	char* r0;
@@ -171,6 +169,10 @@ struct WalletAddress_return {
 };
 
 extern struct WalletAddress_return WalletAddress();
+
+extern GoUint8 isWalletOpen();
+
+extern char* openWallet(GoString p0);
 
 #ifdef __cplusplus
 }

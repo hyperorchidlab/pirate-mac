@@ -20,7 +20,7 @@ public let BaseEtherScanUrl = "https://ropsten.etherscan.io"  //"https://ropsten
 
 public let PoolsInMarketChanged = Notification.Name(rawValue: "PoolsInMarketChanged")
 public let WalletDataChangedNoti = Notification.Name(rawValue: "WallentDataChangedNotification")
-public let BuyPacketResultNoti = Notification.Name(rawValue: "WalletBuyPacketResultNoti")
+public let UserDataSyncSuccess = Notification.Name(rawValue: "UserDataChangedByBlockChainData")
 public let TokenTransferResultNoti = Notification.Name(rawValue: "WalletTokenTransferResultNoti")
 public let PayChannelChangedNoti = Notification.Name(rawValue: "PayChannelChangedNoti")
 
