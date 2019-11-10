@@ -99,7 +99,7 @@ class ShopingViewController: NSViewController {
         }
         func startBlockChainAction(buyFrom pool:String, For user:String, auth:String, tokenNo:Double) {
                 
-                if  Wallet.sharedInstance.HasApproved.doubleValue < tokenNo{
+                if  Wallet.CurrentWallet.HasApproved.doubleValue < tokenNo{
                         self.setStatusInof(status: .InitApprove, desc: "")
                         let appRet = AuthorizeTokenSpend(auth.toGoString(), tokenNo)
                         guard let txData = appRet.r0 else{
@@ -130,7 +130,7 @@ class ShopingViewController: NSViewController {
                 waitTxToSuccess(tx:tx)
                 
                 self.setStatusInof(status: .BuySuccess, desc: "")
-                ProcessTransRet(tx: tx, err: "", noti:UserDataChanged)
+                ProcessTransRet(tx: tx, err: "", noti:TransactionSuccess)
         }
 }
 

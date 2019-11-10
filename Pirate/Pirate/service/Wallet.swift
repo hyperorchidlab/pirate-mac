@@ -22,7 +22,7 @@ class Wallet:NSObject{
         var TokenBalance:NSNumber = 0
         var HasApproved:NSNumber = 0
         
-        public var PoolsOfUser:[MinerPool] = []
+        static public var PoolsOfUser:[MinerPool] = []
         
         override init() {
                 super.init()
@@ -124,7 +124,7 @@ class Wallet:NSObject{
         }
         
         func allMyPools(){
-                self.PoolsOfUser.removeAll()
+                Wallet.PoolsOfUser.removeAll()
                 guard let ret = PoolDataOfUser(self.MainAddress.toGoString()) else {
                         return
                 }
@@ -142,7 +142,7 @@ class Wallet:NSObject{
                         }
                         
                         let pool = MinerPool.init(dict:dict)
-                        PoolsOfUser.append(pool)
+                       Wallet.PoolsOfUser.append(pool)
                 }
         }
         

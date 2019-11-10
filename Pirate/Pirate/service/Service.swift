@@ -20,6 +20,7 @@ public let BaseEtherScanUrl = "https://ropsten.etherscan.io"  //"https://ropsten
 
 public let PoolsInMarketChanged = Notification.Name(rawValue: "PoolsInMarketChanged")
 public let TransactionCreated = Notification.Name(rawValue: "TransactionCreated")
+public let TransactionSuccess = Notification.Name(rawValue: "TransactionSuccess")
 public let UserDataSyncSuccess = Notification.Name(rawValue: "UserDataSyncSuccess")
 
 struct BasicConfig{

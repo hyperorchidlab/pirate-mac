@@ -190,7 +190,7 @@ class WalletController: NSWindowController {
 extension WalletController:NSTableViewDelegate{
         func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         
-                let pool = Wallet.CurrentWallet.PoolsOfUser[row]
+                let pool = Wallet.PoolsOfUser[row]
                 
                 guard let cell = tableView.makeView(withIdentifier:
                         NSUserInterfaceItemIdentifier(rawValue: "SubMinerPoolAddrID"), owner: nil) as? NSTableCellView else{
@@ -203,11 +203,11 @@ extension WalletController:NSTableViewDelegate{
         func tableViewSelectionDidChange(_ notification: Notification){
                 let table = notification.object as! NSTableView
                 let idx = table.selectedRow
-                if idx < 0 || idx >= Wallet.CurrentWallet.PoolsOfUser.count{
+                if idx < 0 || idx >= Wallet.PoolsOfUser.count{
                         return
                 }
                 
-                let pool = Wallet.CurrentWallet.PoolsOfUser[idx]
+                let pool = Wallet.PoolsOfUser[idx]
                 guard let userData = UserData.LoadUserDataUnder(pool: pool.MainAddr) else{
                         return
                 }
@@ -223,7 +223,7 @@ extension WalletController:NSTableViewDelegate{
 
 extension WalletController:NSTableViewDataSource{
         func numberOfRows(in tableView: NSTableView) -> Int {
-                return Wallet.CurrentWallet.PoolsOfUser.count
+                return Wallet.PoolsOfUser.count
         }
 }
 

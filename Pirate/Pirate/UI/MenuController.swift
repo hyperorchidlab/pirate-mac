@@ -36,7 +36,7 @@ class MenuController: NSObject {
                 updateUI()
                 
                 NotificationCenter.default.addObserver(self, selector:#selector(loadChannelMenu(notification:)),
-                                                       name: PayChannelChangedNoti, object: nil)
+                                                       name: UserDataSyncSuccess, object: nil)
                 
                 NotificationCenter.default.addObserver(self, selector:#selector(UpdateVpnStatus(notification:)),
                                                        name: Service.VPNStatusChanged, object: nil)
@@ -62,7 +62,7 @@ class MenuController: NSObject {
         
         @objc func loadChannelMenu(notification:Notification){
                 
-                if allPayChannels.numberOfItems == MPCManager.PayChannels.count + 2{
+                if allPayChannels.numberOfItems == Wallet.PoolsOfUser.count + 2{
                         return
                 }
                 
@@ -70,34 +70,32 @@ class MenuController: NSObject {
                         allPayChannels.removeItem(at: 2)
                 }
                 
-                let channles = MPCManager.PayChannels
-                for (_, c) in channles.values.enumerated() {
-                        let pool = MinerPool.cachedPools[c.MainAddr]
-                        let menuItem = NSMenuItem(title: (pool?.ShortName)!,
+                for (_, pool) in Wallet.PoolsOfUser.enumerated() {
+                        
+                        let menuItem = NSMenuItem(title: pool.Name,
                                                    action:#selector(MenuController.ChangeChannelInUse(_:)),
                                                    keyEquivalent: "")
-                        menuItem.representedObject = c
+                        menuItem.representedObject = pool
                         menuItem.target = self
                         allPayChannels.addItem(menuItem)
-                        if Service.sharedInstance.srvConf.poolInUsed == c.MainAddr {
+                        if Service.sharedInstance.srvConf.poolInUsed == pool.MainAddr {
                                 self.selMenuItem = menuItem
                                 menuItem.state = .on
-                                self.channelName.title = (pool?.ShortName)!
+                                self.channelName.title = pool.Name
                         }
                 }
         }
         
         @IBAction func ChangeChannelInUse(_ sender: NSMenuItem){
-                guard let myItem = sender.representedObject as? MicroPayChannel else{
+                guard let pool = sender.representedObject as? MinerPool else{
                         return
                 }
                 self.selMenuItem?.state = .off
                 sender.state = .on
-                let pool = MinerPool.cachedPools[myItem.MainAddr]
                 self.selMenuItem = sender
-                self.channelName.title = (pool?.ShortName)!
+                self.channelName.title = pool.Name
                 
-               Service.sharedInstance.srvConf.changeUsedPool(addr: myItem.MainAddr)
+               Service.sharedInstance.srvConf.changeUsedPool(addr: pool.MainAddr)
         }
         
         func updateUI() -> Void {                

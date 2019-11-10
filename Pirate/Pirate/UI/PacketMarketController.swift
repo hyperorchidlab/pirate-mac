@@ -40,7 +40,7 @@ class PacketMarketController: NSWindowController {
                 NotificationCenter.default.addObserver(self, selector:#selector(UserDataChanged(notification:)),
                                                        name: UserDataSyncSuccess, object: nil)
              
-                self.BuyForAddrField.stringValue = Wallet.sharedInstance.MainAddress
+                self.BuyForAddrField.stringValue = Wallet.CurrentWallet.MainAddress
                 MinerPool.PoolInfoInMarket()
                 self.poolTableView.reloadData()
         }
@@ -80,12 +80,12 @@ class PacketMarketController: NSWindowController {
                         return
                 }
 
-                if Wallet.sharedInstance.TokenBalance.doubleValue < tokenToSpend{
+                if Wallet.CurrentWallet.TokenBalance.doubleValue < tokenToSpend{
                         dialogOK(question: "Tips", text: "No enough token in your wallet!")
                         return
                 }
 
-                if Wallet.sharedInstance.EthBalance.doubleValue <= 0.001{
+                if Wallet.CurrentWallet.EthBalance.doubleValue <= 0.001{
                         dialogOK(question: "Tips", text: "No enough ETH for operation gas!")
                         return
                 }
