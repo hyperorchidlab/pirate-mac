@@ -1,17 +1,13 @@
 #ifndef _CALL_BACK_HEADER_
 #define _CALL_BACK_HEADER_
 
-        typedef void (*BlockChainDataSyncNotifier) (int, char*);
-        void bridge_data_func(BlockChainDataSyncNotifier f , int t, char* v);
-
-        typedef void (*SystemActionCallBack) (int, char*);
-        void bridge_sys_func(SystemActionCallBack f, int t, char* v);
+        typedef void (*UserInterfaceAPI) (int, int, char*);
+        void bridge_func(UserInterfaceAPI f , int t, int t2, char* v);
 
         enum CallBackActionType{
-            BalanceSynced,
-            TxProcessTips,
-            SubPoolSynced,
-            MarketPoolSynced,
+            ExitByErr,
+            Log,
+            Notification,
         };
 
 #endif

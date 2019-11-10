@@ -32,30 +32,30 @@
                 <menuItem title="Turn On" id="OF0-0M-VrQ">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="switchTurnOnOff:" target="MrV-Ey-DwV" id="dOK-FC-en3"/>
+                        <action selector="ShowStatics:" target="MrV-Ey-DwV" id="dOK-FC-en3"/>
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="mce-7C-PoB"/>
                 <menuItem title="Smart" state="on" id="dun-4t-46q">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="changeModel:" target="MrV-Ey-DwV" id="BIZ-88-Z3X"/>
+                        <action selector="ShowStatics:" target="MrV-Ey-DwV" id="BIZ-88-Z3X"/>
                     </connections>
                 </menuItem>
                 <menuItem title="Global" tag="1" id="CDL-O9-gLJ">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="changeModel:" target="MrV-Ey-DwV" id="Lt7-lt-ose"/>
+                        <action selector="ShowStatics:" target="MrV-Ey-DwV" id="Lt7-lt-ose"/>
                     </connections>
                 </menuItem>
                 <menuItem title="Config-&gt;" id="CPn-B5-6Vi">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Config-&gt;" id="wBT-o3-yXY">
                         <items>
-                            <menuItem title="Config" id="6Aa-8n-00U">
+                            <menuItem title="Statics" id="6Aa-8n-00U">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="ConfigChannels:" target="MrV-Ey-DwV" id="Dbp-gW-25F"/>
+                                    <action selector="ShowStatics:" target="MrV-Ey-DwV" id="Dbp-gW-25F"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="71j-XL-pZ9"/>
@@ -63,16 +63,19 @@
                     </menu>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="a8M-0p-ROJ"/>
+                <menuItem title="Setting" id="ORd-qI-ALe">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
                 <menuItem title="Wallet" id="6XY-as-n9m">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="ShowWalletView:" target="MrV-Ey-DwV" id="Dsn-A4-DRH"/>
+                        <action selector="ShowStatics:" target="MrV-Ey-DwV" id="Dsn-A4-DRH"/>
                     </connections>
                 </menuItem>
                 <menuItem title="Market" id="vbi-aX-P3T">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="ShowMinerPoolView:" target="MrV-Ey-DwV" id="bIY-rj-8sQ"/>
+                        <action selector="ShowStatics:" target="MrV-Ey-DwV" id="bIY-rj-8sQ"/>
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="8ae-iU-biQ"/>
@@ -82,9 +85,6 @@
                 <menuItem title="Help" id="eFg-by-ANE">
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
-                <menuItem title="Setting" id="ORd-qI-ALe">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                </menuItem>
                 <menuItem title="About" id="qy9-uU-fo5">
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
@@ -92,7 +92,7 @@
                 <menuItem title="Quit" id="aIl-gQ-IUl">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="finish:" target="MrV-Ey-DwV" id="6nJ-st-VDU"/>
+                        <action selector="ShowStatics:" target="MrV-Ey-DwV" id="6nJ-st-VDU"/>
                     </connections>
                 </menuItem>
             </items>

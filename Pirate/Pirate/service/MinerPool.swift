@@ -19,8 +19,8 @@ class MinerPool: NSObject {
         var Payer:String = ""
         var GuaranteedNo:Double = 0.0
         var ShortName:String = ""
-        var DetailInfos:String = ""
-        var Seeds:String = ""
+        var Email:String = ""
+        var Url:String = ""
         
         override init(){
                 super.init()
@@ -29,15 +29,15 @@ class MinerPool: NSObject {
         init(dict:NSDictionary){
                 super.init()
                 self.MainAddr = dict["MainAddr"] as? String ?? ""
-                self.Payer = dict["Payer"] as? String ?? ""
-                self.GuaranteedNo = dict["GuaranteedNo"] as? Double ?? 0.00
-                self.ShortName = dict["ShortName"] as? String ?? ""
-                self.DetailInfos = dict["DetailInfos"] as? String ?? ""
-                self.Seeds = dict["Seeds"] as? String ?? ""
+                self.Payer = dict["PayerAddr"] as? String ?? ""
+                self.GuaranteedNo = dict["GTN"] as? Double ?? 0.00
+                self.ShortName = dict["Name"] as? String ?? ""
+                self.Email = dict["Email"] as? String ?? ""
+                self.Url = dict["Url"] as? String ?? ""
         } 
         
         static private func parsePoolsData(data:Data){
-                guard let poolMap = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? NSDictionary else {
+                guard let poolMap = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) as! NSDictionary else {
                         return
                 }
                 
@@ -64,9 +64,5 @@ class MinerPool: NSObject {
                         return
                 }
                 self.parsePoolsData(data: data)
-        }
-        
-        static func asyncFreshMarketData(){
-                AsyncLoadMarketData()
         }
 }

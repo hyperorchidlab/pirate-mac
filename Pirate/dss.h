@@ -76,17 +76,21 @@ extern "C" {
 #endif
 
 
+extern GoInterface initConf(GoString p0, GoString p1, GoString p2, GoString p3, GoString p4);
+
 /* Return type for initApp */
 struct initApp_return {
 	GoInt r0;
 	char* r1;
 };
 
-extern struct initApp_return initApp(GoString p0, GoString p1, GoString p2, GoString p3, SystemActionCallBack p4, BlockChainDataSyncNotifier p5);
+extern struct initApp_return initApp(UserInterfaceAPI p0);
 
-extern void asyncAppDataFromBlockChain();
+extern GoUint8 isWalletOpen();
 
-extern GoInt64 SysPacketPrice();
+extern char* openWallet(GoString p0);
+
+extern char* minerSeeds(GoString p0, GoInt p1, GoInt p2);
 
 /* Return type for startServing */
 struct startServing_return {
@@ -98,9 +102,13 @@ extern struct startServing_return startServing(GoString p0, GoString p1, GoStrin
 
 extern void stopService();
 
-extern char* LoadMyChannels();
+extern char* systemSettings();
 
-extern void AsyncMyChannels(GoString p0);
+extern char* dnsAddr();
+
+extern char* ethConfig();
+
+extern char* PoolDataOfUser(GoString p0);
 
 /* Return type for AuthorizeTokenSpend */
 struct AuthorizeTokenSpend_return {
@@ -122,13 +130,9 @@ extern struct BuyPacket_return BuyPacket(GoString p0, GoString p1, GoString p2, 
 
 extern GoFloat64 QueryApproved(GoString p0);
 
-extern GoInt64 QueryMicroPayPrice();
-
 extern char* PoolDetails(GoString p0);
 
 extern char* PoolInfosInMarket();
-
-extern void AsyncLoadMarketData();
 
 /* Return type for TransferEth */
 struct TransferEth_return {
@@ -145,8 +149,6 @@ struct TransferLinToken_return {
 };
 
 extern struct TransferLinToken_return TransferLinToken(GoString p0, GoString p1, GoFloat64 p2);
-
-extern char* LoadAccountBook(GoString p0, GoString p1);
 
 /* Return type for NewWallet */
 struct NewWallet_return {

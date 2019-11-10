@@ -168,7 +168,7 @@ class MenuController: NSObject {
                 NSApplication.shared.terminate(self)
         }
         
-        @IBAction func ConfigChannels(_ sender: Any) {
+        @IBAction func ShowStatics(_ sender: Any) {
 //                if ChannelCtrl != nil {
 //                        ChannelCtrl.close()
 //                }

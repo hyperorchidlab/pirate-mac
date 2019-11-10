@@ -235,3 +235,12 @@ func ConvertBandWith(val:Double) -> String{
         
         return "\(ret)(\(unit))"
 }
+
+func ConvertTime(val:Double) -> String{
+        let date = NSDate(timeIntervalSince1970: val)
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeStyle = DateFormatter.Style.medium
+        dateFormatter.dateStyle = DateFormatter.Style.medium //Set date style
+        dateFormatter.timeZone = NSTimeZone() as TimeZone
+        return dateFormatter.string(from: date as Date)
+}

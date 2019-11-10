@@ -10,22 +10,24 @@ import Cocoa
 import DecentralizedShadowSocks
 
 class PacketMarketController: NSWindowController {
+        @IBOutlet weak var WaitingTip: NSProgressIndicator!
+        @IBOutlet weak var poolTableView: NSTableView!
+        
+        @IBOutlet weak var poolEmail: NSTextField!
+        @IBOutlet weak var poolUrl: NSTextField!
+        @IBOutlet weak var poolAddressField: NSTextField!
+        @IBOutlet weak var GNTField: NSTextField!
+        
+        
         
         @IBOutlet weak var PacketCanGet: NSTextField!
         @IBOutlet weak var TokenToSpend: NSTextField!
         @IBOutlet weak var BuyForAddrField: NSTextField!
-        @IBOutlet weak var EthBalance: NSTextField!
-        @IBOutlet weak var LinBalance: NSTextField!
-        @IBOutlet weak var WaitingTip: NSProgressIndicator!
-        @IBOutlet weak var poolTableView: NSTableView!
-        @IBOutlet weak var avgPriceField: NSTextField!
-        @IBOutlet weak var myStatusField: NSTextField!
-        @IBOutlet weak var myBalanceField: NSTextField!
-        @IBOutlet weak var PoolAddressField: NSTextField!
-        @IBOutlet weak var poolDescField: NSScrollView!
-        @IBOutlet weak var mortagedField: NSTextField!
-        @IBOutlet weak var approvedField: NSTextField!
-        @IBOutlet weak var unclaimed: NSTextField!
+        
+        @IBOutlet weak var PacketBalance: NSTextField!
+        @IBOutlet weak var TokenDeposit: NSTextField!
+        @IBOutlet weak var Nonce: NSTextField!
+        @IBOutlet weak var RefundTime: NSTextField!
         
         var currentPool:MinerPool? = nil
         let service = Service.sharedInstance
@@ -39,15 +41,10 @@ class PacketMarketController: NSWindowController {
                 NotificationCenter.default.addObserver(self, selector:#selector(buyPacketResult(notification:)),
                                                        name: BuyPacketResultNoti, object: nil)
                 
-                
-                self.LinBalance.doubleValue = Wallet.sharedInstance.TokenBalance.CoinValue()
-                self.EthBalance.doubleValue = Wallet.sharedInstance.EthBalance.CoinValue()
-                self.avgPriceField.doubleValue = Double(Service.sharedInstance.srvConf.packetPrice)
-                self.approvedField.doubleValue = Wallet.sharedInstance.HasApproved.CoinValue()
+                self.RefundTime.doubleValue = Wallet.sharedInstance.HasApproved.CoinValue()
                 self.BuyForAddrField.stringValue = Wallet.sharedInstance.MainAddress
                 WaitingTip.isHidden = false
                 self.loadPoolsData()
-                MinerPool.asyncFreshMarketData()
         }
         
         deinit {
@@ -88,21 +85,15 @@ class PacketMarketController: NSWindowController {
                         return
                 }
                 
-                let view = self.poolDescField.documentView as! NSTextView
-                view.string = details.DetailInfos
-                self.PoolAddressField.stringValue = details.MainAddr
-                self.mortagedField.doubleValue = details.GuaranteedNo.CoinValue()
+                self.poolAddressField.stringValue = details.MainAddr
+                self.GNTField.doubleValue = details.GuaranteedNo.CoinValue()
                 guard let chan = MPCManager.PayChannels[details.MainAddr] else {
-                        self.myStatusField.stringValue = "Unsubscribed"
+                        self.poolEmail.stringValue = "Unsubscribed"
                         return
                 }
-                self.myStatusField.stringValue = "Subscribed"
-                self.myBalanceField.stringValue = ConvertBandWith(val: chan.RemindPackets)
+                self.poolEmail.stringValue = "Subscribed"
         }
         
-        @IBAction func SycFromEthereumAction(_ sender: NSButton) {
-                MinerPool.asyncFreshMarketData()
-        }
         
         @IBAction func BuyPacketAction(_ sender: NSButton) {
                 guard let details = self.currentPool else {

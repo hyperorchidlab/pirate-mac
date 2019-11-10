@@ -224,7 +224,7 @@ extension WalletController:NSTableViewDelegate{
                         return
                 }
                 let pool = MinerPool.cachedPools[channel.MainAddr]
-                self.MinerDescField.stringValue = pool!.DetailInfos
+                self.MinerDescField.stringValue = pool!.Email
                 self.DataBalanceField.stringValue = ConvertBandWith(val: channel.RemindPackets)
                 let date = Date.init(timeIntervalSince1970: TimeInterval(channel.Expiration))
                 self.RefundTimeField.stringValue = "\(date)"
