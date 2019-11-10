@@ -134,11 +134,13 @@ extension PacketMarketController:NSTableViewDelegate {
                 }
                 
                 self.PacketBalance.stringValue = ConvertBandWith(val: userData.PacketBalance)
+                self.TokenDeposit.stringValue = "\(userData.TokenInUsed.CoinValue()) HOP"
+                self.Nonce.intValue = Int32(userData.Nonce)
+                self.RefundTime.stringValue = userData.RefundTime
         }
 }
 
-extension PacketMarketController:NSTableViewDataSource {
-        
+extension PacketMarketController:NSTableViewDataSource { 
         func numberOfRows(in tableView: NSTableView) -> Int {
                 return MinerPool.cachedPools.count
         }

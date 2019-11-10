@@ -39,7 +39,7 @@
 		BBD7126223409B13003C80E9 /* TransferViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBD7125823409B12003C80E9 /* TransferViewController.xib */; };
 		BBD7126323409B13003C80E9 /* WalletController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD7125923409B12003C80E9 /* WalletController.swift */; };
 		BBD7126423409B13003C80E9 /* PacketMarketController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBD7125A23409B13003C80E9 /* PacketMarketController.xib */; };
-		BBDF613C237815C5006E7E30 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDF613B237815C5006E7E30 /* UserData.swift */; };
+		BBDF613C237815C5006E7E30 /* UserDataLocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDF613B237815C5006E7E30 /* UserDataLocal.swift */; };
 		BBDF613F23781DA2006E7E30 /* UserDataStatic.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDF613D23781DA2006E7E30 /* UserDataStatic.swift */; };
 		BBDF614023781DA2006E7E30 /* UserDataStatic.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBDF613E23781DA2006E7E30 /* UserDataStatic.xib */; };
 		D05C6370FD014BD8D31A153F /* Pods_Pirate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 253E4BA7E0494070A79F68E1 /* Pods_Pirate.framework */; };
@@ -110,7 +110,7 @@
 		BBD7125823409B12003C80E9 /* TransferViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TransferViewController.xib; sourceTree = "<group>"; };
 		BBD7125923409B12003C80E9 /* WalletController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletController.swift; sourceTree = "<group>"; };
 		BBD7125A23409B13003C80E9 /* PacketMarketController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PacketMarketController.xib; sourceTree = "<group>"; };
-		BBDF613B237815C5006E7E30 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		BBDF613B237815C5006E7E30 /* UserDataLocal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataLocal.swift; sourceTree = "<group>"; };
 		BBDF613D23781DA2006E7E30 /* UserDataStatic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataStatic.swift; sourceTree = "<group>"; };
 		BBDF613E23781DA2006E7E30 /* UserDataStatic.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserDataStatic.xib; sourceTree = "<group>"; };
 		CCC365C376B35BF42AEE2C85 /* Pods-sysproxyconfig.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sysproxyconfig.debug.xcconfig"; path = "Target Support Files/Pods-sysproxyconfig/Pods-sysproxyconfig.debug.xcconfig"; sourceTree = "<group>"; };
@@ -233,7 +233,7 @@
 			children = (
 				BBD71237234096FA003C80E9 /* MicroPayChannel.swift */,
 				BBD71238234096FA003C80E9 /* MinerPool.swift */,
-				BBDF613B237815C5006E7E30 /* UserData.swift */,
+				BBDF613B237815C5006E7E30 /* UserDataLocal.swift */,
 				BBD71239234096FA003C80E9 /* PacServerBean.swift */,
 				BBD71232234096FA003C80E9 /* Service.swift */,
 				BBD71233234096FA003C80E9 /* ServiceError.swift */,
@@ -444,7 +444,7 @@
 				BB10825223406B76004CBB54 /* MenuController.swift in Sources */,
 				BBDF613F23781DA2006E7E30 /* UserDataStatic.swift in Sources */,
 				BBD71241234096FA003C80E9 /* PacServerBean.swift in Sources */,
-				BBDF613C237815C5006E7E30 /* UserData.swift in Sources */,
+				BBDF613C237815C5006E7E30 /* UserDataLocal.swift in Sources */,
 				BB10824323406B31004CBB54 /* AppDelegate.swift in Sources */,
 				BBD7123F234096FA003C80E9 /* MicroPayChannel.swift in Sources */,
 				BBD7123C234096FA003C80E9 /* SysProxyHelper.swift in Sources */,
