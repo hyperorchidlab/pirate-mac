@@ -14,6 +14,7 @@ enum ServiceError:Error {
         case SysProxySetupErr
         case InvalidPathErr
         case ParseJsonErr
+        case InitHopErr(String)
         
         case NewWalletErr(String)
         case EmptyWalletErr
@@ -37,6 +38,8 @@ extension ServiceError: LocalizedError {
                         return NSLocalizedString("Setup system proxy error".localized, comment: "System Error")
                 case .ParseJsonErr:
                         return NSLocalizedString("Pasrese json data failed".localized, comment: "System Error")
+                case .InitHopErr(let str):
+                        return str
                 case .InvalidPathErr:
                         return NSLocalizedString("File path invalid".localized, comment: "System Error")
                 case .NewWalletErr(let str):

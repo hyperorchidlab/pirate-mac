@@ -21,7 +21,6 @@
 		BBD7123C234096FA003C80E9 /* SysProxyHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD71234234096FA003C80E9 /* SysProxyHelper.swift */; };
 		BBD7123D234096FA003C80E9 /* Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD71235234096FA003C80E9 /* Wallet.swift */; };
 		BBD7123E234096FA003C80E9 /* utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD71236234096FA003C80E9 /* utils.swift */; };
-		BBD7123F234096FA003C80E9 /* MicroPayChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD71237234096FA003C80E9 /* MicroPayChannel.swift */; };
 		BBD71240234096FA003C80E9 /* MinerPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD71238234096FA003C80E9 /* MinerPool.swift */; };
 		BBD71241234096FA003C80E9 /* PacServerBean.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD71239234096FA003C80E9 /* PacServerBean.swift */; };
 		BBD71246234097E3003C80E9 /* dss.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BBD71245234097E3003C80E9 /* dss.a */; };
@@ -90,7 +89,6 @@
 		BBD71234234096FA003C80E9 /* SysProxyHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SysProxyHelper.swift; sourceTree = "<group>"; };
 		BBD71235234096FA003C80E9 /* Wallet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wallet.swift; sourceTree = "<group>"; };
 		BBD71236234096FA003C80E9 /* utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = utils.swift; sourceTree = "<group>"; };
-		BBD71237234096FA003C80E9 /* MicroPayChannel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MicroPayChannel.swift; sourceTree = "<group>"; };
 		BBD71238234096FA003C80E9 /* MinerPool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinerPool.swift; sourceTree = "<group>"; };
 		BBD71239234096FA003C80E9 /* PacServerBean.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PacServerBean.swift; sourceTree = "<group>"; };
 		BBD71242234097AD003C80E9 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = SOURCE_ROOT; };
@@ -231,7 +229,6 @@
 		BBD7123123409642003C80E9 /* service */ = {
 			isa = PBXGroup;
 			children = (
-				BBD71237234096FA003C80E9 /* MicroPayChannel.swift */,
 				BBD71238234096FA003C80E9 /* MinerPool.swift */,
 				BBDF613B237815C5006E7E30 /* UserDataLocal.swift */,
 				BBD71239234096FA003C80E9 /* PacServerBean.swift */,
@@ -446,7 +443,6 @@
 				BBD71241234096FA003C80E9 /* PacServerBean.swift in Sources */,
 				BBDF613C237815C5006E7E30 /* UserDataLocal.swift in Sources */,
 				BB10824323406B31004CBB54 /* AppDelegate.swift in Sources */,
-				BBD7123F234096FA003C80E9 /* MicroPayChannel.swift in Sources */,
 				BBD7123C234096FA003C80E9 /* SysProxyHelper.swift in Sources */,
 				BB603C782374FDA900C95CA5 /* Setting.swift in Sources */,
 				BBD7123A234096FA003C80E9 /* Service.swift in Sources */,

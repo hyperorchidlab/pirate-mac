@@ -11,33 +11,32 @@ import Cocoa
 class WalletController: NSWindowController {
         
         let KEY_FOR_WALLET_FILE = "wallet.json"
+        
         @IBOutlet weak var MainAddressField: NSTextField!
         @IBOutlet weak var SubAddressField: NSTextField!
         @IBOutlet weak var EthBalanceField: NSTextField!
         @IBOutlet weak var TokenBalanceField: NSTextField!
         
-        @IBOutlet weak var WaitingTip: NSProgressIndicator!
         
-        @IBOutlet weak var RefundTimeField: NSTextField!
-        @IBOutlet weak var DataBalanceField: NSTextField!
-        @IBOutlet weak var DataAvgPriceField: NSTextField!
-        @IBOutlet weak var MinerDescField: NSTextField!
+        @IBOutlet weak var WaitingTip: NSProgressIndicator!
         @IBOutlet weak var PoolTableView: NSTableView!
         
         
-        var channelInUsed:MicroPayChannel? = nil
-        
+        @IBOutlet weak var NonceTF: NSTextField!
+        @IBOutlet weak var TokenTF: NSTextField!
+        @IBOutlet weak var PacketsTF: NSTextField!
+        @IBOutlet weak var RefundTimeTF: NSTextField!
+        @IBOutlet weak var EpochTF: NSTextField!
+        @IBOutlet weak var CreditTF: NSTextField!
+        @IBOutlet weak var MicroNonceTF: NSTextField!
+                
         override func windowDidLoad() {
                 super.windowDidLoad()
                 
-                NotificationCenter.default.addObserver(self, selector:#selector(updateBalance(notification:)),
-                                                       name: WalletDataChangedNoti, object: nil)
-                NotificationCenter.default.addObserver(self, selector:#selector(processTransaction(notification:)),
-                                                       name: TokenTransferResultNoti, object: nil)
-                NotificationCenter.default.addObserver(self, selector:#selector(freshPoolList(notification:)),
-                                                       name: PayChannelChangedNoti, object: nil)
-                updateWallet() 
-                MPCManager.loadMyChannels()
+                NotificationCenter.default.addObserver(self, selector:#selector(UserDataChanged(notification:)),
+                                                       name: UserDataSyncSuccess, object: nil)
+                updateWallet()
+                self.PoolTableView.reloadData()
         }
         
         deinit {
@@ -45,18 +44,17 @@ class WalletController: NSWindowController {
         }
         
         func updateWallet(){
-                let w = Wallet.sharedInstance
-                w.loadWalletInfo()
+                let w = Wallet.CurrentWallet
                 MainAddressField.stringValue = w.MainAddress
                 SubAddressField.stringValue = w.SubAddress
                 EthBalanceField.doubleValue = w.EthBalance.CoinValue()
                 TokenBalanceField.doubleValue = w.TokenBalance.CoinValue()
         }
         
-        @objc func updateBalance(notification: Notification){
+        @objc func UserDataChanged(notification: Notification){
                 DispatchQueue.main.async {
                         self.WaitingTip.isHidden = true
-                        self.updateWallet()
+                        self.PoolTableView.reloadData()
                 }
         }
         
@@ -65,7 +63,7 @@ class WalletController: NSWindowController {
         }
         
         @IBAction func CreateWalletAction(_ sender: Any) {
-                if !Wallet.sharedInstance.IsEmpty(){
+                if !Wallet.CurrentWallet.IsEmpty(){
                         let ok = dialogOKCancel(question: "Replace This Wallet?", text: "Current wallet will be replaced by new created one!")
                         if !ok{
                                 return
@@ -82,14 +80,14 @@ class WalletController: NSWindowController {
                         return
                 }
                 
-                let success = Wallet.sharedInstance.CreateNewWallet(passPhrase: pwd1)
+                let success = Wallet.CurrentWallet.CreateNewWallet(passPhrase: pwd1)
                 if success{
                         updateWallet()
                 }
         }
         
         @IBAction func ImportWalletAction(_ sender: Any) {
-                if !Wallet.sharedInstance.IsEmpty(){
+                if !Wallet.CurrentWallet.IsEmpty(){
                         let ok = dialogOKCancel(question: "Replace This Wallet?", text: "Current wallet will be replaced by imported one!")
                         if !ok{
                                 return
@@ -114,9 +112,10 @@ class WalletController: NSWindowController {
                         }
                         
                         do {
-                                try Wallet.sharedInstance.ImportWallet(path:openPanel.url!.path , password: password)
+                                try Wallet.CurrentWallet.ImportWallet(path:openPanel.url!.path , password: password)
                                 dialogOK(question: "Success", text: "Import wallet success!")
                                 self.updateWallet()
+                                self.PoolTableView.reloadData()
                                 
                         }catch{
                                 dialogOK(question: "Warn", text:error.localizedDescription)
@@ -127,7 +126,7 @@ class WalletController: NSWindowController {
         
         @IBAction func ExportWalletAction(_ sender: Any) {
                 
-                if Wallet.sharedInstance.IsEmpty(){
+                if Wallet.CurrentWallet.IsEmpty(){
                         dialogOK(question: "Tips", text: "No account to export")
                         return
                 }
@@ -143,7 +142,7 @@ class WalletController: NSWindowController {
                                 return
                         }
                         do {
-                                try Wallet.sharedInstance.ExportWallet(dst:FS.url)
+                                try Wallet.CurrentWallet.ExportWallet(dst:FS.url)
                                 dialogOK(question: "Success", text: "Export account success!")
                         }catch{
                                 dialogOK(question: "Error", text: error.localizedDescription)
@@ -155,8 +154,7 @@ class WalletController: NSWindowController {
         @IBAction func SyncEthereumAction(_ sender: Any) {
                 WaitingTip.isHidden = false
                 Service.sharedInstance.contractQueue.async {
-                        Wallet.sharedInstance.loadWalletInfo()
-                        MPCManager.loadMyPoolsFromBlockChain()
+                        Wallet.CurrentWallet.load()
                         DispatchQueue.main.async {
                                 self.WaitingTip.isHidden = true
                                 self.PoolTableView.reloadData()
@@ -165,18 +163,14 @@ class WalletController: NSWindowController {
         }
         
         @IBAction func ReloadMinerPoolActin(_ sender: Any) {
+                Wallet.CurrentWallet.load()
         }
+        
         @objc func processTransaction(notification: Notification){
                 DispatchQueue.main.async {
                         self.WaitingTip.isHidden = true
                 }
                 ShowTransResult(notification:notification)
-        }
-        @objc func freshPoolList(notification: Notification){
-                DispatchQueue.main.async {
-                        self.WaitingTip.isHidden = true
-                        self.PoolTableView.reloadData()
-                }
         }
         
         @IBAction func TransferAction(_ sender: Any) {
@@ -186,9 +180,9 @@ class WalletController: NSWindowController {
                 }
                 WaitingTip.isHidden = false
                 if typ == 0{
-                        Wallet.sharedInstance.EthTransfer(password: password, target: target, no: no)
+                        Wallet.CurrentWallet.EthTransfer(password: password, target: target, no: no)
                 }else{
-                        Wallet.sharedInstance.LinTokenTransfer(password: password, target: target, no: no)
+                        Wallet.CurrentWallet.LinTokenTransfer(password: password, target: target, no: no)
                 }
         }
 }
@@ -196,44 +190,40 @@ class WalletController: NSWindowController {
 extension WalletController:NSTableViewDelegate{
         func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         
-                let chan = MPCManager.ObjAt(idx: row)
+                let pool = Wallet.CurrentWallet.PoolsOfUser[row]
                 
                 guard let cell = tableView.makeView(withIdentifier:
                         NSUserInterfaceItemIdentifier(rawValue: "SubMinerPoolAddrID"), owner: nil) as? NSTableCellView else{
                         return nil
                 }
-                
-                let pool = MinerPool.cachedPools[chan.MainAddr] 
-                cell.textField?.stringValue =  (pool?.ShortName)!
+                cell.textField?.stringValue =  pool.Name
                 return cell
         }
         
         func tableViewSelectionDidChange(_ notification: Notification){
                 let table = notification.object as! NSTableView
                 let idx = table.selectedRow
-                if idx < 0 || idx >= MPCManager.PayChannels.count{
+                if idx < 0 || idx >= Wallet.CurrentWallet.PoolsOfUser.count{
                         return
                 }
                 
-                self.channelInUsed = MPCManager.ObjAt(idx: idx)
-                self.updatePoolDetails()
-        }
-        
-        func updatePoolDetails(){
-                guard let channel = self.channelInUsed else {
+                let pool = Wallet.CurrentWallet.PoolsOfUser[idx]
+                guard let userData = UserData.LoadUserDataUnder(pool: pool.MainAddr) else{
                         return
                 }
-                let pool = MinerPool.cachedPools[channel.MainAddr]
-                self.MinerDescField.stringValue = pool!.Email
-                self.DataBalanceField.stringValue = ConvertBandWith(val: channel.RemindPackets)
-                let date = Date.init(timeIntervalSince1970: TimeInterval(channel.Expiration))
-                self.RefundTimeField.stringValue = "\(date)"
+                
+                self.TokenTF.stringValue = "\(userData.TokenInUsed.CoinValue()) HOP"
+                self.PacketsTF.stringValue = ConvertBandWith(val: userData.PacketBalance)
+                self.RefundTimeTF.stringValue = userData.RefundTime
+                self.EpochTF.intValue = Int32(userData.Epoch)
+                self.MicroNonceTF.intValue = Int32(userData.MicrNonce)
+                self.CreditTF.stringValue = ConvertBandWith(val: userData.Credit)
         }
 }
 
 extension WalletController:NSTableViewDataSource{
         func numberOfRows(in tableView: NSTableView) -> Int {
-                return MPCManager.PayChannels.count
+                return Wallet.CurrentWallet.PoolsOfUser.count
         }
 }
 

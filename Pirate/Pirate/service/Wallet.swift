@@ -10,39 +10,34 @@ import Foundation
 import DecentralizedShadowSocks
 
 class Wallet:NSObject{
+        
+        public static var CurrentWallet:Wallet = Wallet()
+        
         let BALANCE_TOKEN_KEY = "BALANCE_TOKEN_KEY"
         let BALANCE_ETH_KEY = "BALANCE_ETH_KEY"
         
-        var defaults = UserDefaults.standard
         var MainAddress:String = ""
         var SubAddress:String = ""
-        
         var EthBalance:NSNumber = 0
         var TokenBalance:NSNumber = 0
         var HasApproved:NSNumber = 0
         
+        public var PoolsOfUser:[MinerPool] = []
+        
         override init() {
                 super.init()
-                loadWalletInfo()
         }
         
-        
-        func loadWalletInfo(){
+        func load(){
                 let ret = WalletAddress()
-                
                 guard let mainData = ret.r0 else {
+                        self.MainAddress = ""
                         return
                 }
                 self.MainAddress = String(cString: mainData)
                 self.SubAddress = String(cString: ret.r1)
-                syncWalletData()
-        }
-        
-        class var sharedInstance: Wallet {
-                struct Static {
-                        static let instance: Wallet = Wallet()
-                }
-                return Static.instance
+                self.syncWalletData()
+                self.allMyPools()
         }
         
         public func IsEmpty() -> Bool{
@@ -56,7 +51,14 @@ class Wallet:NSObject{
                                 let err = String(cString:ret.r1)
                                 throw ServiceError.NewWalletErr(err)
                         }
-                        loadWalletInfo()
+                        
+                        let ret2 = initHopSrv()
+                        if ret2.r0 == 0{
+                                let err = String(cString:ret2.r1)
+                                throw ServiceError.InitHopErr(err)
+                        }
+                        
+                        load()
                 }catch let err{
                         dialogOK(question: "Error", text: err.localizedDescription)
                         return false
@@ -67,9 +69,6 @@ class Wallet:NSObject{
         }
         
         func syncWalletData() {
-                if self.MainAddress == ""{
-                        return
-                }
                 
                 guard let ret = SyncWalletBalance(self.MainAddress.toGoString()) else{
                         return
@@ -78,7 +77,7 @@ class Wallet:NSObject{
                 guard let data = String(cString:ret).data(using: .utf8) else{
                         return
                 }
-                guard let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String:Any]else{
+                guard let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String:Any]else{
                         return
                 }
                 self.EthBalance = json["eth"] as? NSNumber ?? 0
@@ -98,19 +97,20 @@ class Wallet:NSObject{
         
         func ImportWallet(path: String, password:String) throws{
                 guard let err = ImportWalletFrom(path.toGoString(), password.toGoString())  else {
-                        loadWalletInfo()
+                        load()
                         return
                 }
                 
                 let str = String(cString:err)
                 throw ServiceError.ImportWalletErr(str)
         }
+        
         func EthTransfer(password:String, target:String, no:Double){
                 Service.sharedInstance.contractQueue.async {
                         let ret = TransferEth(password.toGoString(), target.toGoString(), no)
                         ProcessTransRet(tx: String(cString: ret.r0),
                                              err: String(cString: ret.r1),
-                                             noti: TokenTransferResultNoti)
+                                             noti: TransactionCreated)
                 }
         }
         
@@ -119,7 +119,31 @@ class Wallet:NSObject{
                         let ret = TransferLinToken(password.toGoString(), target.toGoString(), no)
                         ProcessTransRet(tx: String(cString: ret.r0),
                                              err: String(cString: ret.r1),
-                                             noti: TokenTransferResultNoti)
+                                             noti: TransactionCreated)
                 }
         }
+        
+        func allMyPools(){
+                self.PoolsOfUser.removeAll()
+                guard let ret = PoolDataOfUser(self.MainAddress.toGoString()) else {
+                        return
+                }
+                guard let data = String(cString: ret).data(using: .utf8) else{
+                        return
+                }
+                
+                guard let poolMap = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) as! NSDictionary else {
+                        return
+                }
+                for (_, value) in poolMap.allValues.enumerated() {
+                        
+                        guard let dict = value as? NSDictionary else{
+                                continue
+                        }
+                        
+                        let pool = MinerPool.init(dict:dict)
+                        PoolsOfUser.append(pool)
+                }
+        }
+        
 }

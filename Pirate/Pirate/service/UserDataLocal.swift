@@ -39,7 +39,7 @@ class UserData: NSObject {
         }
         
         static func LoadUserDataUnder(pool:String) -> UserData?{
-                let uAddr = Wallet.sharedInstance.MainAddress
+                let uAddr = Wallet.CurrentWallet.MainAddress
                 if uAddr == "" || pool == ""{
                         return nil
                 }

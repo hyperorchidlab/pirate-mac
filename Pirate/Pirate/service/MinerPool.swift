@@ -34,24 +34,6 @@ class MinerPool: NSObject {
                 self.Name = dict["Name"] as? String ?? ""
                 self.Email = dict["Email"] as? String ?? ""
                 self.Url = dict["Url"] as? String ?? ""
-        } 
-        
-        static private func parsePoolsData(data:Data){
-                guard let poolMap = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) as! NSDictionary else {
-                        return
-                }
-                
-                cachedPools.removeAll()
-                
-                for (_, value) in poolMap.allValues.enumerated() {
-                        
-                        guard let dict = value as? NSDictionary else{
-                                continue
-                        }
-                        
-                        let pool = MinerPool.init(dict:dict)
-                        cachedPools.append(pool)
-                }
         }
         
         static func PoolInfoInMarket(){
@@ -63,6 +45,19 @@ class MinerPool: NSObject {
                 guard let data = String(cString: ret).data(using: .utf8) else{
                         return
                 }
-                self.parsePoolsData(data: data)
+                guard let poolMap = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)
+                        as! NSDictionary else { return }
+                               
+               cachedPools.removeAll()
+               
+               for (_, value) in poolMap.allValues.enumerated() {
+                       
+                       guard let dict = value as? NSDictionary else{
+                               continue
+                       }
+                       
+                       let pool = MinerPool.init(dict:dict)
+                       cachedPools.append(pool)
+               }
         }
 }
