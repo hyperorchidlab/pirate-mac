@@ -42,7 +42,23 @@ class Wallet:NSObject{
                 return self.MainAddress == ""
         }
         
-        public func CreateNewWallet(passPhrase:String) -> Bool{
+        private func resetWallet(replaced:Bool) throws{
+                if replaced{
+                        self.MainAddress = ""
+                        stopHopAndWallet()
+                }
+                
+                let ret2 = initHopSrv()
+                if ret2.r0 != 0{
+                        let err = String(cString:ret2.r1)
+                        throw ServiceError.InitHopErr(err)
+                }
+                
+                load()
+                NotificationCenter.default.post(name: WalletBalanceChanged, object:self, userInfo:nil)
+        }
+        
+        public func CreateNewWallet(passPhrase:String, replaceOld:Bool) -> Bool{
                 do{
                         let ret = NewWallet(passPhrase.toGoString())
                         if ret.r0 == 0{
@@ -50,14 +66,7 @@ class Wallet:NSObject{
                                 throw ServiceError.NewWalletErr(err)
                         }
                         
-                        let ret2 = initHopSrv()
-                        if ret2.r0 != 0{
-                                let err = String(cString:ret2.r1)
-                                throw ServiceError.InitHopErr(err)
-                        }
-                        
-                        load()
-                        NotificationCenter.default.post(name: WalletBalanceChanged, object:self, userInfo:nil)
+                        try resetWallet(replaced: replaceOld)
                         
                 }catch let err{
                         dialogOK(question: "Error", text: err.localizedDescription)
@@ -95,9 +104,9 @@ class Wallet:NSObject{
                 throw ServiceError.ExportWalletErr(str)
         }
         
-        func ImportWallet(path: String, password:String) throws{
+        func ImportWallet(path: String, password:String, replaceOld:Bool) throws{
                 guard let err = ImportWalletFrom(path.toGoString(), password.toGoString())  else {
-                        load()
+                        try resetWallet(replaced: replaceOld)
                         return
                 }
                 

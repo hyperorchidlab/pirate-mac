@@ -86,6 +86,8 @@ struct initDataSrv_return {
 
 extern struct initDataSrv_return initDataSrv();
 
+extern void stopHopAndWallet();
+
 /* Return type for initHopSrv */
 struct initHopSrv_return {
 	GoInt r0;

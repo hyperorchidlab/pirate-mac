@@ -74,11 +74,13 @@ class WalletController: NSWindowController {
         }
         
         @IBAction func CreateWalletAction(_ sender: Any) {
+                var isReplaced = false
                 if !Wallet.CurrentWallet.IsEmpty(){
                         let ok = dialogOKCancel(question: "Replace This Wallet?", text: "Current wallet will be replaced by new created one!")
                         if !ok{
                                 return
                         }
+                        isReplaced = true
                 }
                 
                 let (pwd1, pwd2, ok) = show2PasswordDialog()
@@ -91,18 +93,20 @@ class WalletController: NSWindowController {
                         return
                 }
                 
-                let success = Wallet.CurrentWallet.CreateNewWallet(passPhrase: pwd1)
+                let success = Wallet.CurrentWallet.CreateNewWallet(passPhrase: pwd1, replaceOld:isReplaced)
                 if success{
                         updateWallet()
                 }
         }
         
         @IBAction func ImportWalletAction(_ sender: Any) {
+                var isReplaced = false
                 if !Wallet.CurrentWallet.IsEmpty(){
                         let ok = dialogOKCancel(question: "Replace This Wallet?", text: "Current wallet will be replaced by imported one!")
                         if !ok{
                                 return
                         }
+                        isReplaced = true
                 }
                 
                 let openPanel = NSOpenPanel()
@@ -123,7 +127,7 @@ class WalletController: NSWindowController {
                         }
                         
                         do {
-                                try Wallet.CurrentWallet.ImportWallet(path:openPanel.url!.path , password: password)
+                                try Wallet.CurrentWallet.ImportWallet(path:openPanel.url!.path , password: password, replaceOld: isReplaced)
                                 dialogOK(question: "Success", text: "Import wallet success!")
                                 self.updateWallet()
                                 self.PoolTableView.reloadData()
