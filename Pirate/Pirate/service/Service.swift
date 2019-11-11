@@ -20,8 +20,8 @@ public let BLOCKCHAIN_API_URL = "https://ropsten.infura.io/v3/f3245cef90ed440897
 public let BaseEtherScanUrl = "https://ropsten.etherscan.io"  //"https://ropsten.etherscan.io"//"https://etherscan.io"
 
 public let PoolsInMarketChanged = Notification.Name(rawValue: "PoolsInMarketChanged")
-public let TransactionCreated = Notification.Name(rawValue: "TransactionCreated")
-public let TransactionSuccess = Notification.Name(rawValue: "TransactionSuccess")
+public let TransactionStatusChanged = Notification.Name(rawValue: "TransactionStatusChanged")
+public let WalletBalanceChanged = Notification.Name(rawValue: "WalletBalanceChanged")
 public let UserDataSyncSuccess = Notification.Name(rawValue: "UserDataSyncSuccess")
 public let VPNStatusChanged = Notification.Name(rawValue: "VPNStatusChanged")
 

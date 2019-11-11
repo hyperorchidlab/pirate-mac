@@ -51,12 +51,14 @@ class Wallet:NSObject{
                         }
                         
                         let ret2 = initHopSrv()
-                        if ret2.r0 == 0{
+                        if ret2.r0 != 0{
                                 let err = String(cString:ret2.r1)
                                 throw ServiceError.InitHopErr(err)
                         }
                         
                         load()
+                        NotificationCenter.default.post(name: WalletBalanceChanged, object:self, userInfo:nil)
+                        
                 }catch let err{
                         dialogOK(question: "Error", text: err.localizedDescription)
                         return false
@@ -108,7 +110,7 @@ class Wallet:NSObject{
                         let ret = TransferEth(password.toGoString(), target.toGoString(), no)
                         ProcessTransRet(tx: String(cString: ret.r0),
                                              err: String(cString: ret.r1),
-                                             noti: TransactionCreated)
+                                             noti: TransactionStatusChanged)
                 }
         }
         
@@ -117,7 +119,7 @@ class Wallet:NSObject{
                         let ret = TransferToken(password.toGoString(), target.toGoString(), no)
                         ProcessTransRet(tx: String(cString: ret.r0),
                                              err: String(cString: ret.r1),
-                                             noti: TransactionCreated)
+                                             noti: TransactionStatusChanged)
                 }
         }
         

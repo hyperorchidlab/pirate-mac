@@ -35,6 +35,9 @@ class WalletController: NSWindowController {
                 
                 NotificationCenter.default.addObserver(self, selector:#selector(UserDataChanged(notification:)),
                                                        name: UserDataSyncSuccess, object: nil)
+                
+                NotificationCenter.default.addObserver(self, selector:#selector(WalletBalanceUpdate(notification:)),
+                                                      name: WalletBalanceChanged, object: nil)
                 updateWallet()
                 self.PoolTableView.reloadData()
         }
@@ -49,6 +52,14 @@ class WalletController: NSWindowController {
                 SubAddressField.stringValue = w.SubAddress
                 EthBalanceField.doubleValue = w.EthBalance.CoinValue()
                 TokenBalanceField.doubleValue = w.TokenBalance.CoinValue()
+        }
+        
+        @objc func WalletBalanceUpdate(notification: Notification){
+                DispatchQueue.main.async {
+                        self.WaitingTip.isHidden = true
+                        self.updateWallet()
+                        self.PoolTableView.reloadData()
+                }
         }
         
         @objc func UserDataChanged(notification: Notification){
