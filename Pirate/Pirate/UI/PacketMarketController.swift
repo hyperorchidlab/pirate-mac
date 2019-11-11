@@ -124,7 +124,7 @@ extension PacketMarketController:NSTableViewDelegate {
                 self.currentPool = pool
                
                 self.poolAddressField.stringValue = pool.MainAddr
-                self.poolGNTField.doubleValue = pool.GuaranteedNo.CoinValue()
+                self.poolGNTField.stringValue = "\(pool.GuaranteedNo.CoinValue()) HOP"
                 self.poolEmail.stringValue = pool.Email
                 self.poolUrl.stringValue = pool.Url
                 
