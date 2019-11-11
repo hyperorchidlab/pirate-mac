@@ -23,6 +23,7 @@ class Wallet:NSObject{
         
         override init() {
                 super.init()
+                load()
         }
         
         func load(){

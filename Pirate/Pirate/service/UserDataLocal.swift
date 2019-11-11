@@ -44,7 +44,10 @@ class UserData: NSObject {
                         return nil
                 }
                 
-                guard let ret = UserDataOfPool(uAddr.toGoString(), pool.toGoString()) else { return nil}
+                guard let ret = UserDataOfPool(uAddr.toGoString(), pool.toGoString()) else {
+                        return nil
+                }
+                
                 guard let data = String(cString: ret).data(using: .utf8) else{ return nil }
                 guard let dic = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) as! NSDictionary else {
                         return nil

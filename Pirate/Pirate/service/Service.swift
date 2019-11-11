@@ -122,7 +122,7 @@ class Service: NSObject {
                 
                 try pacServ.startPACServer()
                 
-                if !Wallet.CurrentWallet.IsEmpty() {
+                if Wallet.CurrentWallet.IsEmpty() {
                         return
                 }
 
