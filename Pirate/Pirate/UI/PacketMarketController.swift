@@ -102,7 +102,6 @@ class PacketMarketController: NSWindowController {
 
 extension PacketMarketController:NSTableViewDelegate {
         
-        
         func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
                 let poolInfo = MinerPool.objAt(idx: row)
                 

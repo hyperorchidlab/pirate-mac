@@ -9,13 +9,13 @@
 import Foundation
 import DecentralizedShadowSocks
 
-let KEY_FOR_SWITCH_STATE          = "KEY_FOR_SWITCH_STATE"
-let KEY_FOR_Pirate_MODEL        = "KEY_FOR_Pirate_MODEL"
-let KEY_FOR_DNS_IP        = "KEY_FOR_DNS_IP"
-let KEY_FOR_CURRENT_POOL_INUSE    = "KEY_FOR_CURRENT_SEL_POOL_v2"
+let KEY_FOR_SWITCH_STATE = "KEY_FOR_SWITCH_STATE"
+let KEY_FOR_Pirate_MODEL = "KEY_FOR_Pirate_MODEL"
+let KEY_FOR_DNS_IP = "KEY_FOR_DNS_IP"
+let KEY_FOR_CURRENT_POOL_INUSE = "KEY_FOR_CURRENT_SEL_POOL_v2"
 
-public let TOKEN_ADDRESS = "0x7001563e8f2ec996361b72f746468724e1f1276c".toGoString()
-public let MICROPAY_SYSTEM_ADDRESS = "0x572b89B86D37A990E828F45c85e31b8e8Ae222eF".toGoString()
+public let TOKEN_ADDRESS = "0x3adc98d5e292355e59ae2ca169d241d889b092e3".toGoString()
+public let MICROPAY_SYSTEM_ADDRESS = "0xcE87aaE9404f0520e31DD2f74AaAcd0811286344".toGoString()
 public let BLOCKCHAIN_API_URL = "https://ropsten.infura.io/v3/f3245cef90ed440897e43efc6b3dd0f7".toGoString()
 public let BaseEtherScanUrl = "https://ropsten.etherscan.io"  //"https://ropsten.etherscan.io"//"https://etherscan.io"
 
@@ -56,19 +56,19 @@ struct BasicConfig{
 }
 
 class Service: NSObject {
-        
         var srvConf = BasicConfig()
-        
         var systemCallBack:UserInterfaceAPI = {actTyp, logTyp, v in
+                print("---\(actTyp)---\(logTyp)---\(String(cString:v!))---")
+                
                 switch actTyp {
                 case Int32(Log.rawValue):
                         print("log")
                         return
                 case Int32(Notification.rawValue):
-                        print("log")
+                        print("noti")
                         return
                 case Int32(ExitByErr.rawValue):
-                        print("log")
+                        print("err")
                         return
                 default:
                         print("unknown system call back typ:", actTyp)
@@ -77,12 +77,9 @@ class Service: NSObject {
         }
         
         var pacServ:PacServer = PacServer()
-        
         public static let VPNStatusChanged = Notification.Name(rawValue: "VPNStatusChanged")
-        
         public let contractQueue = DispatchQueue(label: "smart contract queue")
         private let serviceQueue = DispatchQueue(label: "vpn service queue")
-    
         public static func getDocumentsDirectory() -> URL {
                 let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
                 return paths[0]
@@ -178,9 +175,7 @@ class Service: NSObject {
         
         
         public func ChangeModel(global:Bool) throws{
-                
                 self.srvConf.isGlobal = global
-                
                 if !self.srvConf.isTurnon{
                         return
                 }
@@ -196,6 +191,5 @@ class Service: NSObject {
         }
         
         func loadCallBack(msgTyp:Int)->Void{
-                
         }
 }

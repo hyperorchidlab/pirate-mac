@@ -142,7 +142,7 @@ class MenuController: NSObject {
                 walletCtrl.window?.makeKeyAndOrderFront(nil)
         }
         
-        @IBAction func ShowMinerPoolView(_ sender: NSMenuItem) {
+        @IBAction func ShowPacketMarket(_ sender: NSMenuItem) {
                 if minerPoolCtrl != nil {
                         minerPoolCtrl.close()
                 }

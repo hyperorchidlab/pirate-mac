@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -32,20 +32,20 @@
                 <menuItem title="Turn On" id="OF0-0M-VrQ">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="ShowStatics:" target="MrV-Ey-DwV" id="dOK-FC-en3"/>
+                        <action selector="ShowPacketMarket:" target="MrV-Ey-DwV" id="dOK-FC-en3"/>
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="mce-7C-PoB"/>
                 <menuItem title="Smart" state="on" id="dun-4t-46q">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="ShowStatics:" target="MrV-Ey-DwV" id="BIZ-88-Z3X"/>
+                        <action selector="ShowPacketMarket:" target="MrV-Ey-DwV" id="BIZ-88-Z3X"/>
                     </connections>
                 </menuItem>
                 <menuItem title="Global" tag="1" id="CDL-O9-gLJ">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="ShowStatics:" target="MrV-Ey-DwV" id="Lt7-lt-ose"/>
+                        <action selector="ShowPacketMarket:" target="MrV-Ey-DwV" id="Lt7-lt-ose"/>
                     </connections>
                 </menuItem>
                 <menuItem title="Config-&gt;" id="CPn-B5-6Vi">
@@ -55,7 +55,7 @@
                             <menuItem title="Statics" id="6Aa-8n-00U">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="ShowStatics:" target="MrV-Ey-DwV" id="Dbp-gW-25F"/>
+                                    <action selector="ShowPacketMarket:" target="MrV-Ey-DwV" id="Dbp-gW-25F"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="71j-XL-pZ9"/>
@@ -69,13 +69,13 @@
                 <menuItem title="Wallet" id="6XY-as-n9m">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="ShowStatics:" target="MrV-Ey-DwV" id="Dsn-A4-DRH"/>
+                        <action selector="ShowWalletView:" target="MrV-Ey-DwV" id="7gg-kR-2yu"/>
                     </connections>
                 </menuItem>
                 <menuItem title="Market" id="vbi-aX-P3T">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="ShowStatics:" target="MrV-Ey-DwV" id="bIY-rj-8sQ"/>
+                        <action selector="ShowPacketMarket:" target="MrV-Ey-DwV" id="CL5-Bj-rBo"/>
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="8ae-iU-biQ"/>
@@ -92,7 +92,7 @@
                 <menuItem title="Quit" id="aIl-gQ-IUl">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="ShowStatics:" target="MrV-Ey-DwV" id="6nJ-st-VDU"/>
+                        <action selector="ShowPacketMarket:" target="MrV-Ey-DwV" id="6nJ-st-VDU"/>
                     </connections>
                 </menuItem>
             </items>
