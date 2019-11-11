@@ -148,13 +148,13 @@ struct TransferEth_return {
 
 extern struct TransferEth_return TransferEth(GoString p0, GoString p1, GoFloat64 p2);
 
-/* Return type for TransferLinToken */
-struct TransferLinToken_return {
+/* Return type for TransferToken */
+struct TransferToken_return {
 	char* r0;
 	char* r1;
 };
 
-extern struct TransferLinToken_return TransferLinToken(GoString p0, GoString p1, GoFloat64 p2);
+extern struct TransferToken_return TransferToken(GoString p0, GoString p1, GoFloat64 p2);
 
 /* Return type for NewWallet */
 struct NewWallet_return {

@@ -39,7 +39,7 @@ class MenuController: NSObject {
                                                        name: UserDataSyncSuccess, object: nil)
                 
                 NotificationCenter.default.addObserver(self, selector:#selector(UpdateVpnStatus(notification:)),
-                                                       name: Service.VPNStatusChanged, object: nil)
+                                                       name: VPNStatusChanged, object: nil)
         }
         
         func updateMenu(data: Any?, tagId: Int) {

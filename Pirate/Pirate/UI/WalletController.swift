@@ -182,7 +182,7 @@ class WalletController: NSWindowController {
                 if typ == 0{
                         Wallet.CurrentWallet.EthTransfer(password: password, target: target, no: no)
                 }else{
-                        Wallet.CurrentWallet.LinTokenTransfer(password: password, target: target, no: no)
+                        Wallet.CurrentWallet.TokenTransfer(password: password, target: target, no: no)
                 }
         }
 }

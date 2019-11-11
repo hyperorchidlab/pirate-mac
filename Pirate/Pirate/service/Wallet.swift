@@ -112,9 +112,9 @@ class Wallet:NSObject{
                 }
         }
         
-        func LinTokenTransfer(password:String, target:String, no:Double){
+        func TokenTransfer(password:String, target:String, no:Double){
                 Service.sharedInstance.contractQueue.async {
-                        let ret = TransferLinToken(password.toGoString(), target.toGoString(), no)
+                        let ret = TransferToken(password.toGoString(), target.toGoString(), no)
                         ProcessTransRet(tx: String(cString: ret.r0),
                                              err: String(cString: ret.r1),
                                              noti: TransactionCreated)

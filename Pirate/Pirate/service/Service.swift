@@ -23,12 +23,13 @@ public let PoolsInMarketChanged = Notification.Name(rawValue: "PoolsInMarketChan
 public let TransactionCreated = Notification.Name(rawValue: "TransactionCreated")
 public let TransactionSuccess = Notification.Name(rawValue: "TransactionSuccess")
 public let UserDataSyncSuccess = Notification.Name(rawValue: "UserDataSyncSuccess")
+public let VPNStatusChanged = Notification.Name(rawValue: "VPNStatusChanged")
 
 struct BasicConfig{
         
         var isTurnon: Bool = false
         var isGlobal:Bool = false
-        var packetPrice:Int64 = -1
+        var packetPrice:Double = -1.0
         var baseDir:String = ".Pirate"
         var dns:String = "167.179.112.108"
         var poolInUsed:String? = nil
@@ -52,6 +53,11 @@ struct BasicConfig{
         
         func save(){
                 UserDefaults.standard.set(isGlobal, forKey: KEY_FOR_Pirate_MODEL)
+        }
+        mutating func parseSysSetting(setting:String){
+                guard let dict = try? JSONSerialization.jsonObject(with: setting.data(using: .utf8)!, options: .mutableContainers)
+                        as! NSDictionary else { return }
+                self.packetPrice = (dict["PriceInSzabo"] as! Double) * MUINT//TIPS:: price in contract is Bytes/szaboHop or MBytes/Hop
         }
 }
 
@@ -77,7 +83,6 @@ class Service: NSObject {
         }
         
         var pacServ:PacServer = PacServer()
-        public static let VPNStatusChanged = Notification.Name(rawValue: "VPNStatusChanged")
         public let contractQueue = DispatchQueue(label: "smart contract queue")
         private let serviceQueue = DispatchQueue(label: "vpn service queue")
         public static func getDocumentsDirectory() -> URL {
@@ -114,6 +119,11 @@ class Service: NSObject {
                         throw ServiceError.SdkActionErr("init data cache service err: no:[\(ret2.r0)] msg:[\(String(cString:ret2.r1))]")
                 }
   
+                guard let ret4 = systemSettings() else{
+                        throw ServiceError.SdkActionErr("init config err: can't load contract system settings!")
+                }
+                
+                srvConf.parseSysSetting(setting: String(cString:ret4))
                 
                 try  ensureLaunchAgentsDirOwner()
                 if !SysProxyHelper.install(){
@@ -164,11 +174,11 @@ class Service: NSObject {
                        
                         
                         self.srvConf.isTurnon = false
-                        NotificationCenter.default.post(name: Service.VPNStatusChanged, object:
+                        NotificationCenter.default.post(name: VPNStatusChanged, object:
                                 self, userInfo:["msg":String(cString: ret.r1), "errNo":ret.r0])
                 }
                 
-                NotificationCenter.default.post(name: Service.VPNStatusChanged, object:
+                NotificationCenter.default.post(name: VPNStatusChanged, object:
                         self, userInfo:nil)
                 self.srvConf.isTurnon = true
         }

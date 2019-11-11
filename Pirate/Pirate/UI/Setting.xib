@@ -127,8 +127,8 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TfE-O8-SkL">
-                        <rect key="frame" x="215" y="103" width="91" height="17"/>
-                        <textFieldCell key="cell" lineBreakMode="clipping" title="(GBytes/Hop)" id="Urg-de-bq1">
+                        <rect key="frame" x="215" y="103" width="92" height="17"/>
+                        <textFieldCell key="cell" lineBreakMode="clipping" title="(MBytes/Hop)" id="Urg-de-bq1">
                             <font key="font" size="13" name=".PingFangSC-Regular"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -146,7 +146,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gqU-YO-gIx">
-                        <rect key="frame" x="322" y="103" width="84" height="17"/>
+                        <rect key="frame" x="323" y="103" width="84" height="17"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" title="用户押金时长" id="siM-oB-51o">
                             <font key="font" size="13" name=".PingFangSC-Regular"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -154,7 +154,7 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IVg-DR-Fg6">
-                        <rect key="frame" x="419" y="98" width="185" height="22"/>
+                        <rect key="frame" x="420" y="98" width="184" height="22"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="nUy-nf-7d0">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
