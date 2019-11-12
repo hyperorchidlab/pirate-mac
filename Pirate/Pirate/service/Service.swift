@@ -15,7 +15,7 @@ let KEY_FOR_DNS_IP = "KEY_FOR_DNS_IP"
 let KEY_FOR_CURRENT_POOL_INUSE = "KEY_FOR_CURRENT_SEL_POOL_v2"
 
 public let TOKEN_ADDRESS = "0x3adc98d5e292355e59ae2ca169d241d889b092e3".toGoString()
-public let MICROPAY_SYSTEM_ADDRESS = "0xcE87aaE9404f0520e31DD2f74AaAcd0811286344".toGoString()
+public let MICROPAY_SYSTEM_ADDRESS = "0x9a04dC6d9DE10F6404CaAfbe3F80e70f2dAec7DB".toGoString()
 public let BLOCKCHAIN_API_URL = "https://ropsten.infura.io/v3/f3245cef90ed440897e43efc6b3dd0f7".toGoString()
 public let BaseEtherScanUrl = "https://ropsten.etherscan.io"  //"https://ropsten.etherscan.io"//"https://etherscan.io"
 
