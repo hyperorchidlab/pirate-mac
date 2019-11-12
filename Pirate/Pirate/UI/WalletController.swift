@@ -39,7 +39,6 @@ class WalletController: NSWindowController {
                 NotificationCenter.default.addObserver(self, selector:#selector(WalletBalanceUpdate(notification:)),
                                                       name: WalletBalanceChanged, object: nil)
                 updateWallet()
-                self.PoolTableView.reloadData()
         }
         
         deinit {
@@ -52,13 +51,13 @@ class WalletController: NSWindowController {
                 SubAddressField.stringValue = w.SubAddress
                 EthBalanceField.doubleValue = w.EthBalance.CoinValue()
                 TokenBalanceField.doubleValue = w.TokenBalance.CoinValue()
+                self.PoolTableView.reloadData()
         }
         
         @objc func WalletBalanceUpdate(notification: Notification){
                 DispatchQueue.main.async {
                         self.WaitingTip.isHidden = true
                         self.updateWallet()
-                        self.PoolTableView.reloadData()
                 }
         }
         
@@ -130,7 +129,6 @@ class WalletController: NSWindowController {
                                 try Wallet.CurrentWallet.ImportWallet(path:openPanel.url!.path , password: password, replaceOld: isReplaced)
                                 dialogOK(question: "Success", text: "Import wallet success!")
                                 self.updateWallet()
-                                self.PoolTableView.reloadData()
                                 
                         }catch{
                                 dialogOK(question: "Warn", text:error.localizedDescription)
@@ -172,7 +170,7 @@ class WalletController: NSWindowController {
                         Wallet.CurrentWallet.load()
                         DispatchQueue.main.async {
                                 self.WaitingTip.isHidden = true
-                                self.PoolTableView.reloadData()
+                                self.updateWallet()
                         }
                 }
         }
