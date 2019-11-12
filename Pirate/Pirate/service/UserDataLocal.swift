@@ -31,8 +31,8 @@ class UserData: NSObject {
                 self.Nonce = dict["nonce"] as? Int64  ?? -1
                 self.TokenInUsed = dict["balance"] as? Double ?? 0.00
                 self.PacketBalance = dict["reminder"] as? Double ?? 0.0
-                let expired = dict["expire"] as? Double ?? 0
-                self.RefundTime = ConvertTime(val: expired)                
+                let expired = dict["expire"] as? String ?? "-"
+                self.RefundTime = expired//ConvertTime(val: expired)                
                 self.Epoch = dict["epoch"] as?Int64 ?? 0
                 self.Credit = dict["credit"] as?Double ?? 0.0
                 self.MicrNonce = dict["microNonce"] as?Int64 ?? 0
