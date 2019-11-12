@@ -49,9 +49,8 @@ class WalletController: NSWindowController {
                 let w = Wallet.CurrentWallet
                 MainAddressField.stringValue = w.MainAddress
                 SubAddressField.stringValue = w.SubAddress
-                EthBalanceField.doubleValue = w.EthBalance.CoinValue()
-                TokenBalanceField.doubleValue = w.TokenBalance.CoinValue()
-                self.PoolTableView.reloadData()
+                EthBalanceField.stringValue = String(format: "%.4f ETH", Wallet.CurrentWallet.EthBalance.CoinValue())
+                TokenBalanceField.stringValue = String(format: "%.4f HOP", Wallet.CurrentWallet.TokenBalance.CoinValue())
         }
         
         @objc func WalletBalanceUpdate(notification: Notification){
@@ -225,6 +224,7 @@ extension WalletController:NSTableViewDelegate{
                         return
                 }
                 
+                self.NonceTF.intValue = Int32(userData.Nonce)
                 self.TokenTF.stringValue = "\(userData.TokenInUsed.CoinValue()) HOP"
                 self.PacketsTF.stringValue = ConvertBandWith(val: userData.PacketBalance)
                 self.RefundTimeTF.stringValue = userData.RefundTime
