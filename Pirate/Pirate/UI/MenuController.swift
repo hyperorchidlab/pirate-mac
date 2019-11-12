@@ -22,7 +22,7 @@ class MenuController: NSObject {
         
         var walletCtrl: WalletController!
         var minerPoolCtrl: PacketMarketController!
-//        var ChannelCtrl:ChooseChannelController!
+        var logCtrl:SysLogController!
         var selMenuItem:NSMenuItem?
         
         let server = Service.sharedInstance
@@ -167,12 +167,12 @@ class MenuController: NSObject {
         }
         
         @IBAction func ShowStatics(_ sender: Any) {
-//                if ChannelCtrl != nil {
-//                        ChannelCtrl.close()
-//                }
-//                ChannelCtrl = ChooseChannelController(windowNibName: "ChooseChannelController")
-//                ChannelCtrl.showWindow(self)
-//                NSApp.activate(ignoringOtherApps: true)
-//                ChannelCtrl.window?.makeKeyAndOrderFront(nil)
+                if logCtrl != nil {
+                        logCtrl.close()
+                }
+                logCtrl = SysLogController(windowNibName: "SysLogController")
+                logCtrl.showWindow(self)
+                NSApp.activate(ignoringOtherApps: true)
+                logCtrl.window?.makeKeyAndOrderFront(nil)
         }
 }

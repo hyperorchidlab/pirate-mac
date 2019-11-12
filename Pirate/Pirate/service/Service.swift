@@ -24,6 +24,8 @@ public let TransactionStatusChanged = Notification.Name(rawValue: "TransactionSt
 public let WalletBalanceChanged = Notification.Name(rawValue: "WalletBalanceChanged")
 public let UserDataSyncSuccess = Notification.Name(rawValue: "UserDataSyncSuccess")
 public let VPNStatusChanged = Notification.Name(rawValue: "VPNStatusChanged")
+public let NewLibLogs = Notification.Name(rawValue: "NewLibLogs")
+
 
 struct BasicConfig{
         
@@ -61,6 +63,24 @@ struct BasicConfig{
         }
 }
 
+
+func LogTypeStr(typ:Int) -> String{
+        switch typ {
+        case 1:
+                return "User Data"
+        case 2:
+                return "Receipt"
+        case 3:
+                return "Basic Block Chain Data"
+        case 4:
+                return "Pools Under User"
+        case 5:
+                return "Pools Sync Thread"
+        default:
+                return "unkown now"
+        }
+}
+
 class Service: NSObject {
         var srvConf = BasicConfig()
         var systemCallBack:UserInterfaceAPI = {actTyp, logTyp, v in
@@ -68,7 +88,15 @@ class Service: NSObject {
                 
                 switch actTyp {
                 case Int32(Log.rawValue):
-                        print("log")
+                        let strLog = "[\(LogTypeStr(typ:Int(logTyp)))]=\(String(cString:v!))"
+                        
+                        if LogCache.count > 1000{
+                                LogCache.remove(at: 0)
+                        }
+                        LogCache.append(strLog) 
+                        NotificationCenter.default.post(name: NewLibLogs, object:
+                        self, userInfo:["log":strLog])
+                        
                         return
                 case Int32(Notification.rawValue):
                         print("noti")
@@ -84,6 +112,8 @@ class Service: NSObject {
         
         var pacServ:PacServer = PacServer()
         public let contractQueue = DispatchQueue(label: "smart contract queue")
+        public static var LogCache:[String] = []
+        
         private let serviceQueue = DispatchQueue(label: "vpn service queue")
         public static func getDocumentsDirectory() -> URL {
                 let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
