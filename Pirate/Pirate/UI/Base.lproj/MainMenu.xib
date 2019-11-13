@@ -16,9 +16,10 @@
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <customObject id="MrV-Ey-DwV" customClass="MenuController" customModule="Pirate" customModuleProvider="target">
             <connections>
-                <outlet property="ConfigMenu" destination="6Aa-8n-00U" id="uq0-UT-3KO"/>
-                <outlet property="allPayChannels" destination="wBT-o3-yXY" id="b4V-4f-q0p"/>
-                <outlet property="channelName" destination="CPn-B5-6Vi" id="omQ-9T-9GL"/>
+                <outlet property="allMinerOfPool" destination="oQ5-O0-ULp" id="rNe-NY-6TM"/>
+                <outlet property="allMyPools" destination="wBT-o3-yXY" id="RL6-mb-4Qf"/>
+                <outlet property="curMinerMenu" destination="dB0-ZQ-nTG" id="mDb-gd-oqq"/>
+                <outlet property="curPoolMenu" destination="CPn-B5-6Vi" id="b5P-cB-eUL"/>
                 <outlet property="globalModel" destination="CDL-O9-gLJ" id="O0o-NX-RwJ"/>
                 <outlet property="minerPoolMenu" destination="vbi-aX-P3T" id="f84-3c-0Vc"/>
                 <outlet property="smartModel" destination="dun-4t-46q" id="InF-5x-HBA"/>
@@ -48,17 +49,17 @@
                         <action selector="ShowPacketMarket:" target="MrV-Ey-DwV" id="Lt7-lt-ose"/>
                     </connections>
                 </menuItem>
-                <menuItem title="Config-&gt;" id="CPn-B5-6Vi">
+                <menuItem title="CurPool" id="CPn-B5-6Vi">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <menu key="submenu" title="Config-&gt;" id="wBT-o3-yXY">
+                    <menu key="submenu" title="CurPool" id="wBT-o3-yXY"/>
+                </menuItem>
+                <menuItem title="CurMiner" id="dB0-ZQ-nTG">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="CurMiner" id="oQ5-O0-ULp">
                         <items>
-                            <menuItem title="Statics" id="6Aa-8n-00U">
+                            <menuItem title="Item" id="v4i-wk-DGR">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <connections>
-                                    <action selector="ShowPacketMarket:" target="MrV-Ey-DwV" id="Dbp-gW-25F"/>
-                                </connections>
                             </menuItem>
-                            <menuItem isSeparatorItem="YES" id="71j-XL-pZ9"/>
                         </items>
                     </menu>
                 </menuItem>

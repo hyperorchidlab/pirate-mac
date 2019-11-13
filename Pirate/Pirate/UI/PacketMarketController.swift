@@ -124,7 +124,7 @@ extension PacketMarketController:NSTableViewDelegate {
                 self.currentPool = pool
                
                 self.poolAddressField.stringValue = pool.MainAddr
-                self.poolGNTField.stringValue = "\(pool.GuaranteedNo.CoinValue()) HOP"
+                self.poolGNTField.stringValue = String(format: "%.4f HOP", pool.GuaranteedNo.CoinValue())
                 self.poolEmail.stringValue = pool.Email
                 self.poolUrl.stringValue = pool.Url
                 
@@ -137,7 +137,7 @@ extension PacketMarketController:NSTableViewDelegate {
                 }
                 
                 self.PacketBalance.stringValue = ConvertBandWith(val: userData.PacketBalance)
-                self.TokenDeposit.stringValue = "\(userData.TokenInUsed.CoinValue()) HOP"
+                self.TokenDeposit.stringValue = String(format: "%.4f HOP",userData.TokenInUsed.CoinValue())
                 self.Nonce.intValue = Int32(userData.Nonce)
                 self.RefundTime.stringValue = userData.RefundTime
         }

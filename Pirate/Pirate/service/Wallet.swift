@@ -36,6 +36,8 @@ class Wallet:NSObject{
                 self.SubAddress = String(cString: ret.r1)
                 self.syncWalletData()
                 self.allMyPools()
+                
+                NotificationCenter.default.post(name: UserDataSyncSuccess, object: self, userInfo:nil)
         }
         
         public func IsEmpty() -> Bool{

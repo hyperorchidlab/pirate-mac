@@ -11,14 +11,15 @@ import Cocoa
 class MenuController: NSObject {
       
         @IBOutlet weak var statusMenu: NSMenu!
-        @IBOutlet weak var channelName: NSMenuItem!
+        @IBOutlet weak var curPoolMenu: NSMenuItem!
+        @IBOutlet weak var curMinerMenu: NSMenuItem!
         @IBOutlet weak var switchBtn: NSMenuItem!
         @IBOutlet weak var smartModel: NSMenuItem!
         @IBOutlet weak var globalModel: NSMenuItem!
         @IBOutlet weak var walletMenu: NSMenuItem!
         @IBOutlet weak var minerPoolMenu: NSMenuItem!
-        @IBOutlet weak var allPayChannels: NSMenu!
-        @IBOutlet weak var ConfigMenu: NSMenuItem!
+        @IBOutlet weak var allMyPools: NSMenu!
+        @IBOutlet weak var allMinerOfPool: NSMenu!
         
         var walletCtrl: WalletController!
         var minerPoolCtrl: PacketMarketController!
@@ -33,6 +34,7 @@ class MenuController: NSObject {
                 icon?.isTemplate = true // best for dark mode
                 statusItem.button?.image = icon
                 statusItem.menu = statusMenu
+                
                 updateUI()
                 
                 NotificationCenter.default.addObserver(self, selector:#selector(loadChannelMenu(notification:)),
@@ -61,39 +63,34 @@ class MenuController: NSObject {
         }
         
         @objc func loadChannelMenu(notification:Notification){
-                
-                if allPayChannels.numberOfItems == Wallet.PoolsOfUser.count + 2{
-                        return
-                }
-                
-                while allPayChannels.numberOfItems > 2 {
-                        allPayChannels.removeItem(at: 2)
-                }
+                allMyPools.removeAllItems()
                 
                 for (_, pool) in Wallet.PoolsOfUser.enumerated() {
                         
                         let menuItem = NSMenuItem(title: pool.Name,
-                                                   action:#selector(MenuController.ChangeChannelInUse(_:)),
+                                                   action:#selector(MenuController.ChangePool(_:)),
                                                    keyEquivalent: "")
+                        
                         menuItem.representedObject = pool
                         menuItem.target = self
-                        allPayChannels.addItem(menuItem)
+                        allMyPools.addItem(menuItem)
+                        
                         if Service.sharedInstance.srvConf.poolInUsed == pool.MainAddr {
                                 self.selMenuItem = menuItem
                                 menuItem.state = .on
-                                self.channelName.title = pool.Name
+                                self.curPoolMenu.title = pool.Name
                         }
                 }
         }
         
-        @IBAction func ChangeChannelInUse(_ sender: NSMenuItem){
+        @IBAction func ChangePool(_ sender: NSMenuItem){
                 guard let pool = sender.representedObject as? MinerPool else{
                         return
                 }
                 self.selMenuItem?.state = .off
                 sender.state = .on
                 self.selMenuItem = sender
-                self.channelName.title = pool.Name
+                self.curPoolMenu.title = pool.Name
                 
                Service.sharedInstance.srvConf.changeUsedPool(addr: pool.MainAddr)
         }
