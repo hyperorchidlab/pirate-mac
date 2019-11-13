@@ -129,6 +129,10 @@ extension PacketMarketController:NSTableViewDelegate {
                 self.poolUrl.stringValue = pool.Url
                 
                 guard let userData = UserData.LoadUserDataUnder(pool:pool.MainAddr)else{
+                        self.PacketBalance.stringValue = "0 MBytes"
+                        self.TokenDeposit.stringValue = "0 HOP"
+                        self.Nonce.intValue = -1
+                        self.RefundTime.stringValue = "-"
                         return
                 }
                 
