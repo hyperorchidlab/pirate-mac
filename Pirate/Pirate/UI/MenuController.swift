@@ -24,6 +24,7 @@ class MenuController: NSObject {
         var minerPoolCtrl: PacketMarketController!
         var logCtrl:SysLogController!
         var minerSelectCtrl:MinerSelectCtrl!
+        var settingCtrl:Setting!
         
         var CurPoolInSubMenu:NSMenuItem?
         
@@ -192,7 +193,7 @@ class MenuController: NSObject {
                 NSApplication.shared.terminate(self)
         }
         
-        @IBAction func ShowStatics(_ sender: Any) {
+        @IBAction func ShowSysLog(_ sender: Any) {
                 if logCtrl != nil {
                         logCtrl.close()
                 }
@@ -200,5 +201,14 @@ class MenuController: NSObject {
                 logCtrl.showWindow(self)
                 NSApp.activate(ignoringOtherApps: true)
                 logCtrl.window?.makeKeyAndOrderFront(nil)
+        }
+        @IBAction func ShowSettings(_ sender: Any) {
+                if settingCtrl != nil {
+                        settingCtrl.close()
+                }
+                settingCtrl = Setting(windowNibName: "Setting")
+                settingCtrl.showWindow(self)
+                NSApp.activate(ignoringOtherApps: true)
+                settingCtrl.window?.makeKeyAndOrderFront(nil)
         }
 }

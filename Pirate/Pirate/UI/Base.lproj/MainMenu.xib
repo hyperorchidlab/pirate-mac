@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15505"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -32,20 +32,20 @@
                 <menuItem title="Turn On" id="OF0-0M-VrQ">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="ShowMinerSelect:" target="MrV-Ey-DwV" id="dOK-FC-en3"/>
+                        <action selector="switchTurnOnOff:" target="MrV-Ey-DwV" id="nJy-vP-mVB"/>
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="mce-7C-PoB"/>
                 <menuItem title="Smart" state="on" id="dun-4t-46q">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="ShowMinerSelect:" target="MrV-Ey-DwV" id="BIZ-88-Z3X"/>
+                        <action selector="changeModel:" target="MrV-Ey-DwV" id="XCU-B5-jpP"/>
                     </connections>
                 </menuItem>
                 <menuItem title="Global" tag="1" id="CDL-O9-gLJ">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="ShowMinerSelect:" target="MrV-Ey-DwV" id="Lt7-lt-ose"/>
+                        <action selector="changeModel:" target="MrV-Ey-DwV" id="jLH-eS-XDZ"/>
                     </connections>
                 </menuItem>
                 <menuItem title="CurPool" id="CPn-B5-6Vi">
@@ -62,22 +62,25 @@
                 <menuItem title="Wallet" id="6XY-as-n9m">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="ShowMinerSelect:" target="MrV-Ey-DwV" id="7gg-kR-2yu"/>
+                        <action selector="ShowWalletView:" target="MrV-Ey-DwV" id="wty-pS-pxQ"/>
                     </connections>
                 </menuItem>
                 <menuItem title="Market" id="vbi-aX-P3T">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="ShowMinerSelect:" target="MrV-Ey-DwV" id="CL5-Bj-rBo"/>
+                        <action selector="ShowPacketMarket:" target="MrV-Ey-DwV" id="wex-et-Qhh"/>
                     </connections>
                 </menuItem>
                 <menuItem title="Setting" id="ORd-qI-ALe">
                     <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="ShowSettings:" target="MrV-Ey-DwV" id="yoq-j5-yXr"/>
+                    </connections>
                 </menuItem>
                 <menuItem title="SysLogs" id="a10-EH-dcI">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="ShowMinerSelect:" target="MrV-Ey-DwV" id="ERe-Lh-fTe"/>
+                        <action selector="ShowSysLog:" target="MrV-Ey-DwV" id="1Zq-Xh-3C8"/>
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="8ae-iU-biQ"/>
@@ -94,7 +97,7 @@
                 <menuItem title="Quit" id="aIl-gQ-IUl">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="ShowMinerSelect:" target="MrV-Ey-DwV" id="6nJ-st-VDU"/>
+                        <action selector="finish:" target="MrV-Ey-DwV" id="oLM-3a-Ysl"/>
                     </connections>
                 </menuItem>
             </items>

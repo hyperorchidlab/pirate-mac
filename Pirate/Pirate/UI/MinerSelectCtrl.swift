@@ -17,6 +17,7 @@ class MinerSelectCtrl: NSWindowController {
         
         @IBOutlet weak var MinerListTV: NSTableView!
         
+        @IBOutlet weak var waitingTips: NSProgressIndicator!
         @IBOutlet weak var MinerAddress: NSTextField!
         @IBOutlet weak var Zone: NSTextField!
         @IBOutlet weak var IPAddress: NSTextField!
@@ -36,6 +37,14 @@ class MinerSelectCtrl: NSWindowController {
         }
         
         @IBAction func ChangeMinersAct(_ sender: Any) {
+                self.waitingTips.isHidden = false
+                Service.sharedInstance.contractQueue.async {
+                        self.minerData = MinerData.SyncMiners(PoolAddr: self.CurrntPoolAddress)
+                }
+                DispatchQueue.main.async {
+                        self.waitingTips.isHidden = true
+                        self.MinerListTV.reloadData()
+                }
         }
         
         @IBAction func PingAllMiners(_ sender: Any) {
