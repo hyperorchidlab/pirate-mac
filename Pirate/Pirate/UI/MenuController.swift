@@ -70,7 +70,7 @@ class MenuController: NSObject {
                 let errMsg = ui["msg"] as! String
                 let errNo = ui["errNo"] as! Int
                 
-                dialogOK(question: "VPN 关闭", text: "错误码:[\(errNo)], 错误提示:[\(errMsg)]")
+                dialogOK(question: "VPN Closed", text: "Code:[\(errNo)], Message:[\(errMsg)]")
         }
         
         @objc func LoadAllMyPools(notification:Notification){
@@ -160,12 +160,18 @@ class MenuController: NSObject {
         }
         
         @IBAction func ShowMinerSelect(_ sender: NSMenuItem) {
+                guard let pool = self.CurPoolInSubMenu?.representedObject as? MinerPool else{
+                        dialogOK(question: "No Pool Selected", text: "Please chose a valid pool first")
+                        return
+                }
+                
                 if minerSelectCtrl != nil {
                         minerSelectCtrl.close()
                 }
                 minerSelectCtrl = MinerSelectCtrl(windowNibName: "MinerSelectCtrl")
                 minerSelectCtrl.showWindow(self)
-                minerSelectCtrl.window?.title = ""
+                minerSelectCtrl.window?.title = pool.Name
+                minerSelectCtrl.CurrntPoolAddress = pool.MainAddr
                 NSApp.activate(ignoringOtherApps: true)
                 minerSelectCtrl.window?.makeKeyAndOrderFront(nil)
         }

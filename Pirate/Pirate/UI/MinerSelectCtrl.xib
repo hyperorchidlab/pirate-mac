@@ -9,8 +9,8 @@
         <customObject id="-2" userLabel="File's Owner" customClass="MinerSelectCtrl" customModule="Pirate" customModuleProvider="target">
             <connections>
                 <outlet property="IPAddress" destination="4py-Uz-1JQ" id="wCY-z9-NhR"/>
-                <outlet property="MinerTableView" destination="tzT-IU-wlR" id="H9h-FY-kkn"/>
-                <outlet property="MinserAddress" destination="08k-fV-9sa" id="5OD-1z-ZL9"/>
+                <outlet property="MinerAddress" destination="08k-fV-9sa" id="5OD-1z-ZL9"/>
+                <outlet property="MinerListTV" destination="lZ3-Q3-pBe" id="hQS-sK-xZq"/>
                 <outlet property="PingValue" destination="fSi-ZT-Lsc" id="tRX-f7-0d0"/>
                 <outlet property="Zone" destination="7Go-DH-a7Z" id="dEE-xq-Znn"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
@@ -41,7 +41,7 @@
                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                     <tableColumns>
                                         <tableColumn width="244" minWidth="40" maxWidth="1000" id="Edw-fa-Hp0">
-                                            <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
+                                            <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="SubAddr">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -74,7 +74,7 @@
                                             </prototypeCellViews>
                                         </tableColumn>
                                         <tableColumn width="108" minWidth="40" maxWidth="1000" id="pC1-CW-oOW">
-                                            <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
+                                            <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="PingValue">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -107,6 +107,10 @@
                                             </prototypeCellViews>
                                         </tableColumn>
                                     </tableColumns>
+                                    <connections>
+                                        <outlet property="dataSource" destination="-2" id="j8U-hd-Lpe"/>
+                                        <outlet property="delegate" destination="-2" id="DX8-Ir-kPq"/>
+                                    </connections>
                                 </tableView>
                             </subviews>
                         </clipView>
@@ -165,7 +169,7 @@
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <action selector="PingAllMiners:" target="-2" id="2ck-AC-Zyk"/>
+                            <action selector="PingAllMiners:" target="-2" id="fqg-KS-ydT"/>
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3ff-hQ-vB2">
@@ -175,7 +179,7 @@
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <action selector="ChangeMinersAct:" target="-2" id="wfr-3l-eH2"/>
+                            <action selector="ChangeMinersAct:" target="-2" id="jay-Rh-0nT"/>
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UnY-AW-Kw6">
@@ -185,7 +189,7 @@
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <action selector="ExitAct:" target="-2" id="s2x-7q-OF2"/>
+                            <action selector="ExitAct:" target="-2" id="AAa-GS-jJg"/>
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="D5y-pU-Omb">
@@ -195,7 +199,7 @@
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <action selector="TestPingValue:" target="-2" id="gPo-fo-ZbB"/>
+                            <action selector="TestPingValue:" target="-2" id="aku-if-oJc"/>
                         </connections>
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TVr-DD-szz">
@@ -222,6 +226,16 @@
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="NrY-W4-Kf3">
+                        <rect key="frame" x="474" y="237" width="179" height="32"/>
+                        <buttonCell key="cell" type="push" title="Set As Service Miner" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="DRq-pX-pKc">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="SetAsServiceMiner:" target="-2" id="xml-rD-8Ja"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="08k-fV-9sa" secondAttribute="trailing" constant="20" id="57w-8X-Vzm"/>
@@ -237,6 +251,7 @@
                     <constraint firstItem="t1K-eS-Dkw" firstAttribute="top" secondItem="4py-Uz-1JQ" secondAttribute="bottom" constant="20" id="PmT-JG-Qgz"/>
                     <constraint firstItem="D5y-pU-Omb" firstAttribute="top" secondItem="fSi-ZT-Lsc" secondAttribute="bottom" constant="20" id="TG8-ji-Oo6"/>
                     <constraint firstItem="TVr-DD-szz" firstAttribute="leading" secondItem="tzT-IU-wlR" secondAttribute="trailing" constant="20" id="Ugu-yg-dn4"/>
+                    <constraint firstItem="NrY-W4-Kf3" firstAttribute="leading" secondItem="tzT-IU-wlR" secondAttribute="trailing" constant="100" id="VO7-cd-jB0"/>
                     <constraint firstItem="tzT-IU-wlR" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" id="VyP-CX-wDl"/>
                     <constraint firstAttribute="trailing" secondItem="fSi-ZT-Lsc" secondAttribute="trailing" constant="20" id="ZUg-6P-7Wk"/>
                     <constraint firstItem="3ff-hQ-vB2" firstAttribute="leading" secondItem="PiN-hJ-PL1" secondAttribute="trailing" constant="20" id="cJv-73-Wxh"/>
@@ -246,12 +261,14 @@
                     <constraint firstItem="3ff-hQ-vB2" firstAttribute="top" secondItem="tzT-IU-wlR" secondAttribute="bottom" constant="20" id="h2a-et-Eff"/>
                     <constraint firstAttribute="trailing" secondItem="D5y-pU-Omb" secondAttribute="trailing" constant="100" id="ipu-qa-JOU"/>
                     <constraint firstAttribute="bottom" secondItem="UnY-AW-Kw6" secondAttribute="bottom" constant="20" id="j75-cA-Dd0"/>
+                    <constraint firstItem="NrY-W4-Kf3" firstAttribute="top" secondItem="D5y-pU-Omb" secondAttribute="bottom" constant="20" id="jd4-M6-N4m"/>
                     <constraint firstItem="RwR-tv-aBn" firstAttribute="leading" secondItem="tzT-IU-wlR" secondAttribute="trailing" constant="20" id="mXA-AD-8kw"/>
                     <constraint firstItem="fSi-ZT-Lsc" firstAttribute="leading" secondItem="t1K-eS-Dkw" secondAttribute="trailing" constant="20" id="mZQ-6W-1bW"/>
                     <constraint firstItem="7Go-DH-a7Z" firstAttribute="leading" secondItem="TVr-DD-szz" secondAttribute="trailing" constant="20" id="nPM-lf-Qcv"/>
                     <constraint firstItem="PiN-hJ-PL1" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" id="nie-ze-gwR"/>
                     <constraint firstAttribute="bottom" secondItem="tzT-IU-wlR" secondAttribute="bottom" constant="60" id="qOy-UQ-zfV"/>
                     <constraint firstItem="fSi-ZT-Lsc" firstAttribute="top" secondItem="4py-Uz-1JQ" secondAttribute="bottom" constant="20" id="sdx-jS-Drh"/>
+                    <constraint firstAttribute="trailing" secondItem="NrY-W4-Kf3" secondAttribute="trailing" constant="100" id="tI9-BB-SA8"/>
                     <constraint firstItem="08k-fV-9sa" firstAttribute="leading" secondItem="tzT-IU-wlR" secondAttribute="trailing" constant="20" id="uch-Tg-5Z4"/>
                     <constraint firstItem="PiN-hJ-PL1" firstAttribute="top" secondItem="tzT-IU-wlR" secondAttribute="bottom" constant="20" id="xas-l5-Mts"/>
                     <constraint firstItem="D5y-pU-Omb" firstAttribute="leading" secondItem="tzT-IU-wlR" secondAttribute="trailing" constant="100" id="xvP-29-0hw"/>

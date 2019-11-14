@@ -12,6 +12,20 @@ let MAX_MINER_NO = 16
 
 let KEY_FOR_CACHED_MINER_OF = "KEY_FOR_CACHED_MINER_OF_%s"
 
+class MinerTestData:NSObject{
+        
+        var IPAddr:String = ""
+        var Ping:Double = 0.0
+        
+        override init(){
+                super.init()
+        }
+        
+        init(dict:NSDictionary){
+                
+        }
+}
+
 class MinerData: NSObject { 
         var SubAddr:String = ""
         var Zone:String = ""
