@@ -138,7 +138,7 @@ extern char* PoolDetails(GoString p0);
 
 extern char* PoolInfosInMarket();
 
-extern char* MinerSeeds(GoString p0, GoInt p1, GoInt p2);
+extern char* RandomMiner(GoString p0, GoInt p1);
 
 extern char* UserDataOfPool(GoString p0, GoString p1);
 

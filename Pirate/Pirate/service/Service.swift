@@ -13,6 +13,7 @@ let KEY_FOR_SWITCH_STATE = "KEY_FOR_SWITCH_STATE"
 let KEY_FOR_Pirate_MODEL = "KEY_FOR_Pirate_MODEL"
 let KEY_FOR_DNS_IP = "KEY_FOR_DNS_IP"
 let KEY_FOR_CURRENT_POOL_INUSE = "KEY_FOR_CURRENT_SEL_POOL_v2"
+let KEY_FOR_CURRENT_MINER_INUSE = "KEY_FOR_CURRENT_SEL_Miner_v2"
 
 public let TOKEN_ADDRESS = "0x3adc98d5e292355e59ae2ca169d241d889b092e3".toGoString()
 public let MICROPAY_SYSTEM_ADDRESS = "0x9a04dC6d9DE10F6404CaAfbe3F80e70f2dAec7DB".toGoString()
@@ -35,10 +36,12 @@ struct BasicConfig{
         var baseDir:String = ".Pirate"
         var dns:String = "167.179.112.108"
         var poolInUsed:String? = nil
+        var minerSelected:String? = nil
         
         mutating func loadConf(){
                 self.isGlobal = UserDefaults.standard.bool(forKey: KEY_FOR_Pirate_MODEL)
                 self.poolInUsed = UserDefaults.standard.string(forKey: KEY_FOR_CURRENT_POOL_INUSE)
+                self.minerSelected = UserDefaults.standard.string(forKey: KEY_FOR_CURRENT_MINER_INUSE)
                 self.dns = UserDefaults.standard.string(forKey: KEY_FOR_DNS_IP) ?? "167.179.112.108"
                 do {
                         self.baseDir = try touchDirectory(directory: ".Pirate").path
@@ -51,6 +54,11 @@ struct BasicConfig{
         mutating func changeUsedPool(addr:String){
                 self.poolInUsed = addr
                 UserDefaults.standard.set(addr, forKey: KEY_FOR_CURRENT_POOL_INUSE)
+        }
+        
+        mutating func changeMiner(addr:String){
+                self.minerSelected = addr
+                UserDefaults.standard.set(addr, forKey: KEY_FOR_CURRENT_MINER_INUSE)
         }
         
         func save(){

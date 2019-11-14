@@ -19,12 +19,13 @@ class MenuController: NSObject {
         @IBOutlet weak var walletMenu: NSMenuItem!
         @IBOutlet weak var minerPoolMenu: NSMenuItem!
         @IBOutlet weak var allMyPools: NSMenu!
-        @IBOutlet weak var allMinerOfPool: NSMenu!
         
         var walletCtrl: WalletController!
         var minerPoolCtrl: PacketMarketController!
         var logCtrl:SysLogController!
-        var selMenuItem:NSMenuItem?
+        var minerSelectCtrl:MinerSelectCtrl!
+        
+        var CurPoolInSubMenu:NSMenuItem?
         
         let server = Service.sharedInstance
         let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
@@ -36,13 +37,23 @@ class MenuController: NSObject {
                 statusItem.menu = statusMenu
                 
                 updateUI()
+                updateMinerList()
                 
-                NotificationCenter.default.addObserver(self, selector:#selector(loadChannelMenu(notification:)),
+                NotificationCenter.default.addObserver(self, selector:#selector(LoadAllMyPools(notification:)),
                                                        name: UserDataSyncSuccess, object: nil)
                 
                 NotificationCenter.default.addObserver(self, selector:#selector(UpdateVpnStatus(notification:)),
                                                        name: VPNStatusChanged, object: nil)
         }
+        
+        func updateMinerList(){
+                guard let miner = Service.sharedInstance.srvConf.minerSelected else{
+                        self.curMinerMenu.title = "Chose Miner->"
+                        return
+                }
+                self.curMinerMenu.title = miner
+        }
+        
         
         func updateMenu(data: Any?, tagId: Int) {
                 DispatchQueue.main.async{ self.updateUI()}
@@ -62,9 +73,8 @@ class MenuController: NSObject {
                 dialogOK(question: "VPN 关闭", text: "错误码:[\(errNo)], 错误提示:[\(errMsg)]")
         }
         
-        @objc func loadChannelMenu(notification:Notification){
+        @objc func LoadAllMyPools(notification:Notification){
                 allMyPools.removeAllItems()
-                
                 for (_, pool) in Wallet.PoolsOfUser.enumerated() {
                         
                         let menuItem = NSMenuItem(title: pool.Name,
@@ -76,7 +86,7 @@ class MenuController: NSObject {
                         allMyPools.addItem(menuItem)
                         
                         if Service.sharedInstance.srvConf.poolInUsed == pool.MainAddr {
-                                self.selMenuItem = menuItem
+                                self.CurPoolInSubMenu = menuItem
                                 menuItem.state = .on
                                 self.curPoolMenu.title = pool.Name
                         }
@@ -87,9 +97,9 @@ class MenuController: NSObject {
                 guard let pool = sender.representedObject as? MinerPool else{
                         return
                 }
-                self.selMenuItem?.state = .off
+                self.CurPoolInSubMenu?.state = .off
                 sender.state = .on
-                self.selMenuItem = sender
+                self.CurPoolInSubMenu = sender
                 self.curPoolMenu.title = pool.Name
                 
                Service.sharedInstance.srvConf.changeUsedPool(addr: pool.MainAddr)
@@ -148,6 +158,19 @@ class MenuController: NSObject {
                 NSApp.activate(ignoringOtherApps: true)
                 minerPoolCtrl.window?.makeKeyAndOrderFront(nil)
         }
+        
+        @IBAction func ShowMinerSelect(_ sender: NSMenuItem) {
+                if minerSelectCtrl != nil {
+                        minerSelectCtrl.close()
+                }
+                minerSelectCtrl = MinerSelectCtrl(windowNibName: "MinerSelectCtrl")
+                minerSelectCtrl.showWindow(self)
+                minerSelectCtrl.window?.title = ""
+                NSApp.activate(ignoringOtherApps: true)
+                minerSelectCtrl.window?.makeKeyAndOrderFront(nil)
+        }
+        
+        
 
         @IBAction func changeModel(_ sender: NSMenuItem) {
                
