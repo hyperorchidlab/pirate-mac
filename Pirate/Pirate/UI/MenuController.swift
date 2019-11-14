@@ -169,9 +169,9 @@ class MenuController: NSObject {
                         minerSelectCtrl.close()
                 }
                 minerSelectCtrl = MinerSelectCtrl(windowNibName: "MinerSelectCtrl")
-                minerSelectCtrl.showWindow(self)
-                minerSelectCtrl.window?.title = pool.Name
                 minerSelectCtrl.CurrntPoolAddress = pool.MainAddr
+                minerSelectCtrl.window?.title = pool.Name
+                minerSelectCtrl.showWindow(self)
                 NSApp.activate(ignoringOtherApps: true)
                 minerSelectCtrl.window?.makeKeyAndOrderFront(nil)
         }

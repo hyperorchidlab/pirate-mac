@@ -55,18 +55,30 @@ extension MinerSelectCtrl:NSTableViewDelegate {
                         return nil
                 }
                 
-                guard let cell = tableView.makeView(withIdentifier: idt, owner: nil) as? NSTableCellView else{
+                guard let cell = tableView.makeView(withIdentifier: idt, owner: nil)  else{
                         return nil
                 }
                 
                 if (idt.rawValue == "SubAddr"){
-                        cell.textField?.stringValue = miner.SubAddr
-                }else {
+                        let SubAddrcCell = cell as! NSTableCellView
+                        SubAddrcCell.textField?.stringValue = miner.SubAddr
+                }else if (idt.rawValue == "PingValue"){
+                        
+                        let PingCell = cell as! NSTableCellView
+                        
                         let testData = self.minerTestData[miner.SubAddr]
                         if testData == nil{
-                                cell.textField?.intValue = 0
+                                PingCell.textField?.intValue = 0
                         }else{
-                                cell.textField?.stringValue = String(format:"%.2f ms", testData!.Ping)
+                                PingCell.textField?.stringValue = String(format:"%.2f ms", testData!.Ping)
+                        }
+                        
+                }else {
+                        let StatusCell = cell as! NSButton
+                        if Service.sharedInstance.srvConf.minerSelected == miner.SubAddr {
+                                StatusCell.state = .on
+                        }else{
+                                StatusCell.state = .off
                         }
                 }
                 

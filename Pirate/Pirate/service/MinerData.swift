@@ -10,7 +10,7 @@ import Cocoa
 import DecentralizedShadowSocks
 let MAX_MINER_NO = 16
 
-let KEY_FOR_CACHED_MINER_OF = "KEY_FOR_CACHED_MINER_OF_%s"
+let KEY_FOR_CACHED_MINER_OF = "KEY_FOR_CACHED_MINER_OF_"
 
 class MinerTestData:NSObject{
         
@@ -22,11 +22,11 @@ class MinerTestData:NSObject{
         }
         
         init(dict:NSDictionary){
-                
         }
 }
 
-class MinerData: NSObject { 
+class MinerData: NSObject, NSCoding {
+        
         var SubAddr:String = ""
         var Zone:String = ""
         var GTN:Double = 0.0
@@ -43,12 +43,27 @@ class MinerData: NSObject {
                 self.GTN = dict["GTN"] as? Double ?? 0.0
         }
         
+        func encode(with aCoder: NSCoder) {
+                aCoder.encode(SubAddr, forKey: "SubAddr")
+                aCoder.encode(Zone, forKey: "Zone")
+                aCoder.encode(GTN, forKey: "GTN")
+        }
+        
+        required init?(coder aDecoder: NSCoder) {
+                SubAddr = aDecoder.decodeObject(forKey: "SubAddr") as! String
+                Zone = aDecoder.decodeObject(forKey: "Zone") as! String
+                GTN = aDecoder.decodeDouble(forKey: "GTN")
+        }
+        
+        
         public static func LoadMiners(PoolAddr:String)-> [MinerData]{
-                let key = String(format: KEY_FOR_CACHED_MINER_OF, PoolAddr)
-                guard let miners = UserDefaults.standard.array(forKey: key) else{
+                let key = "\(KEY_FOR_CACHED_MINER_OF)_\(PoolAddr)"
+                guard let md = UserDefaults.standard.data(forKey: key) else{
                         return SyncMiners(PoolAddr: PoolAddr)
                 }
-                return miners as! [MinerData]
+                
+                let miners = NSKeyedUnarchiver.unarchiveObject(with: md) as! [MinerData]
+                return miners
         }
         
         public static func SyncMiners(PoolAddr:String)-> [MinerData]{
@@ -73,8 +88,9 @@ class MinerData: NSObject {
                         miners.append(miner)
                 }
                 
-                let key = String(format: KEY_FOR_CACHED_MINER_OF, PoolAddr)
-                UserDefaults.standard.set(miners, forKey: key)
+                let key = "\(KEY_FOR_CACHED_MINER_OF)_\(PoolAddr)"
+                let md = NSKeyedArchiver.archivedData(withRootObject: miners)
+                UserDefaults.standard.set(md, forKey: key)
                 return miners
         }
 }
