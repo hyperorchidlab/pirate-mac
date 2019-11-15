@@ -15,13 +15,16 @@ let KEY_FOR_CACHED_MINER_OF = "KEY_FOR_CACHED_MINER_OF_"
 class MinerTestData:NSObject{
         
         var IPAddr:String = ""
-        var Ping:Double = 0.0
+        var Ping:Double = 0
         
         override init(){
                 super.init()
         }
         
-        init(dict:NSDictionary){
+        init(ip:String, ping:Double){
+                super.init()
+                self.IPAddr = ip
+                self.Ping = ping
         }
 }
 

@@ -180,7 +180,7 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fSi-ZT-Lsc">
-                        <rect key="frame" x="627" y="326" width="273" height="22"/>
+                        <rect key="frame" x="655" y="326" width="245" height="22"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="KOQ-dH-oif">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -244,8 +244,8 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="t1K-eS-Dkw">
-                        <rect key="frame" x="578" y="331" width="31" height="17"/>
-                        <textFieldCell key="cell" lineBreakMode="clipping" title="Ping" id="aCW-JE-ZLT">
+                        <rect key="frame" x="578" y="331" width="59" height="17"/>
+                        <textFieldCell key="cell" lineBreakMode="clipping" title="Ping(ms)" id="aCW-JE-ZLT">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>

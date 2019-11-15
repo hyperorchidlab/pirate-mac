@@ -7,8 +7,7 @@
 //
 
 import Cocoa
-
-
+import DecentralizedShadowSocks
 
 class MinerSelectCtrl: NSWindowController {
         public var CurrntPoolAddress:String = ""
@@ -31,8 +30,29 @@ class MinerSelectCtrl: NSWindowController {
         }
         
         @IBAction func TestPingValue(_ sender: Any) {
-//                let mAddr = MinerAddress.stringValue
+                guard MinerAddress.stringValue != "" else{
+                        return
+                }
                 
+                let mid = self.MinerAddress.stringValue.toGoString()
+                Service.sharedInstance.contractQueue.async {
+                        let ret = testPings(mid)
+                        DispatchQueue.main.async {
+                                self.waitingTips.isHidden = true
+                                
+                                guard let ipData = ret.r0 else {
+                                        self.IPAddress.stringValue = "none"
+                                        self.PingValue.stringValue = "none"
+                                        return
+                                }
+                        
+                                self.IPAddress.stringValue = String(cString: ipData)
+                                self.PingValue.doubleValue = Double(ret.r1)
+                                let td = MinerTestData(ip: self.IPAddress.stringValue, ping: Double(ret.r1))
+                                self.minerTestData[self.MinerAddress.stringValue] = td
+                                self.MinerListTV.reloadData()
+                        }
+                }
         }
         
         @IBAction func ExitAct(_ sender: Any) {

@@ -108,6 +108,14 @@ extern void stopService();
 
 extern char* systemSettings();
 
+/* Return type for testPings */
+struct testPings_return {
+	char* r0;
+	GoFloat32 r1;
+};
+
+extern struct testPings_return testPings(GoString p0);
+
 extern char* dnsAddr();
 
 extern char* ethConfig();
