@@ -12,13 +12,15 @@ class MenuController: NSObject {
       
         @IBOutlet weak var statusMenu: NSMenu!
         @IBOutlet weak var curPoolMenu: NSMenuItem!
-        @IBOutlet weak var curMinerMenu: NSMenuItem!
         @IBOutlet weak var switchBtn: NSMenuItem!
         @IBOutlet weak var smartModel: NSMenuItem!
         @IBOutlet weak var globalModel: NSMenuItem!
         @IBOutlet weak var walletMenu: NSMenuItem!
         @IBOutlet weak var minerPoolMenu: NSMenuItem!
         @IBOutlet weak var allMyPools: NSMenu!
+        @IBOutlet weak var curMinerMenu: NSMenuItem!
+        @IBOutlet weak var DashBoardMenu: NSMenuItem!
+        @IBOutlet weak var walletStatusMenu: NSMenuItem!
         
         var walletCtrl: WalletController!
         var minerPoolCtrl: PacketMarketController!
@@ -42,12 +44,13 @@ class MenuController: NSObject {
                 
                 NotificationCenter.default.addObserver(self, selector:#selector(LoadAllMyPools(notification:)),
                                                        name: UserDataSyncSuccess, object: nil)
-                
                 NotificationCenter.default.addObserver(self, selector:#selector(UpdateVpnStatus(notification:)),
                                                        name: VPNStatusChanged, object: nil)
-                
                 NotificationCenter.default.addObserver(self, selector:#selector(ServerNodeChanged(notification:)),
                                                        name: SelectPoolOrMinerChanged, object: nil)
+                NotificationCenter.default.addObserver(self, selector:#selector(WalletStChanged(_:)),
+                                                      name: WalletStatusChanged, object: nil)
+                
         }
         
         func updateMinerList(){
@@ -55,7 +58,8 @@ class MenuController: NSObject {
                         self.curMinerMenu.title = "Chose Miner->"
                         return
                 }
-                self.curMinerMenu.title = miner
+                
+                self.curMinerMenu.title = String(miner.prefix(8)) + "..."
         }
         
         
@@ -189,8 +193,6 @@ class MenuController: NSObject {
                 NSApp.activate(ignoringOtherApps: true)
                 minerSelectCtrl.window?.makeKeyAndOrderFront(nil)
         }
-        
-        
 
         @IBAction func changeModel(_ sender: NSMenuItem) {
                
@@ -224,4 +226,35 @@ class MenuController: NSObject {
                 NSApp.activate(ignoringOtherApps: true)
                 settingCtrl.window?.makeKeyAndOrderFront(nil)
         }
+        
+        @IBAction func SwitchWallet(_ sender: Any) {
+                let status = Wallet.CurrentWallet.Status
+                if status{
+                        Wallet.CurrentWallet.CloseWallet()
+                }else{
+                        let pwd = showPasswordDialog()
+                        if ""==pwd{
+                                return
+                        }
+                        do {
+                                try Wallet.CurrentWallet.OpenWallet(auth: pwd)}catch let err{
+                                dialogOK(question: "Error", text: err.localizedDescription)
+                        }
+                }
+                self.updateWalletStatus()
+        }
+        
+        func updateWalletStatus(){
+               let status = Wallet.CurrentWallet.Status
+                if status {
+                        self.walletMenu.title = "Wallet:Opened"
+                }else{
+                        self.walletMenu.title = "Wallet:Closed"
+                }
+        }
+        
+        @objc func WalletStChanged(_:Notification){
+                self.updateWalletStatus()
+        }
+        
 }

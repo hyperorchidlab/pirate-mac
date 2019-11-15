@@ -12,7 +12,7 @@ import DecentralizedShadowSocks
 class Wallet:NSObject{
         
         public static var CurrentWallet:Wallet = Wallet()
-        
+        var Status:Bool = false
         var MainAddress:String = ""
         var SubAddress:String = ""
         var EthBalance:NSNumber = 0
@@ -27,7 +27,7 @@ class Wallet:NSObject{
         }
         
         func load(){
-                let ret = WalletAddress()
+                let ret = WalletInfo()
                 guard let mainData = ret.r0 else {
                         self.MainAddress = ""
                         return
@@ -36,6 +36,7 @@ class Wallet:NSObject{
                 self.SubAddress = String(cString: ret.r1)
                 self.syncWalletData()
                 self.allMyPools()
+                self.Status = ret.r2 == 1
                 
                 NotificationCenter.default.post(name: UserDataSyncSuccess, object: self, userInfo:nil)
         }
@@ -157,4 +158,14 @@ class Wallet:NSObject{
                 }
         }
         
+        func CloseWallet() {
+                closeWallet()
+        }
+        
+        func OpenWallet(auth:String) throws{
+                guard let ret = openWallet(auth.toGoString()) else{
+                        return
+                }
+                throw ServiceError.OpenWalletErr(String(cString: ret))
+        }
 }

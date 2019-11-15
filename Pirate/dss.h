@@ -180,17 +180,20 @@ extern char* ImportWalletFrom(GoString p0, GoString p1);
 
 extern char* ExportWalletTo(GoString p0);
 
-/* Return type for WalletAddress */
-struct WalletAddress_return {
+/* Return type for WalletInfo */
+struct WalletInfo_return {
 	char* r0;
 	char* r1;
+	GoUint8 r2;
 };
 
-extern struct WalletAddress_return WalletAddress();
+extern struct WalletInfo_return WalletInfo();
 
 extern GoUint8 isWalletOpen();
 
 extern char* openWallet(GoString p0);
+
+extern void closeWallet();
 
 #ifdef __cplusplus
 }

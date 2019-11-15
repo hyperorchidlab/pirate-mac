@@ -23,6 +23,7 @@ public let BaseEtherScanUrl = "https://ropsten.etherscan.io"  //"https://ropsten
 public let PoolsInMarketChanged = Notification.Name(rawValue: "PoolsInMarketChanged")
 public let TransactionStatusChanged = Notification.Name(rawValue: "TransactionStatusChanged")
 public let WalletBalanceChanged = Notification.Name(rawValue: "WalletBalanceChanged")
+public let WalletStatusChanged = Notification.Name(rawValue: "WalletStatusChanged")
 public let UserDataSyncSuccess = Notification.Name(rawValue: "UserDataSyncSuccess")
 public let VPNStatusChanged = Notification.Name(rawValue: "VPNStatusChanged")
 public let NewLibLogs = Notification.Name(rawValue: "NewLibLogs")

@@ -16,8 +16,9 @@
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <customObject id="MrV-Ey-DwV" customClass="MenuController" customModule="Pirate" customModuleProvider="target">
             <connections>
+                <outlet property="DashBoardMenu" destination="dB0-ZQ-nTG" id="qMk-WR-JE2"/>
                 <outlet property="allMyPools" destination="wBT-o3-yXY" id="RL6-mb-4Qf"/>
-                <outlet property="curMinerMenu" destination="dB0-ZQ-nTG" id="mDb-gd-oqq"/>
+                <outlet property="curMinerMenu" destination="gWs-i0-4Rc" id="iJc-Cc-Mma"/>
                 <outlet property="curPoolMenu" destination="CPn-B5-6Vi" id="b5P-cB-eUL"/>
                 <outlet property="globalModel" destination="CDL-O9-gLJ" id="O0o-NX-RwJ"/>
                 <outlet property="minerPoolMenu" destination="vbi-aX-P3T" id="f84-3c-0Vc"/>
@@ -25,6 +26,7 @@
                 <outlet property="statusMenu" destination="jSI-9o-dzW" id="PEK-73-eDY"/>
                 <outlet property="switchBtn" destination="OF0-0M-VrQ" id="nES-MM-RvC"/>
                 <outlet property="walletMenu" destination="6XY-as-n9m" id="yEJ-I2-Xiu"/>
+                <outlet property="walletStatusMenu" destination="erQ-Vy-WNf" id="yDW-Sa-LJS"/>
             </connections>
         </customObject>
         <menu id="jSI-9o-dzW">
@@ -33,6 +35,12 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="switchTurnOnOff:" target="MrV-Ey-DwV" id="nJy-vP-mVB"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Wallet:Closed" id="erQ-Vy-WNf">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="SwitchWallet:" target="MrV-Ey-DwV" id="jWc-UZ-D9B"/>
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="mce-7C-PoB"/>
@@ -48,17 +56,24 @@
                         <action selector="changeModel:" target="MrV-Ey-DwV" id="jLH-eS-XDZ"/>
                     </connections>
                 </menuItem>
+                <menuItem isSeparatorItem="YES" id="a8M-0p-ROJ"/>
                 <menuItem title="CurPool" id="CPn-B5-6Vi">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="CurPool" id="wBT-o3-yXY"/>
                 </menuItem>
-                <menuItem title="CurMiner" id="dB0-ZQ-nTG">
+                <menuItem title="CurMiner" id="gWs-i0-4Rc">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="ShowMinerSelect:" target="MrV-Ey-DwV" id="JGk-wH-n0L"/>
-                    </connections>
+                    <menu key="submenu" title="CurMiner" id="YqL-gQ-t3A">
+                        <items>
+                            <menuItem title="Config" id="SWc-Bk-WGZ">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="ShowMinerSelect:" target="MrV-Ey-DwV" id="ewR-ca-f5A"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
                 </menuItem>
-                <menuItem isSeparatorItem="YES" id="a8M-0p-ROJ"/>
                 <menuItem title="Wallet" id="6XY-as-n9m">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
@@ -71,6 +86,10 @@
                         <action selector="ShowPacketMarket:" target="MrV-Ey-DwV" id="wex-et-Qhh"/>
                     </connections>
                 </menuItem>
+                <menuItem title="CurMiner" id="dB0-ZQ-nTG">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="8ae-iU-biQ"/>
                 <menuItem title="Setting" id="ORd-qI-ALe">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
@@ -83,7 +102,6 @@
                         <action selector="ShowSysLog:" target="MrV-Ey-DwV" id="1Zq-Xh-3C8"/>
                     </connections>
                 </menuItem>
-                <menuItem isSeparatorItem="YES" id="8ae-iU-biQ"/>
                 <menuItem title="Update" id="Zi5-w1-m89">
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
