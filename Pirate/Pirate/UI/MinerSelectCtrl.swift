@@ -71,6 +71,28 @@ class MinerSelectCtrl: NSWindowController {
         }
         
         @IBAction func PingAllMiners(_ sender: Any) {
+                
+                self.waitingTips.isHidden = false
+                
+                for (_, md) in minerData.enumerated(){
+                        Service.sharedInstance.contractQueue.async {
+                                let ret = testPings(md.SubAddr.toGoString())
+                                if ret.r0 == nil {
+                                        self.minerTestData[md.SubAddr] = MinerTestData(ip: "none", ping:-1)
+                                }else{
+                                        self.minerTestData[md.SubAddr] = MinerTestData(ip: String(cString: ret.r0!), ping: Double(ret.r1))
+                                }
+                                
+                                if self.minerData.count != self.minerTestData.count{
+                                        return
+                                }
+                                
+                                DispatchQueue.main.async {
+                                        self.waitingTips.isHidden = true
+                                        self.MinerListTV.reloadData()
+                                }
+                        }
+                }
         }
         
         @IBAction func SetAsServiceMiner(_ sender: Any) {
