@@ -17,6 +17,7 @@ class MinerSelectCtrl: NSWindowController {
         
         @IBOutlet weak var MinerListTV: NSTableView!
         
+        @IBOutlet weak var MineStatus: NSTextField!
         @IBOutlet weak var waitingTips: NSProgressIndicator!
         @IBOutlet weak var MinerAddress: NSTextField!
         @IBOutlet weak var Zone: NSTextField!
@@ -30,6 +31,8 @@ class MinerSelectCtrl: NSWindowController {
         }
         
         @IBAction func TestPingValue(_ sender: Any) {
+//                let mAddr = MinerAddress.stringValue
+                
         }
         
         @IBAction func ExitAct(_ sender: Any) {
@@ -51,6 +54,17 @@ class MinerSelectCtrl: NSWindowController {
         }
         
         @IBAction func SetAsServiceMiner(_ sender: Any) {
+                guard MinerAddress.stringValue != "" else {
+                        return
+                }
+                
+                do {
+                        try Service.sharedInstance.srvConf.SetCurMiner(addr: MinerAddress.stringValue, forPool: self.CurrntPoolAddress)
+                } catch let err {
+                        dialogOK(question: "Set failed", text: err.localizedDescription)
+                }
+                
+                self.MinerListTV.reloadData()
         }
         
 }
@@ -84,7 +98,7 @@ extension MinerSelectCtrl:NSTableViewDelegate {
                         
                 }else {
                         let StatusCell = cell as! NSButton
-                        if Service.sharedInstance.srvConf.minerSelected == miner.SubAddr {
+                        if Service.sharedInstance.srvConf.CurMiner() == miner.SubAddr {
                                 StatusCell.state = .on
                         }else{
                                 StatusCell.state = .off
@@ -105,6 +119,12 @@ extension MinerSelectCtrl:NSTableViewDelegate {
                 let miner = self.minerData[idx]
                 self.MinerAddress.stringValue = miner.SubAddr
                 self.Zone.stringValue = miner.Zone
+                if Service.sharedInstance.srvConf.CurMiner() == miner.SubAddr{
+                        self.MineStatus.stringValue = "IN USED"
+                }else{
+                        self.MineStatus.stringValue = ""
+                }
+                
                 guard  let testData = self.minerTestData[miner.SubAddr] else{
                         self.IPAddress.stringValue = "-"
                         self.PingValue.stringValue = "0"

@@ -45,10 +45,13 @@ class MenuController: NSObject {
                 
                 NotificationCenter.default.addObserver(self, selector:#selector(UpdateVpnStatus(notification:)),
                                                        name: VPNStatusChanged, object: nil)
+                
+                NotificationCenter.default.addObserver(self, selector:#selector(ServerNodeChanged(notification:)),
+                                                       name: SelectPoolOrMinerChanged, object: nil)
         }
         
         func updateMinerList(){
-                guard let miner = Service.sharedInstance.srvConf.minerSelected else{
+                guard let miner = Service.sharedInstance.srvConf.CurMiner() else{
                         self.curMinerMenu.title = "Chose Miner->"
                         return
                 }
@@ -60,6 +63,16 @@ class MenuController: NSObject {
                 DispatchQueue.main.async{ self.updateUI()}
         }
         
+        @objc func ServerNodeChanged(notification:Notification){
+                DispatchQueue.main.async{
+                        self.updateMinerList() 
+                        if self.server.srvConf.isTurnon {
+                                do{ try self.server.StopServer()} catch _{
+                        }
+                        dialogOK(question: "VPN Closed", text: "Please reopen the service")
+                }
+                }
+        }
         @objc func UpdateVpnStatus(notification:Notification){
                 
                 DispatchQueue.main.async {

@@ -15,9 +15,9 @@ let KEY_FOR_DNS_IP = "KEY_FOR_DNS_IP"
 let KEY_FOR_CURRENT_POOL_INUSE = "KEY_FOR_CURRENT_SEL_POOL_v2"
 let KEY_FOR_CURRENT_MINER_INUSE = "KEY_FOR_CURRENT_SEL_Miner_v2"
 
-public let TOKEN_ADDRESS = "0x3adc98d5e292355e59ae2ca169d241d889b092e3".toGoString()
-public let MICROPAY_SYSTEM_ADDRESS = "0x9a04dC6d9DE10F6404CaAfbe3F80e70f2dAec7DB".toGoString()
-public let BLOCKCHAIN_API_URL = "https://ropsten.infura.io/v3/f3245cef90ed440897e43efc6b3dd0f7".toGoString()
+public let TOKEN_ADDRESS = "0x3adc98d5e292355e59ae2ca169d241d889b092e3"
+public let MICROPAY_SYSTEM_ADDRESS = "0x9a04dC6d9DE10F6404CaAfbe3F80e70f2dAec7DB"
+public let BLOCKCHAIN_API_URL = "https://ropsten.infura.io/v3/f3245cef90ed440897e43efc6b3dd0f7"
 public let BaseEtherScanUrl = "https://ropsten.etherscan.io"  //"https://ropsten.etherscan.io"//"https://etherscan.io"
 
 public let PoolsInMarketChanged = Notification.Name(rawValue: "PoolsInMarketChanged")
@@ -26,22 +26,25 @@ public let WalletBalanceChanged = Notification.Name(rawValue: "WalletBalanceChan
 public let UserDataSyncSuccess = Notification.Name(rawValue: "UserDataSyncSuccess")
 public let VPNStatusChanged = Notification.Name(rawValue: "VPNStatusChanged")
 public let NewLibLogs = Notification.Name(rawValue: "NewLibLogs")
+public let SelectPoolOrMinerChanged = Notification.Name(rawValue: "SelectPoolOrMinerChanged")
 
 
 struct BasicConfig{
         
         var isTurnon: Bool = false
         var isGlobal:Bool = false
-        var packetPrice:Double = -1.0
         var baseDir:String = ".Pirate"
         var dns:String = "167.179.112.108"
         var poolInUsed:String? = nil
-        var minerSelected:String? = nil
+        
+        var packetPrice:Double = -1.0
+        var refundTime:Double = -1.0
+        var PoolGTN:Double = -1.0
+        var MinerGTN:Double = -1.0
         
         mutating func loadConf(){
                 self.isGlobal = UserDefaults.standard.bool(forKey: KEY_FOR_Pirate_MODEL)
                 self.poolInUsed = UserDefaults.standard.string(forKey: KEY_FOR_CURRENT_POOL_INUSE)
-                self.minerSelected = UserDefaults.standard.string(forKey: KEY_FOR_CURRENT_MINER_INUSE)
                 self.dns = UserDefaults.standard.string(forKey: KEY_FOR_DNS_IP) ?? "167.179.112.108"
                 do {
                         self.baseDir = try touchDirectory(directory: ".Pirate").path
@@ -54,11 +57,32 @@ struct BasicConfig{
         mutating func changeUsedPool(addr:String){
                 self.poolInUsed = addr
                 UserDefaults.standard.set(addr, forKey: KEY_FOR_CURRENT_POOL_INUSE)
+                
+                NotificationCenter.default.post(name: SelectPoolOrMinerChanged, object:
+                        self, userInfo:nil)
         }
         
-        mutating func changeMiner(addr:String){
-                self.minerSelected = addr
-                UserDefaults.standard.set(addr, forKey: KEY_FOR_CURRENT_MINER_INUSE)
+        func CurMiner() -> String?{
+                guard let pool = self.poolInUsed else{
+                        return nil
+                }
+                return UserDefaults.standard.string(forKey: "\(KEY_FOR_CURRENT_MINER_INUSE)_\(pool)")
+                
+        }
+        
+        func SetCurMiner(addr:String, forPool:String) throws{
+                
+                if self.poolInUsed != forPool{
+                        throw ServiceError.PoolChangedErr
+                }
+                
+                UserDefaults.standard.set(addr, forKey: "\(KEY_FOR_CURRENT_MINER_INUSE)_\(forPool)")
+                NotificationCenter.default.post(name: SelectPoolOrMinerChanged, object:
+                        self, userInfo:nil)
+        }
+        mutating func SetDNS(dns:String){
+                self.dns = dns
+                UserDefaults.standard.set(dns, forKey: KEY_FOR_DNS_IP)
         }
         
         func save(){
@@ -67,7 +91,10 @@ struct BasicConfig{
         mutating func parseSysSetting(setting:String){
                 guard let dict = try? JSONSerialization.jsonObject(with: setting.data(using: .utf8)!, options: .mutableContainers)
                         as! NSDictionary else { return }
-                self.packetPrice = (dict["PriceInSzabo"] as! Double) * MUINT//TIPS:: price in contract is Bytes/szaboHop or MBytes/Hop
+                self.packetPrice = (dict["MBytesPerToken"] as! Double)
+                self.refundTime = (dict["RefundDuration"] as! Double)/(24*3600)
+                self.PoolGTN = (dict["PoolGTN"] as! Double)
+                self.MinerGTN = (dict["MinerGTN"] as! Double)
         }
 }
 
@@ -142,9 +169,9 @@ class Service: NSObject {
         
         public func amountService() throws{
                 let ret = initConf(srvConf.baseDir.toGoString(),
-                         TOKEN_ADDRESS,
-                         MICROPAY_SYSTEM_ADDRESS,
-                         BLOCKCHAIN_API_URL,
+                         TOKEN_ADDRESS.toGoString(),
+                         MICROPAY_SYSTEM_ADDRESS.toGoString(),
+                         BLOCKCHAIN_API_URL.toGoString(),
                          srvConf.dns.toGoString(),
                          systemCallBack)
                 

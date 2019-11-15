@@ -13,6 +13,7 @@ enum ServiceError:Error {
         case SysProxyRemoveErr
         case SysProxySetupErr
         case InvalidPathErr
+        case PoolChangedErr
         case ParseJsonErr
         case InitHopErr(String)
         
@@ -42,6 +43,8 @@ extension ServiceError: LocalizedError {
                         return str
                 case .InvalidPathErr:
                         return NSLocalizedString("File path invalid".localized, comment: "System Error")
+                case .PoolChangedErr:
+                        return NSLocalizedString("Current Pool has changed".localized, comment: "System Error")
                 case .NewWalletErr(let str):
                         return str
                 case .EmptyWalletErr:
