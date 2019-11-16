@@ -47,7 +47,7 @@ class MinerSelectCtrl: NSWindowController {
                                 }
                         
                                 self.IPAddress.stringValue = String(cString: ipData)
-                                self.PingValue.doubleValue = Double(ret.r1)
+                                self.PingValue.stringValue = String(format:"%.2f ms", Double(ret.r1))
                                 let td = MinerTestData(ip: self.IPAddress.stringValue, ping: Double(ret.r1))
                                 self.minerTestData[self.MinerAddress.stringValue] = td
                                 self.MinerListTV.reloadData()
