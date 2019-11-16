@@ -120,7 +120,8 @@ func LogTypeStr(typ:Int) -> String{
 class Service: NSObject {
         var srvConf = BasicConfig()
         var systemCallBack:UserInterfaceAPI = {actTyp, logTyp, v in
-                print("---\(actTyp)---\(logTyp)---\(String(cString:v!))---")
+//                print("\naction type:\(actTyp)\t log type:\(logTyp)")
+                print("\n",String(cString:v!))
                 
                 switch actTyp {
                 case Int32(Log.rawValue):
