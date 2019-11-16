@@ -160,10 +160,12 @@ class Wallet:NSObject{
         
         func CloseWallet() {
                 closeWallet()
+                self.Status = false
         }
         
         func OpenWallet(auth:String) throws{
                 guard let ret = openWallet(auth.toGoString()) else{
+                        self.Status = true
                         return
                 }
                 throw ServiceError.OpenWalletErr(String(cString: ret))

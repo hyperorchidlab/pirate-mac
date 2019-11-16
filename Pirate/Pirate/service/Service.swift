@@ -219,10 +219,10 @@ class Service: NSObject {
         }
         
         
-        public func StartServer(password:String) throws{
+        public func StartServer() throws{
                 
-                if Wallet.CurrentWallet.IsEmpty(){
-                        throw ServiceError.EmptyWalletErr
+                guard let miner = self.srvConf.CurMiner() else {
+                        throw ServiceError.NoMinerErr
                 }
                 
                 guard let pool = self.srvConf.poolInUsed else {
@@ -235,8 +235,8 @@ class Service: NSObject {
                 
                 serviceQueue.async {
                         let ret = startServing("127.0.0.1:\(ProxyLocalPort)".toGoString(),
-                                               password.toGoString(),
-                                               pool.toGoString())
+                                               pool.toGoString(),
+                                               miner.toGoString())
                        
                         
                         self.srvConf.isTurnon = false

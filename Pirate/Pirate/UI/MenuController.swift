@@ -146,11 +146,12 @@ class MenuController: NSObject {
                         if server.srvConf.isTurnon{
                                 try server.StopServer()
                         }else{
-                                let pwd = showPasswordDialog()
-                                if ""==pwd{
-                                        return
+                                let status = Wallet.CurrentWallet.Status
+                                if !status{
+                                        self.SwitchWallet(sender)
                                 }
-                                try server.StartServer(password: pwd)
+                                
+                                try server.StartServer()
                         }
                 }catch{
                         dialogOK(question: "Error", text: error.localizedDescription)
@@ -247,9 +248,9 @@ class MenuController: NSObject {
         func updateWalletStatus(){
                let status = Wallet.CurrentWallet.Status
                 if status {
-                        self.walletMenu.title = "Wallet:Opened"
+                        self.walletStatusMenu.title = "Wallet:Opened"
                 }else{
-                        self.walletMenu.title = "Wallet:Closed"
+                        self.walletStatusMenu.title = "Wallet:Closed"
                 }
         }
         

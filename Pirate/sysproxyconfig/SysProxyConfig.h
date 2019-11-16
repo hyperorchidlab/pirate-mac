@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 #ifndef SysProxyConfig_h
 #define SysProxyConfig_h
-NSString* const kSysProxyConfigVersion = @"0.1.4";
+NSString* const kSysProxyConfigVersion = @"0.1.5";
 int const PACServerPort = 41087;
 int const ProxyLocalPort = 41080;
-NSString* const kDefaultPacURL = @"http://127.0.0.1:\(PACServerPort)/proxy.pac";
+NSString* const kDefaultPacURL = @"http://127.0.0.1:41080/proxy.pac";
 #endif /* SysProxyConfig_h */
