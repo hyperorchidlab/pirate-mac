@@ -6,7 +6,6 @@ var proxy = "SOCKS5 127.0.0.1:41080; SOCKS 127.0.0.1:41080; DIRECT;";
 var rules = [
   "|http:\/\/85.17.73.31\/",
   "||agnesb.fr",
-  "||baidu.com",
   "||akiba-web.com",
   "||altrec.com",
   "||angela-merkel.de",
