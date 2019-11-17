@@ -28,6 +28,7 @@ public let UserDataSyncSuccess = Notification.Name(rawValue: "UserDataSyncSucces
 public let VPNStatusChanged = Notification.Name(rawValue: "VPNStatusChanged")
 public let NewLibLogs = Notification.Name(rawValue: "NewLibLogs")
 public let SelectPoolOrMinerChanged = Notification.Name(rawValue: "SelectPoolOrMinerChanged")
+public let DataCounterChanged = Notification.Name(rawValue: "DataCounterChanged")
 
 
 struct BasicConfig{
@@ -121,7 +122,7 @@ class Service: NSObject {
         var srvConf = BasicConfig()
         var systemCallBack:UserInterfaceAPI = {actTyp, logTyp, v in
 //                print("\naction type:\(actTyp)\t log type:\(logTyp)")
-                print("\n",String(cString:v!))
+//                print("\n",String(cString:v!))
                 
                 switch actTyp {
                 case Int32(Log.rawValue):
@@ -133,10 +134,12 @@ class Service: NSObject {
                         LogCache.append(strLog) 
                         NotificationCenter.default.post(name: NewLibLogs, object:
                         self, userInfo:["log":strLog])
-                        
                         return
                 case Int32(Notification.rawValue):
-                        print("noti")
+                        if logTyp == 3{
+                                NotificationCenter.default.post(name: DataCounterChanged, object:
+                                        self, userInfo:["count":String(cString:v!)])
+                        }
                         return
                 case Int32(ExitByErr.rawValue):
                         print("err")

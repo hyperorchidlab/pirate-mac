@@ -50,6 +50,8 @@ class MenuController: NSObject {
                                                        name: SelectPoolOrMinerChanged, object: nil)
                 NotificationCenter.default.addObserver(self, selector:#selector(WalletStChanged(_:)),
                                                       name: WalletStatusChanged, object: nil)
+                NotificationCenter.default.addObserver(self, selector:#selector(DataCounterShow(noti:)),
+                                                       name: DataCounterChanged, object: nil)
                 
         }
         
@@ -260,5 +262,14 @@ class MenuController: NSObject {
         @objc func WalletStChanged(_:Notification){
                 self.updateWalletStatus()
         }
+        @objc func DataCounterShow(noti:Notification){
+                guard let counter = noti.userInfo?["count"] as? String else {
+                        return
+                }
+                DispatchQueue.main.async{
+                        self.DashBoardMenu.title = "Used:[\(counter)] Bytes"
+                }
+        }
+        
         
 }

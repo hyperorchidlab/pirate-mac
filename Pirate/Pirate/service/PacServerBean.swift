@@ -20,7 +20,7 @@ class  PacServer :NSObject{
         
         func initWebServer() throws {
                 let bundleURL = Bundle.main.resourceURL!
-                let url = bundleURL.appendingPathComponent("gfw_test.js")
+                let url = bundleURL.appendingPathComponent("gfw_test.js")//gfw.js
                 self.originalData = try Data(contentsOf: url)
                         
                 webServer = GCDWebServer()
