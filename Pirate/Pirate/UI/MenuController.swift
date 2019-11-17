@@ -143,16 +143,19 @@ class MenuController: NSObject {
         @IBAction func switchTurnOnOff(_ sender: NSMenuItem) {
                 
                 do{
+                        defer {
+                                self.updateUI()
+                        }
                         if server.srvConf.isTurnon{
                                 try server.StopServer()
-                        }else{
-                                let status = Wallet.CurrentWallet.Status
-                                if !status{
-                                        self.SwitchWallet(sender)
-                                }
-                                
-                                try server.StartServer()
+                                return
                         }
+                        let status = Wallet.CurrentWallet.Status
+                        if !status{
+                                self.SwitchWallet(sender)
+                        }
+                        try server.StartServer()
+                        
                 }catch{
                         dialogOK(question: "Error", text: error.localizedDescription)
                 }
