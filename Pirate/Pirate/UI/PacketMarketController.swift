@@ -158,7 +158,7 @@ extension PacketMarketController:NSTextFieldDelegate{
                 }
                 Swift.print(field.doubleValue)
                 let tokenNo = field.doubleValue
-                let bytesSum = tokenNo * Double(Service.sharedInstance.srvConf.packetPrice)
+                let bytesSum = tokenNo * Double(Service.sharedInstance.srvConf.packetPrice) * MUINT
                 self.PacketCanGet.stringValue = ConvertBandWith(val: bytesSum)
         }
 }

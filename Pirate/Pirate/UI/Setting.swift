@@ -28,8 +28,8 @@ class Setting: NSWindowController {
                 self.DNSTF.stringValue = Service.sharedInstance.srvConf.dns
                 self.PriceTF.stringValue = String(format: "%0.4f", Service.sharedInstance.srvConf.packetPrice.CoinValue())
                 self.RefundTimeTF.doubleValue = Service.sharedInstance.srvConf.refundTime
-                self.PoolDepositTF.doubleValue = Service.sharedInstance.srvConf.PoolGTN
-                self.MinerDepositTF.doubleValue = Service.sharedInstance.srvConf.MinerGTN
+                self.PoolDepositTF.stringValue = String(format: "%0.4f", Service.sharedInstance.srvConf.PoolGTN.CoinValue())
+                self.MinerDepositTF.stringValue = String(format: "%0.4f", Service.sharedInstance.srvConf.MinerGTN.CoinValue())
         }
     
         @IBAction func SetDNS(_ sender: Any) {
