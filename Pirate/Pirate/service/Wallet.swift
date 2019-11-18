@@ -48,15 +48,11 @@ class Wallet:NSObject{
         private func resetWallet(replaced:Bool) throws{
                 if replaced{
                         self.MainAddress = ""
-                        stopHopAndWallet()
+                        
                 }
                 
-                let ret2 = initHopSrv()
-                if ret2.r0 != 0{
-                        let err = String(cString:ret2.r1)
-                        throw ServiceError.InitHopErr(err)
-                }
-                
+                stopApp()
+                Service.sharedInstance.StartApp()
                 load()
                 NotificationCenter.default.post(name: WalletBalanceChanged, object:self, userInfo:nil)
         }

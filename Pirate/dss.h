@@ -78,23 +78,9 @@ extern "C" {
 
 extern char* initConf(GoString p0, GoString p1, GoString p2, GoString p3, GoString p4, UserInterfaceAPI p5);
 
-/* Return type for initDataSrv */
-struct initDataSrv_return {
-	GoInt r0;
-	char* r1;
-};
+extern char* startApp();
 
-extern struct initDataSrv_return initDataSrv();
-
-extern void stopHopAndWallet();
-
-/* Return type for initHopSrv */
-struct initHopSrv_return {
-	GoInt r0;
-	char* r1;
-};
-
-extern struct initHopSrv_return initHopSrv();
+extern void stopApp();
 
 /* Return type for startServing */
 struct startServing_return {
@@ -105,8 +91,6 @@ struct startServing_return {
 extern struct startServing_return startServing(GoString p0, GoString p1, GoString p2);
 
 extern void stopService();
-
-extern char* systemSettings();
 
 /* Return type for testPings */
 struct testPings_return {
@@ -149,6 +133,8 @@ extern char* PoolInfosInMarket();
 extern char* RandomMiner(GoString p0, GoInt p1);
 
 extern char* UserDataOfPool(GoString p0, GoString p1);
+
+extern char* systemSettings();
 
 /* Return type for TransferEth */
 struct TransferEth_return {

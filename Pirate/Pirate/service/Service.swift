@@ -90,7 +90,13 @@ struct BasicConfig{
         func save(){
                 UserDefaults.standard.set(isGlobal, forKey: KEY_FOR_Pirate_MODEL)
         }
-        mutating func parseSysSetting(setting:String){
+        
+        mutating func loadSetting(setting:String){
+                guard let ret = systemSettings() else{
+                        return
+                }
+                
+                let setting = String(cString:ret)
                 guard let dict = try? JSONSerialization.jsonObject(with: setting.data(using: .utf8)!, options: .mutableContainers)
                         as! NSDictionary else { return }
                 self.packetPrice = (dict["MBytesPerToken"] as! Double)
@@ -184,32 +190,26 @@ class Service: NSObject {
                         throw ServiceError.SdkActionErr("init config err: msg:[\(String(cString:ret!))]")
                 }
                 
-                let ret2  = initDataSrv()
-                if ret2.r0 != 0 {
-                        throw ServiceError.SdkActionErr("init data cache service err: no:[\(ret2.r0)] msg:[\(String(cString:ret2.r1))]")
-                }
-  
-                guard let ret4 = systemSettings() else{
-                        throw ServiceError.SdkActionErr("init config err: can't load contract system settings!")
-                }
-                
-                srvConf.parseSysSetting(setting: String(cString:ret4))
-                
                 try  ensureLaunchAgentsDirOwner()
                 if !SysProxyHelper.install(){
                         throw ServiceError.SysPorxyMountErr
                 }
                 
                 try pacServ.startPACServer()
-                
-                if Wallet.CurrentWallet.IsEmpty() {
-                        return
+        }
+        
+        public func StartApp(){
+                serviceQueue.async {
+                        guard let ret2  = startApp() else{
+                                return
+                        }
+                        print(String(cString:ret2))
+                        //TODO::
                 }
-
-                let ret3 = initHopSrv()
-                if ret3.r0 != 0 {
-                        throw ServiceError.SdkActionErr("init hyper orchid protocol err: no:[\(ret3.r0)] msg:[\(String(cString:ret3.r1))]")
-                }
+        }
+        
+        public func StopApp(){
+                stopApp()
         }
         
         public func StopServer() throws{
