@@ -11,6 +11,7 @@ import DecentralizedShadowSocks
 
 class UserData: NSObject {
         
+        var InCharge:Double = 0.0
         var MainAddr:String = ""
         var Nonce:Int64 = 0
         var TokenInUsed:Double = 0.0
@@ -25,8 +26,9 @@ class UserData: NSObject {
                 super.init()
         }
         
-        init(dict:NSDictionary){
+        init(dict:NSDictionary, inch:Double){
                 super.init()
+                self.InCharge = inch
                 self.MainAddr = dict["user"] as? String ?? ""
                 self.Nonce = dict["nonce"] as? Int64  ?? -1
                 self.TokenInUsed = dict["balance"] as? Double ?? 0.00
@@ -43,16 +45,16 @@ class UserData: NSObject {
                 if uAddr == "" || pool == ""{
                         return nil
                 }
+                let ret = UserDataOfPool(uAddr.toGoString(), pool.toGoString())
                 
-                guard let ret = UserDataOfPool(uAddr.toGoString(), pool.toGoString()) else {
+                guard let strRet = ret.r0 else {
                         return nil
                 }
                 
-                guard let data = String(cString: ret).data(using: .utf8) else{ return nil }
+                guard let data = String(cString: strRet).data(using: .utf8) else{ return nil }
                 guard let dic = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) as! NSDictionary else {
                         return nil
                 }
-                
-                return UserData(dict:dic)
+                return UserData(dict:dic, inch:Double(ret.r1))
         }
 }
