@@ -132,7 +132,13 @@ extern char* PoolInfosInMarket();
 
 extern char* RandomMiner(GoString p0, GoInt p1);
 
-extern char* UserDataOfPool(GoString p0, GoString p1);
+/* Return type for UserDataOfPool */
+struct UserDataOfPool_return {
+	char* r0;
+	GoInt64 r1;
+};
+
+extern struct UserDataOfPool_return UserDataOfPool(GoString p0, GoString p1);
 
 extern char* systemSettings();
 
