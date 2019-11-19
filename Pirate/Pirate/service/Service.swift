@@ -191,21 +191,22 @@ class Service: NSObject {
                 }
                 
                 try  ensureLaunchAgentsDirOwner()
+                
                 if !SysProxyHelper.install(){
                         throw ServiceError.SysPorxyMountErr
                 }
                 
                 try pacServ.startPACServer()
+                
+                try StartApp()
         }
         
-        public func StartApp(){
-                serviceQueue.async {
-                        guard let ret2  = startApp() else{
-                                return
-                        }
-                        print(String(cString:ret2))
-                        //TODO::
+        public func StartApp()throws{
+                guard let ret   = startApp() else{
+                        return
                 }
+                
+                throw ServiceError.SdkActionErr("Start Protocol err:[\(String(cString:ret))]")
         }
         
         public func StopApp(){

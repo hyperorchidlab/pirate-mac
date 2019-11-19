@@ -52,7 +52,7 @@ class Wallet:NSObject{
                 }
                 
                 stopApp()
-                Service.sharedInstance.StartApp()
+                try Service.sharedInstance.StartApp()
                 load()
                 NotificationCenter.default.post(name: WalletBalanceChanged, object:self, userInfo:nil)
         }
