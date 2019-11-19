@@ -26,7 +26,8 @@ class Setting: NSWindowController {
                 self.TokenAddrTF.stringValue = TOKEN_ADDRESS
                 self.MircroPayAddrTF.stringValue = MICROPAY_SYSTEM_ADDRESS
                 self.DNSTF.stringValue = Service.sharedInstance.srvConf.dns
-                self.PriceTF.stringValue = String(format: "%0.4f", Service.sharedInstance.srvConf.packetPrice.CoinValue())
+                self.ApiUrlTF.stringValue = BLOCKCHAIN_API_URL
+                self.PriceTF.stringValue = String(format: "%0.4f", Service.sharedInstance.srvConf.packetPrice)
                 self.RefundTimeTF.doubleValue = Service.sharedInstance.srvConf.refundTime
                 self.PoolDepositTF.stringValue = String(format: "%0.4f", Service.sharedInstance.srvConf.PoolGTN.CoinValue())
                 self.MinerDepositTF.stringValue = String(format: "%0.4f", Service.sharedInstance.srvConf.MinerGTN.CoinValue())

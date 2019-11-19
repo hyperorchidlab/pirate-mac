@@ -91,7 +91,7 @@ struct BasicConfig{
                 UserDefaults.standard.set(isGlobal, forKey: KEY_FOR_Pirate_MODEL)
         }
         
-        mutating func loadSetting(setting:String){
+        mutating func loadSetting(){
                 guard let ret = systemSettings() else{
                         return
                 }
@@ -101,8 +101,8 @@ struct BasicConfig{
                         as! NSDictionary else { return }
                 self.packetPrice = (dict["MBytesPerToken"] as! Double)
                 self.refundTime = (dict["RefundDuration"] as! Double)/(24*3600)
-                self.PoolGTN = (dict["PoolGTN"] as! Double)
-                self.MinerGTN = (dict["MinerGTN"] as! Double)
+                self.PoolGTN = dict["PoolGTN"] as? Double ?? 0.0
+                self.MinerGTN = dict["MinerGTN"] as? Double ?? 0.0
         }
 }
 
@@ -126,6 +126,7 @@ func LogTypeStr(typ:Int) -> String{
 
 class Service: NSObject {
         var srvConf = BasicConfig()
+        
         var systemCallBack:UserInterfaceAPI = {actTyp, logTyp, v in
 //                print("\naction type:\(actTyp)\t log type:\(logTyp)")
 //                print("\n",String(cString:v!))
@@ -142,9 +143,14 @@ class Service: NSObject {
                         self, userInfo:["log":strLog])
                         return
                 case Int32(Notification.rawValue):
-                        if logTyp == 3{
+                        switch logTyp{
+                        case 1:
+                                Service.sharedInstance.srvConf.loadSetting()
+                        case 3:
                                 NotificationCenter.default.post(name: DataCounterChanged, object:
                                         self, userInfo:["count":String(cString:v!)])
+                        default:
+                                print("unkown action type:\(logTyp)")
                         }
                         return
                 case Int32(ExitByErr.rawValue):
@@ -199,6 +205,8 @@ class Service: NSObject {
                 try pacServ.startPACServer()
                 
                 try StartApp()
+                
+                self.srvConf.loadSetting()
         }
         
         public func StartApp()throws{
