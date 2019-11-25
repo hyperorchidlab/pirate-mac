@@ -66,6 +66,9 @@ class MinerData: NSObject, NSCoding {
                 }
                 
                 let miners = NSKeyedUnarchiver.unarchiveObject(with: md) as! [MinerData]
+                Service.sharedInstance.contractQueue.async{
+                        _ = SyncMiners(PoolAddr: PoolAddr)
+                }
                 return miners
         }
         

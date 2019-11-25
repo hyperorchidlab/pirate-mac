@@ -207,6 +207,8 @@ class Service: NSObject {
                 try StartApp()
                 
                 self.srvConf.loadSetting()
+                
+                _ = Wallet.CurrentWallet
         }
         
         public func StartApp()throws{

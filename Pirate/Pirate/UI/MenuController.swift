@@ -60,7 +60,6 @@ class MenuController: NSObject {
                         self.curMinerMenu.title = "Chose Miner->"
                         return
                 }
-                
                 self.curMinerMenu.title = String(miner.prefix(8)) + "..."
         }
         
