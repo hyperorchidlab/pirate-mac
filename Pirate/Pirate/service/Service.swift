@@ -248,20 +248,21 @@ class Service: NSObject {
                         throw ServiceError.SysProxySetupErr
                 }
                 
-                serviceQueue.async {
-                        let ret = startServing("127.0.0.1:\(ProxyLocalPort)".toGoString(),
-                                               pool.toGoString(),
-                                               miner.toGoString())
-                       
-                        
-                        self.srvConf.isTurnon = false
+                let ret = startServing("127.0.0.1:\(ProxyLocalPort)".toGoString(),
+                                       pool.toGoString(),
+                                       miner.toGoString())
+                
+                
+                guard let errMsg = ret.r1 else{
+                        self.srvConf.isTurnon = true
                         NotificationCenter.default.post(name: VPNStatusChanged, object:
-                                self, userInfo:["msg":String(cString: ret.r1), "errNo":ret.r0])
+                                self, userInfo:["msg":"", "errNo":0])
+                        return
                 }
                 
+                self.srvConf.isTurnon = false
                 NotificationCenter.default.post(name: VPNStatusChanged, object:
-                        self, userInfo:nil)
-                self.srvConf.isTurnon = true
+                                self, userInfo:["msg":String(cString: errMsg), "errNo":ret.r0])
         }
         
         

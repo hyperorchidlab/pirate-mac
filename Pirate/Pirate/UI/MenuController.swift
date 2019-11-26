@@ -88,8 +88,11 @@ class MenuController: NSObject {
                 }
                 let errMsg = ui["msg"] as! String
                 let errNo = ui["errNo"] as! Int
-                
-                dialogOK(question: "VPN Closed", text: "Code:[\(errNo)], Message:[\(errMsg)]")
+                if errNo == 0 {
+                        dialogOK(question: "Tips", text: "VPN Start Success")
+                }else{
+                        dialogOK(question: "VPN Closed", text: "Code:[\(errNo)], Message:[\(errMsg)]")
+                }
         }
         
         @objc func LoadAllMyPools(notification:Notification){
