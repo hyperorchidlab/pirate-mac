@@ -7,9 +7,11 @@
 //
 
 import Cocoa
+import DecentralizedShadowSocks
 
 class SysLogController: NSWindowController {
         @IBOutlet weak var logScrView: NSScrollView!
+        @IBOutlet weak var PoolAddrTF: NSTextField!
         
         override func windowDidLoad() {
                 super.windowDidLoad()
@@ -32,8 +34,18 @@ class SysLogController: NSWindowController {
                 }
         }
         
+        @IBAction func ShowReceiptAction(_ sender: Any) {
+                
+                guard let ret = showReceipt(self.PoolAddrTF!.stringValue.toGoString())else{
+                        self.logScrView.documentView?.insertText("\n------>: NO RECEIPT------>\n")
+                        return
+                }
+                
+                self.logScrView.documentView?.insertText(String(cString:ret))
+        }
+        
+        
         @IBAction func ExitWin(_ sender: Any) {
                 self.close()
         }
-        
 }
