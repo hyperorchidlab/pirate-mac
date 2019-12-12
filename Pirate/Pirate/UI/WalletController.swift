@@ -29,7 +29,8 @@ class WalletController: NSWindowController {
         @IBOutlet weak var EpochTF: NSTextField!
         @IBOutlet weak var CreditTF: NSTextField!
         @IBOutlet weak var MicroNonceTF: NSTextField!
-                
+        @IBOutlet weak var InRechargeTF: NSTextField!
+        
         override func windowDidLoad() {
                 super.windowDidLoad()
                 
@@ -231,6 +232,7 @@ extension WalletController:NSTableViewDelegate{
                 self.EpochTF.intValue = Int32(userData.Epoch)
                 self.MicroNonceTF.intValue = Int32(userData.MicrNonce)
                 self.CreditTF.stringValue = ConvertBandWith(val: userData.Credit)
+                self.InRechargeTF.stringValue = ConvertBandWith(val: userData.InCharge)
         }
 }
 
