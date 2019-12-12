@@ -5,9 +5,10 @@
         void bridge_func(UserInterfaceAPI f , int t, int t2, char* v);
 
         enum CallBackActionType{
-            ExitByErr,
-            Log,
-            Notification,
+            ProtocolExit,
+            ProtocolLog,
+            ProtocolNotification,
+            ServiceClosed,
         };
 
 #endif

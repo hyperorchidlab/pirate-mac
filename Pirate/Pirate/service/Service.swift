@@ -132,7 +132,7 @@ class Service: NSObject {
 //                print("\n",String(cString:v!))
                 
                 switch actTyp {
-                case Int32(Log.rawValue):
+                case Int32(ProtocolLog.rawValue):
                         let strLog = "[\(LogTypeStr(typ:Int(logTyp)))]=\(String(cString:v!))"
                         
                         if LogCache.count > 1000{
@@ -142,7 +142,7 @@ class Service: NSObject {
                         NotificationCenter.default.post(name: NewLibLogs, object:
                         self, userInfo:["log":strLog])
                         return
-                case Int32(Notification.rawValue):
+                case Int32(ProtocolNotification.rawValue):
                         switch logTyp{
                         case 1:
                                 Service.sharedInstance.srvConf.loadSetting()
@@ -153,8 +153,18 @@ class Service: NSObject {
                                 print("unkown action type:\(logTyp)")
                         }
                         return
-                case Int32(ExitByErr.rawValue):
-                        print("err")
+                case Int32(ProtocolExit.rawValue):
+                        Service.sharedInstance.srvConf.isTurnon = false
+                        NotificationCenter.default.post(name: VPNStatusChanged, object:
+                                self, userInfo:["msg":String(cString: v!), "errNo":-1])
+                        print("exit by interal error!")
+                        return
+                        
+                case Int32(ServiceClosed.rawValue):
+                        Service.sharedInstance.srvConf.isTurnon = false
+                        NotificationCenter.default.post(name: VPNStatusChanged, object:
+                                self, userInfo:["msg":"Service quit", "errNo":-2])
+                        print("service is closed!")
                         return
                 default:
                         print("unknown system call back typ:", actTyp)
