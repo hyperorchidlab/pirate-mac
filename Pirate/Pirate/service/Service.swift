@@ -106,39 +106,21 @@ struct BasicConfig{
         }
 }
 
-
-func LogTypeStr(typ:Int) -> String{
-        switch typ {
-        case 1:
-                return "User Data"
-        case 2:
-                return "Receipt"
-        case 3:
-                return "Basic Block Chain Data"
-        case 4:
-                return "Pools Under User"
-        case 5:
-                return "Pools Sync Thread"
-        default:
-                return "unkown now"
-        }
-}
-
 class Service: NSObject {
         var srvConf = BasicConfig()
         
         var systemCallBack:UserInterfaceAPI = {actTyp, logTyp, v in
 //                print("\naction type:\(actTyp)\t log type:\(logTyp)")
 //                print("\n",String(cString:v!))
-                
+                Service.sharedInstance.serviceQueue.async {
                 switch actTyp {
                 case Int32(ProtocolLog.rawValue):
-                        let strLog = "[\(LogTypeStr(typ:Int(logTyp)))]=\(String(cString:v!))"
-                        
+                        let strLog = String(cString:v!) 
                         if LogCache.count > 1000{
                                 LogCache.remove(at: 0)
                         }
-                        LogCache.append(strLog) 
+                        LogCache.append(strLog)
+                        Swift.print(strLog)
                         NotificationCenter.default.post(name: NewLibLogs, object:
                         self, userInfo:["log":strLog])
                         return
@@ -149,6 +131,11 @@ class Service: NSObject {
                         case 3:
                                 NotificationCenter.default.post(name: DataCounterChanged, object:
                                         self, userInfo:["count":String(cString:v!)])
+                        case 5:
+                                Service.sharedInstance.srvConf.isTurnon = false
+                                NotificationCenter.default.post(name: VPNStatusChanged, object:
+                                        self, userInfo:["msg":"TX Wire Closed", "errNo":-3])
+                                print("TX Wire Closed!")
                         default:
                                 print("unkown action type:\(logTyp)")
                         }
@@ -169,6 +156,7 @@ class Service: NSObject {
                 default:
                         print("unknown system call back typ:", actTyp)
                         return
+                }
                 }
         }
         
