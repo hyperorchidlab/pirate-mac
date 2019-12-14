@@ -16,7 +16,7 @@ let KEY_FOR_CURRENT_POOL_INUSE = "KEY_FOR_CURRENT_SEL_POOL_v2"
 let KEY_FOR_CURRENT_MINER_INUSE = "KEY_FOR_CURRENT_SEL_Miner_v2"
 
 public let TOKEN_ADDRESS = "0x3adc98d5e292355e59ae2ca169d241d889b092e3"
-public let MICROPAY_SYSTEM_ADDRESS = "0x2af669877aFe2fe2aF750b4d7dCa8aE19501b054"
+public let MICROPAY_SYSTEM_ADDRESS = "0x6F1F08bD2Eb26E50B978FF45589289447565203A"
 public let BLOCKCHAIN_API_URL = "https://ropsten.infura.io/v3/f3245cef90ed440897e43efc6b3dd0f7"
 public let BaseEtherScanUrl = "https://ropsten.etherscan.io"  //"https://ropsten.etherscan.io"//"https://etherscan.io"
 
