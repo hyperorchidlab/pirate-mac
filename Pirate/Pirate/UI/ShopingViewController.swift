@@ -130,6 +130,7 @@ class ShopingViewController: NSViewController {
                 waitTxToSuccess(tx:tx)
                 
                 self.setStatusInof(status: .BuySuccess, desc: "")
+                Wallet.CurrentWallet.load()
         }
 }
 
