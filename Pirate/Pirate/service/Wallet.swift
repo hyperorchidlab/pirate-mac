@@ -48,10 +48,13 @@ class Wallet:NSObject{
         private func resetWallet(replaced:Bool) throws{
                 if replaced{
                         self.MainAddress = ""
-                        
+                        self.SubAddress = ""
+                        self.EthBalance = 0
+                        self.TokenBalance = 0
                 }
                 
                 stopApp()
+                Thread.sleep(forTimeInterval: 3)
                 try Service.sharedInstance.StartApp()
                 load()
                 NotificationCenter.default.post(name: WalletBalanceChanged, object:self, userInfo:nil)
