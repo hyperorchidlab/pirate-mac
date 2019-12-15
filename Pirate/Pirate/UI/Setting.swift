@@ -3,7 +3,7 @@
 //  Pirate
 //
 //  Created by hyperorchid on 2019/11/8.
-//  Copyright © 2019 hyperorchid. All rights reserved.
+//  Copyright © 2019 Pirate. All rights reserved.
 //
 
 import Cocoa
