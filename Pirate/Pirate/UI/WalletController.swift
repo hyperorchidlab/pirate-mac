@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import DecentralizedShadowSocks
 
 class WalletController: NSWindowController {
         
@@ -179,23 +180,41 @@ class WalletController: NSWindowController {
                 Wallet.CurrentWallet.load()
         }
         
-        @objc func processTransaction(notification: Notification){
-                DispatchQueue.main.async {
-                        self.WaitingTip.isHidden = true
-                }
-                ShowTransResult(notification:notification)
-        }
-        
         @IBAction func TransferAction(_ sender: Any) {
                 let (password, target, no, typ) = ShowTransferDialog()
                 if typ < 0{
                         return
                 }
+                
                 WaitingTip.isHidden = false
-                if typ == 0{
-                        Wallet.CurrentWallet.EthTransfer(password: password, target: target, no: no)
-                }else{
-                        Wallet.CurrentWallet.TokenTransfer(password: password, target: target, no: no)
+                Service.sharedInstance.contractQueue.async {
+                        var tx = "", err = ""
+                        if typ == 0{
+                                let ret = TransferEth(password.toGoString(), target.toGoString(), no)
+                                if ret.r0 == nil{
+                                        err = String(cString: ret.r1)
+                                }else{
+                                        tx = String(cString: ret.r0)
+                                }
+                        } else{
+                                let ret = TransferToken(password.toGoString(), target.toGoString(), no)
+                                if ret.r0 == nil{
+                                        err = String(cString: ret.r1)
+                                }else{
+                                        tx = String(cString: ret.r0)
+                                }
+                        }
+                        DispatchQueue.main.async {
+                                self.WaitingTip.isHidden = true
+                                if tx != ""{
+                                        if let url = URL(string: "\(BaseEtherScanUrl)/tx/\(tx)") {
+                                                NSWorkspace.shared.open(url)
+                                                return
+                                        }
+                                        
+                                        dialogOK(question: "Tips", text: err)
+                                }
+                        }
                 }
         }
 }

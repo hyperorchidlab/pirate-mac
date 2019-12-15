@@ -154,10 +154,15 @@ class MenuController: NSObject {
                                 try server.StopServer()
                                 return
                         }
-                        let status = Wallet.CurrentWallet.Status
+                        var status = Wallet.CurrentWallet.Status
                         if !status{
                                 self.SwitchWallet(sender)
+                                status = Wallet.CurrentWallet.Status
                         }
+                        if !status{
+                                return
+                        }
+                        
                         try server.StartServer()
                         
                 }catch{

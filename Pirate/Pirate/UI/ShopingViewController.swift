@@ -130,7 +130,6 @@ class ShopingViewController: NSViewController {
                 waitTxToSuccess(tx:tx)
                 
                 self.setStatusInof(status: .BuySuccess, desc: "")
-                ProcessTransRet(tx: tx, err: "", noti:TransactionStatusChanged)
         }
 }
 

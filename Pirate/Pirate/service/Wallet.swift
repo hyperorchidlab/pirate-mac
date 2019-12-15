@@ -113,24 +113,6 @@ class Wallet:NSObject{
                 throw ServiceError.ImportWalletErr(str)
         }
         
-        func EthTransfer(password:String, target:String, no:Double){
-                Service.sharedInstance.contractQueue.async {
-                        let ret = TransferEth(password.toGoString(), target.toGoString(), no)
-                        ProcessTransRet(tx: String(cString: ret.r0),
-                                             err: String(cString: ret.r1),
-                                             noti: TransactionStatusChanged)
-                }
-        }
-        
-        func TokenTransfer(password:String, target:String, no:Double){
-                Service.sharedInstance.contractQueue.async {
-                        let ret = TransferToken(password.toGoString(), target.toGoString(), no)
-                        ProcessTransRet(tx: String(cString: ret.r0),
-                                             err: String(cString: ret.r1),
-                                             noti: TransactionStatusChanged)
-                }
-        }
-        
         func allMyPools(){
                 Wallet.PoolsOfUser.removeAll()
                 guard let ret = PoolDataOfUser(self.MainAddress.toGoString()) else {
