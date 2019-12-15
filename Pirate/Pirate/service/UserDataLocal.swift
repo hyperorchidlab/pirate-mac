@@ -14,7 +14,7 @@ class UserData: NSObject {
         var InCharge:Double = 0.0
         var MainAddr:String = ""
         var Nonce:Int64 = 0
-        var TokenInUsed:Double = 0.0
+        var TokenInUsed:NSNumber = 0.0
         var PacketBalance:Double = 0.0
         var RefundTime:String = ""
         var Epoch:Int64 = 0
@@ -31,7 +31,7 @@ class UserData: NSObject {
                 self.InCharge = inch
                 self.MainAddr = dict["user"] as? String ?? ""
                 self.Nonce = dict["nonce"] as? Int64  ?? -1
-                self.TokenInUsed = dict["balance"] as? Double ?? 0.00
+                self.TokenInUsed = dict["balance"] as? NSNumber ?? 0.00
                 self.PacketBalance = dict["reminder"] as? Double ?? 0.0
                 let expired = dict["expire"] as? String ?? "-"
                 self.RefundTime = expired//ConvertTime(val: expired)                
