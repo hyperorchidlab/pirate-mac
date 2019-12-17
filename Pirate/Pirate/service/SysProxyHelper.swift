@@ -4,7 +4,9 @@ import GCDWebServer
 open class SysProxyHelper {
         
         static let kProxyConfigPath = "/Library/Application Support/Pirate/sysproxyconfig"
-  
+        public let kDefaultPacURL = "http://127.0.0.1:41087/proxy.pac";
+        static public let kSysProxyConfigVersion = "0.1.7";
+        
         public static func checkVersion() -> Bool {
                 let task = Process()
                 task.launchPath = kProxyConfigPath

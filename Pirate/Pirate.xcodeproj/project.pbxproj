@@ -631,7 +631,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/GCDWebServer\"",
-					"$(PROJECT_DIR)/sysproxyconfig/",
 				);
 				INFOPLIST_FILE = Pirate/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
@@ -661,7 +660,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/GCDWebServer\"",
-					"$(PROJECT_DIR)/sysproxyconfig/",
 				);
 				INFOPLIST_FILE = Pirate/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";

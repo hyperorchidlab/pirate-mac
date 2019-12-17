@@ -30,6 +30,8 @@ public let SelectPoolOrMinerChanged = Notification.Name(rawValue: "SelectPoolOrM
 public let DataCounterChanged = Notification.Name(rawValue: "DataCounterChanged")
 
 
+public let ProxyLocalPort = 41080;
+
 struct BasicConfig{
         
         var isTurnon: Bool = false
