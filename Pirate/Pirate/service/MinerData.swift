@@ -81,7 +81,7 @@ class MinerData: NSObject, NSCoding {
                         return []
                 }
                 guard let minerData = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)
-                        as! NSArray else {
+                    as? NSArray else {
                                 return[]
                 }
                 

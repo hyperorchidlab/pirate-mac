@@ -52,7 +52,7 @@ class UserData: NSObject {
                 }
                 
                 guard let data = String(cString: strRet).data(using: .utf8) else{ return nil }
-                guard let dic = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) as! NSDictionary else {
+            guard let dic = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? NSDictionary else {
                         return nil
                 }
                 return UserData(dict:dic, inch:Double(ret.r1))

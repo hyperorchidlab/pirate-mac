@@ -99,7 +99,7 @@ struct BasicConfig{
                 
                 let setting = String(cString:ret)
                 guard let dict = try? JSONSerialization.jsonObject(with: setting.data(using: .utf8)!, options: .mutableContainers)
-                        as! NSDictionary else { return }
+                    as? NSDictionary else { return }
                 self.packetPrice = (dict["MBytesPerToken"] as! Double)
                 self.refundTime = (dict["RefundDuration"] as! Double)/(24*3600)
                 self.PoolGTN = dict["PoolGTN"] as? Double ?? 0.0
