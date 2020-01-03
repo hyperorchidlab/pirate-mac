@@ -27,6 +27,7 @@ class MenuController: NSObject {
         var logCtrl:SysLogController!
         var minerSelectCtrl:MinerSelectCtrl!
         var settingCtrl:Setting!
+        var extokenCtrl:ExTokenSettingController!
         
         var CurPoolInSubMenu:NSMenuItem?
         
@@ -255,6 +256,16 @@ class MenuController: NSObject {
                         }
                 }
                 self.updateWalletStatus()
+        }
+        
+        @IBAction func ShowExtendTokenSetting(_ sender: Any) {
+                if extokenCtrl != nil {
+                        extokenCtrl.close()
+                }
+                extokenCtrl = ExTokenSettingController(windowNibName: "ExTokenSettingController")
+                extokenCtrl.showWindow(self)
+                NSApp.activate(ignoringOtherApps: true)
+                extokenCtrl.window?.makeKeyAndOrderFront(nil)
         }
         
         func updateWalletStatus(){

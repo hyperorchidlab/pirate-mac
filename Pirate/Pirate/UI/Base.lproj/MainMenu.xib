@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -57,6 +57,12 @@
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="a8M-0p-ROJ"/>
+                <menuItem title="ExToken Setting" id="1DU-ey-Tli">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="ShowExtendTokenSetting:" target="MrV-Ey-DwV" id="kM5-tr-9b5"/>
+                    </connections>
+                </menuItem>
                 <menuItem title="CurPool" id="CPn-B5-6Vi">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="CurPool" id="wBT-o3-yXY"/>
@@ -86,7 +92,7 @@
                         <action selector="ShowPacketMarket:" target="MrV-Ey-DwV" id="wex-et-Qhh"/>
                     </connections>
                 </menuItem>
-                <menuItem title="CurMiner" id="dB0-ZQ-nTG">
+                <menuItem title="Counter" id="dB0-ZQ-nTG">
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="8ae-iU-biQ"/>
