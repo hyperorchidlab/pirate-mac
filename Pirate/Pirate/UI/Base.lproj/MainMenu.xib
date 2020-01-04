@@ -57,12 +57,6 @@
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="a8M-0p-ROJ"/>
-                <menuItem title="ExToken Setting" id="1DU-ey-Tli">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="ShowExtendTokenSetting:" target="MrV-Ey-DwV" id="kM5-tr-9b5"/>
-                    </connections>
-                </menuItem>
                 <menuItem title="CurPool" id="CPn-B5-6Vi">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="CurPool" id="wBT-o3-yXY"/>
@@ -90,6 +84,18 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="ShowPacketMarket:" target="MrV-Ey-DwV" id="wex-et-Qhh"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Extend Wallet" id="1DU-ey-Tli">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="ShowExtendWallet:" target="-1" id="ZRF-Qw-jo7"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Extend Market" id="t7x-Ln-A25">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="ShowExtendTokenMarket:" target="MrV-Ey-DwV" id="vEF-L1-Okv"/>
                     </connections>
                 </menuItem>
                 <menuItem title="Counter" id="dB0-ZQ-nTG">

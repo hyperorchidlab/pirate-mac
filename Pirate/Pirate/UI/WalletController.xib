@@ -165,7 +165,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="X0i-2N-0jT">
-                        <rect key="frame" x="413" y="459" width="149" height="20"/>
+                        <rect key="frame" x="405" y="459" width="157" height="20"/>
                         <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" borderStyle="border" alignment="center" id="iqj-4Q-iOD">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -173,8 +173,8 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zqH-ef-qTP">
-                        <rect key="frame" x="309" y="463" width="96" height="16"/>
-                        <textFieldCell key="cell" lineBreakMode="clipping" title="Token Balance:" id="wZc-OW-CRa">
+                        <rect key="frame" x="309" y="463" width="88" height="16"/>
+                        <textFieldCell key="cell" lineBreakMode="clipping" title="HOP Balance:" id="wZc-OW-CRa">
                             <font key="font" usesAppearanceFont="YES"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -276,11 +276,11 @@
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                             <prototypeCellViews>
                                                 <tableCellView identifier="SubMinerPoolAddrID" id="hTT-Cc-ODV">
-                                                    <rect key="frame" x="1" y="1" width="250" height="17"/>
+                                                    <rect key="frame" x="1" y="1" width="365" height="17"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g5X-vM-CIT">
-                                                            <rect key="frame" x="0.0" y="0.0" width="250" height="17"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="365" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="B1N-fm-AIO">
                                                                 <font key="font" metaFont="system"/>

@@ -27,7 +27,8 @@ class MenuController: NSObject {
         var logCtrl:SysLogController!
         var minerSelectCtrl:MinerSelectCtrl!
         var settingCtrl:Setting!
-        var extokenCtrl:ExTokenSettingController!
+        var exMarketCtrl:ExtendMarketController!
+        var exWalletCtrl:ExtendWalletController!
         
         var CurPoolInSubMenu:NSMenuItem?
         
@@ -258,14 +259,24 @@ class MenuController: NSObject {
                 self.updateWalletStatus()
         }
         
-        @IBAction func ShowExtendTokenSetting(_ sender: Any) {
-                if extokenCtrl != nil {
-                        extokenCtrl.close()
+        @IBAction func ShowExtendTokenMarket(_ sender: Any) {
+                if exMarketCtrl != nil {
+                        exMarketCtrl.close()
                 }
-                extokenCtrl = ExTokenSettingController(windowNibName: "ExTokenSettingController")
-                extokenCtrl.showWindow(self)
+                exMarketCtrl = ExtendMarketController(windowNibName: "ExtendMarketController")
+                exMarketCtrl.showWindow(self)
                 NSApp.activate(ignoringOtherApps: true)
-                extokenCtrl.window?.makeKeyAndOrderFront(nil)
+                exMarketCtrl.window?.makeKeyAndOrderFront(nil)
+        }
+        
+        @IBAction func ShowExtendWallet(_ sender: Any) {
+                if exWalletCtrl != nil {
+                        exWalletCtrl.close()
+                }
+                exWalletCtrl = ExtendWalletController(windowNibName: "ExtendWalletController")
+                exWalletCtrl.showWindow(self)
+                NSApp.activate(ignoringOtherApps: true)
+                exWalletCtrl.window?.makeKeyAndOrderFront(nil)
         }
         
         func updateWalletStatus(){

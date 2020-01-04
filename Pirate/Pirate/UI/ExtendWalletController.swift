@@ -1,14 +1,14 @@
 //
-//  ExTokenSettingController.swift
+//  ExtendWalletController.swift
 //  Pirate
 //
-//  Created by hyperorchid on 2020/1/3.
+//  Created by hyperorchid on 2020/1/4.
 //  Copyright © 2020 hyperorchid. All rights reserved.
 //
 
 import Cocoa
 
-class ExTokenSettingController: NSWindowController {
+class ExtendWalletController: NSWindowController {
 
     override func windowDidLoad() {
         super.windowDidLoad()
