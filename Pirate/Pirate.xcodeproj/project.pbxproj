@@ -13,6 +13,7 @@
 		7C7A28C323C04E730063CA7B /* ExtendMarketController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7A28C223C04E730063CA7B /* ExtendMarketController.swift */; };
 		7C7A28C623C04EBE0063CA7B /* ExtendWalletController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7A28C423C04EBE0063CA7B /* ExtendWalletController.swift */; };
 		7C7A28C723C04EBE0063CA7B /* ExtendWalletController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C7A28C523C04EBE0063CA7B /* ExtendWalletController.xib */; };
+		7C7A28C923C05E890063CA7B /* ExtendToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7A28C823C05E890063CA7B /* ExtendToken.swift */; };
 		7CC03A71237ADF3E00233E51 /* SysLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC03A6F237ADF3E00233E51 /* SysLogController.swift */; };
 		7CC03A72237ADF3E00233E51 /* SysLogController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CC03A70237ADF3E00233E51 /* SysLogController.xib */; };
 		BB10824323406B31004CBB54 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB10824223406B31004CBB54 /* AppDelegate.swift */; };
@@ -85,6 +86,7 @@
 		7C7A28C223C04E730063CA7B /* ExtendMarketController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendMarketController.swift; sourceTree = "<group>"; };
 		7C7A28C423C04EBE0063CA7B /* ExtendWalletController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendWalletController.swift; sourceTree = "<group>"; };
 		7C7A28C523C04EBE0063CA7B /* ExtendWalletController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExtendWalletController.xib; sourceTree = "<group>"; };
+		7C7A28C823C05E890063CA7B /* ExtendToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendToken.swift; sourceTree = "<group>"; };
 		7CC03A6F237ADF3E00233E51 /* SysLogController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SysLogController.swift; sourceTree = "<group>"; };
 		7CC03A70237ADF3E00233E51 /* SysLogController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SysLogController.xib; sourceTree = "<group>"; };
 		7F66B4ECC0A09EA30ADA0099 /* Pods_sysproxyconfig.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sysproxyconfig.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -267,6 +269,7 @@
 				BBD71236234096FA003C80E9 /* utils.swift */,
 				BBD71235234096FA003C80E9 /* Wallet.swift */,
 				BB2354FA2341D74500108482 /* AccountBook.swift */,
+				7C7A28C823C05E890063CA7B /* ExtendToken.swift */,
 			);
 			path = service;
 			sourceTree = "<group>";
@@ -481,6 +484,7 @@
 				BBA7CCFB237D366D002A5F44 /* MinerSelectCtrl.swift in Sources */,
 				BBDF613F23781DA2006E7E30 /* UserDataStatic.swift in Sources */,
 				BBD71241234096FA003C80E9 /* PacServerBean.swift in Sources */,
+				7C7A28C923C05E890063CA7B /* ExtendToken.swift in Sources */,
 				BBDF613C237815C5006E7E30 /* UserDataLocal.swift in Sources */,
 				BB10824323406B31004CBB54 /* AppDelegate.swift in Sources */,
 				BBD7123C234096FA003C80E9 /* SysProxyHelper.swift in Sources */,

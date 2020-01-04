@@ -9,11 +9,40 @@
 import Cocoa
 
 class ExtendWalletController: NSWindowController {
+        @IBOutlet weak var TokensTableView: NSTableView!
+        
+        let symboID = NSUserInterfaceItemIdentifier(rawValue: "ExtendTokenSymbol")
+        let balanceID = NSUserInterfaceItemIdentifier(rawValue: "ExtendTokenBalance")
+        
+        override func windowDidLoad() {
+                super.windowDidLoad()
+        }
+}
 
-    override func windowDidLoad() {
-        super.windowDidLoad()
 
-        // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
-    }
-    
+extension ExtendWalletController:NSTableViewDataSource{
+        func numberOfRows(in tableView: NSTableView) -> Int {
+                return ExtendToken.AllExTokens.count
+        }
+}
+
+extension ExtendWalletController:NSTableViewDelegate{
+        
+        func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+                let tokenInfo = ExtendToken.AllExTokens[row]
+                
+                if tableColumn == tableView.tableColumns[0]{
+                        guard let cell = tableView.makeView(withIdentifier: symboID, owner: nil) as? NSTableCellView else{
+                                return nil
+                        }
+                        cell.textField?.stringValue =  tokenInfo.Symbol
+                        return cell
+                }else {
+                        guard let cell = tableView.makeView(withIdentifier: balanceID, owner: nil) as? NSTableCellView else{
+                                return nil
+                        }
+                        cell.textField?.stringValue =  "\(tokenInfo.Balance.CoinValue())"
+                        return cell
+                }
+        }
 }

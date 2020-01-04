@@ -260,4 +260,3 @@ extension WalletController:NSTableViewDataSource{
                 return Wallet.PoolsOfUser.count
         }
 }
-
