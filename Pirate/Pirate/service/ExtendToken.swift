@@ -13,4 +13,13 @@ class ExtendToken: NSObject {
         var Balance:NSNumber = 0.0
         var Symbol:String = ""
         static public var AllExTokens:[ExtendToken] = []
+        
+        override init() {
+                super.init()
+                load()
+        }
+        
+        func load(){
+                
+        }
 }

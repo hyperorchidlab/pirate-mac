@@ -15,6 +15,8 @@ let KEY_FOR_DNS_IP = "KEY_FOR_DNS_IP"
 let KEY_FOR_CURRENT_POOL_INUSE = "KEY_FOR_CURRENT_SEL_POOL_v2"
 let KEY_FOR_CURRENT_MINER_INUSE = "KEY_FOR_CURRENT_SEL_Miner_v2"
 
+public let EXTEND_TOKEN_ADDRESS = "0x37528E8FF681860Bfea4ce673D260Ca67De56784"
+public let TOKEN_APPLY_ADDRESS = "0x861C8E634b383D8f51b1553f14665E0716e736c7" 
 public let TOKEN_ADDRESS = "0x3adc98d5e292355e59ae2ca169d241d889b092e3"
 public let MICROPAY_SYSTEM_ADDRESS = "0x660c2B067b0EE6a602305Fe167279385C123e322"
 public let BLOCKCHAIN_API_URL = "https://ropsten.infura.io/v3/f3245cef90ed440897e43efc6b3dd0f7"
@@ -28,7 +30,6 @@ public let VPNStatusChanged = Notification.Name(rawValue: "VPNStatusChanged")
 public let NewLibLogs = Notification.Name(rawValue: "NewLibLogs")
 public let SelectPoolOrMinerChanged = Notification.Name(rawValue: "SelectPoolOrMinerChanged")
 public let DataCounterChanged = Notification.Name(rawValue: "DataCounterChanged")
-
 
 public let ProxyLocalPort = 41080;
 
