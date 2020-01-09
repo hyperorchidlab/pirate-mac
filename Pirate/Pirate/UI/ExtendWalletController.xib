@@ -9,6 +9,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="ExtendWalletController" customModule="Pirate" customModuleProvider="target">
             <connections>
                 <outlet property="TokensTableView" destination="DnJ-OM-rQE" id="r6a-Rq-pFJ"/>
+                <outlet property="waitTips" destination="FX5-PD-A53" id="atX-0v-hHL"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -24,13 +25,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GgT-M6-T1d">
-                        <rect key="frame" x="20" y="20" width="559" height="453"/>
+                        <rect key="frame" x="20" y="40" width="559" height="433"/>
                         <clipView key="contentView" id="u54-mi-H1F">
-                            <rect key="frame" x="1" y="0.0" width="557" height="452"/>
+                            <rect key="frame" x="1" y="0.0" width="557" height="432"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="Hl7-q2-n1p" viewBased="YES" id="DnJ-OM-rQE">
-                                    <rect key="frame" x="0.0" y="0.0" width="557" height="427"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="557" height="407"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -123,12 +124,45 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </tableHeaderView>
                     </scrollView>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rin-7z-NOj">
+                        <rect key="frame" x="498" y="13" width="87" height="32"/>
+                        <buttonCell key="cell" type="push" title="Refresh" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="jO2-qC-iXv">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="reloadData:" target="-2" id="Uxh-q7-iwt"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UGk-kE-qTt">
+                        <rect key="frame" x="262" y="13" width="75" height="32"/>
+                        <buttonCell key="cell" type="push" title="Close" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Hyy-Hv-irV">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="Close:" target="-2" id="AbZ-V4-quP"/>
+                        </connections>
+                    </button>
+                    <progressIndicator hidden="YES" wantsLayer="YES" maxValue="100" indeterminate="YES" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="FX5-PD-A53">
+                        <rect key="frame" x="268" y="215" width="64" height="64"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="64" id="EJr-e6-Rgd"/>
+                            <constraint firstAttribute="width" constant="64" id="YdD-c3-ueQ"/>
+                        </constraints>
+                    </progressIndicator>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="GgT-M6-T1d" secondAttribute="bottom" constant="20" id="1cg-GZ-43J"/>
+                    <constraint firstAttribute="bottom" secondItem="GgT-M6-T1d" secondAttribute="bottom" constant="40" id="1cg-GZ-43J"/>
                     <constraint firstAttribute="trailing" secondItem="GgT-M6-T1d" secondAttribute="trailing" constant="20" id="32s-LX-bxT"/>
+                    <constraint firstAttribute="trailing" secondItem="rin-7z-NOj" secondAttribute="trailing" constant="20" id="Ge6-ha-QIa"/>
                     <constraint firstItem="GgT-M6-T1d" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="20" id="KTE-RV-tr8"/>
+                    <constraint firstItem="FX5-PD-A53" firstAttribute="centerX" secondItem="se5-gp-TjO" secondAttribute="centerX" id="Vvj-8y-cQX"/>
+                    <constraint firstAttribute="bottom" secondItem="UGk-kE-qTt" secondAttribute="bottom" constant="20" id="heB-BQ-o38"/>
                     <constraint firstItem="GgT-M6-T1d" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" id="qRM-I5-q60"/>
+                    <constraint firstItem="FX5-PD-A53" firstAttribute="centerY" secondItem="se5-gp-TjO" secondAttribute="centerY" id="qTn-Ia-a5V"/>
+                    <constraint firstAttribute="bottom" secondItem="rin-7z-NOj" secondAttribute="bottom" constant="20" symbolic="YES" id="taS-3n-DiH"/>
+                    <constraint firstItem="UGk-kE-qTt" firstAttribute="centerX" secondItem="se5-gp-TjO" secondAttribute="centerX" id="vS4-dk-rzQ"/>
                 </constraints>
             </view>
             <connections>

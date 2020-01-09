@@ -10,12 +10,30 @@ import Cocoa
 
 class ExtendWalletController: NSWindowController {
         @IBOutlet weak var TokensTableView: NSTableView!
+        @IBOutlet weak var waitTips: NSProgressIndicator!
         
         let symboID = NSUserInterfaceItemIdentifier(rawValue: "ExtendTokenSymbol")
         let balanceID = NSUserInterfaceItemIdentifier(rawValue: "ExtendTokenBalance")
         
         override func windowDidLoad() {
                 super.windowDidLoad()
+                ExtendToken.loadTokens()
+                TokensTableView.reloadData()
+        }
+        
+        @IBAction func Close(_ sender: Any) {
+                self.close()
+        }
+        
+        @IBAction func reloadData(_ sender: Any) {
+                waitTips.isHidden = false
+                Service.sharedInstance.contractQueue.async {
+                        ExtendToken.loadTokens()
+                }
+                DispatchQueue.main.async {
+                        self.waitTips.isHidden = true
+                        self.TokensTableView.reloadData()
+                }
         }
 }
 

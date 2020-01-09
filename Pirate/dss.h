@@ -144,6 +144,8 @@ extern struct UserDataOfPool_return UserDataOfPool(GoString p0, GoString p1);
 
 extern char* systemSettings();
 
+extern char* ExtendTokens();
+
 /* Return type for TransferEth */
 struct TransferEth_return {
 	char* r0;

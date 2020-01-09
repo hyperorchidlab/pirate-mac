@@ -20,7 +20,6 @@
 		BB10824523406B37004CBB54 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB10824423406B37004CBB54 /* Assets.xcassets */; };
 		BB10824823406B37004CBB54 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB10824623406B37004CBB54 /* MainMenu.xib */; };
 		BB10825223406B76004CBB54 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB10825123406B76004CBB54 /* MenuController.swift */; };
-		BB2354FB2341D74500108482 /* AccountBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2354FA2341D74500108482 /* AccountBook.swift */; };
 		BB603C782374FDA900C95CA5 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB603C762374FDA900C95CA5 /* Setting.swift */; };
 		BB603C792374FDA900C95CA5 /* Setting.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB603C772374FDA900C95CA5 /* Setting.xib */; };
 		BB72ACF5237CFF6B0082BA02 /* MinerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB72ACF4237CFF6B0082BA02 /* MinerData.swift */; };
@@ -96,7 +95,6 @@
 		BB10824723406B37004CBB54 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		BB10824923406B37004CBB54 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BB10825123406B76004CBB54 /* MenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
-		BB2354FA2341D74500108482 /* AccountBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountBook.swift; sourceTree = "<group>"; };
 		BB603C762374FDA900C95CA5 /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
 		BB603C772374FDA900C95CA5 /* Setting.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Setting.xib; sourceTree = "<group>"; };
 		BB72ACF4237CFF6B0082BA02 /* MinerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinerData.swift; sourceTree = "<group>"; };
@@ -268,7 +266,6 @@
 				BBD71234234096FA003C80E9 /* SysProxyHelper.swift */,
 				BBD71236234096FA003C80E9 /* utils.swift */,
 				BBD71235234096FA003C80E9 /* Wallet.swift */,
-				BB2354FA2341D74500108482 /* AccountBook.swift */,
 				7C7A28C823C05E890063CA7B /* ExtendToken.swift */,
 			);
 			path = service;
@@ -473,7 +470,6 @@
 				BB72ACF5237CFF6B0082BA02 /* MinerData.swift in Sources */,
 				7CC03A71237ADF3E00233E51 /* SysLogController.swift in Sources */,
 				BBD7126323409B13003C80E9 /* WalletController.swift in Sources */,
-				BB2354FB2341D74500108482 /* AccountBook.swift in Sources */,
 				BBD7123E234096FA003C80E9 /* utils.swift in Sources */,
 				BBD7123B234096FA003C80E9 /* ServiceError.swift in Sources */,
 				BBD7125F23409B13003C80E9 /* PacketMarketController.swift in Sources */,
