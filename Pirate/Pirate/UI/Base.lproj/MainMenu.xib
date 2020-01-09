@@ -92,12 +92,6 @@
                         <action selector="ShowExtendWallet:" target="MrV-Ey-DwV" id="qJk-0n-izS"/>
                     </connections>
                 </menuItem>
-                <menuItem title="Extend Market" id="t7x-Ln-A25">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="ShowExtendTokenMarket:" target="MrV-Ey-DwV" id="UL5-Z1-Sr2"/>
-                    </connections>
-                </menuItem>
                 <menuItem title="Counter" id="dB0-ZQ-nTG">
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>

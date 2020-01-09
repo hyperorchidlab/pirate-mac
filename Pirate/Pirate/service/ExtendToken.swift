@@ -14,11 +14,11 @@ let KEY_FOR_CACHED_TOKENS_OF = "KEY_FOR_CACHED_TOKENS_"
 class ExtendToken: NSObject, NSCoding {
         
         var Balance:NSNumber = 0.0
-        var PaymentContract:String = ""// common.Address
-        var TokenI:String = ""//          common.Address
-        var Symbol:String = ""//          [8]byte
-        var Decimal:Int = 0//         *big.Int
-        var MBytesPerToken:Int = 0//  *big.Int
+        var PaymentContract:String = ""
+        var TokenI:String = ""
+        var Symbol:String = ""
+        var Decimal:Int = 0
+        var MBytesPerToken:Int = 0
         
         static public var AllExTokens:[ExtendToken] = []
         
@@ -53,7 +53,7 @@ class ExtendToken: NSObject, NSCoding {
                 
                 MBytesPerToken = aDecoder.decodeInteger(forKey:"MBytesPerToken")
                 Decimal = aDecoder.decodeInteger(forKey: "Decimal")
-                Balance = NSNumber(value: aDecoder.decodeDouble(forKey: "Balance"))
+                Balance = aDecoder.decodeObject(forKey: "Balance") as! NSNumber
         }
         
         public static func loadTokens(){

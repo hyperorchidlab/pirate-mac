@@ -14,6 +14,8 @@ let KEY_FOR_Pirate_MODEL = "KEY_FOR_Pirate_MODEL"
 let KEY_FOR_DNS_IP = "KEY_FOR_DNS_IP"
 let KEY_FOR_CURRENT_POOL_INUSE = "KEY_FOR_CURRENT_SEL_POOL_v2"
 let KEY_FOR_CURRENT_MINER_INUSE = "KEY_FOR_CURRENT_SEL_Miner_v2"
+let KEY_FOR_CURRENT_TOKEN_INUSE = "KEY_FOR_CURRENT_TOKEN_INUSE"
+let KEY_FOR_CURRENT_PAYCONTRACT_INUSE = "KEY_FOR_CURRENT_PAYCONTRACT_INUSE"
 
 public let EXTEND_TOKEN_ADDRESS = "0x1f96E57309EB411BC1922157d62E1201Bce01b41"
 public let TOKEN_APPLY_ADDRESS = "0x861C8E634b383D8f51b1553f14665E0716e736c7" 
@@ -39,6 +41,9 @@ struct BasicConfig{
         var isGlobal:Bool = false
         var baseDir:String = ".Pirate"
         var dns:String = "167.179.112.108"
+        var CurToken:String = TOKEN_ADDRESS
+        var CurPayContract:String = MICROPAY_SYSTEM_ADDRESS
+        
         var poolInUsed:String? = nil
         
         var packetPrice:Double = -1.0
@@ -49,6 +54,9 @@ struct BasicConfig{
         mutating func loadConf(){
                 self.isGlobal = UserDefaults.standard.bool(forKey: KEY_FOR_Pirate_MODEL)
                 self.poolInUsed = UserDefaults.standard.string(forKey: KEY_FOR_CURRENT_POOL_INUSE)
+                self.CurToken = UserDefaults.standard.string(forKey: KEY_FOR_CURRENT_TOKEN_INUSE) ?? TOKEN_ADDRESS
+                self.CurPayContract = UserDefaults.standard.string(forKey: KEY_FOR_CURRENT_PAYCONTRACT_INUSE) ?? MICROPAY_SYSTEM_ADDRESS
+                
                 self.dns = UserDefaults.standard.string(forKey: KEY_FOR_DNS_IP) ?? "167.179.112.108"
                 do {
                         self.baseDir = try touchDirectory(directory: ".Pirate").path
@@ -56,6 +64,14 @@ struct BasicConfig{
                         print(err)
                         self.baseDir = ".Pirate"
                 }
+        }
+        
+        mutating func SetMainToken(token:String, contract:String){
+                self.CurToken = token
+                self.CurPayContract = contract
+                
+                UserDefaults.standard.set(token, forKey: KEY_FOR_CURRENT_TOKEN_INUSE)
+                UserDefaults.standard.set(contract, forKey: KEY_FOR_CURRENT_PAYCONTRACT_INUSE)
         }
         
         mutating func changeUsedPool(addr:String){
