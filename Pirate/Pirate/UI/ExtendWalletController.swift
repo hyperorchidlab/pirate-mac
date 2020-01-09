@@ -28,11 +28,11 @@ class ExtendWalletController: NSWindowController {
         @IBAction func reloadData(_ sender: Any) {
                 waitTips.isHidden = false
                 Service.sharedInstance.contractQueue.async {
-                        ExtendToken.loadTokens()
-                }
-                DispatchQueue.main.async {
-                        self.waitTips.isHidden = true
-                        self.TokensTableView.reloadData()
+                        _ = ExtendToken.syncTokens()
+                        DispatchQueue.main.async {
+                                self.waitTips.isHidden = true
+                                self.TokensTableView.reloadData()
+                        }
                 }
         }
 }

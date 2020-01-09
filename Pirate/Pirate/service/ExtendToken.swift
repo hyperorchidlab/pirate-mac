@@ -14,7 +14,6 @@ let KEY_FOR_CACHED_TOKENS_OF = "KEY_FOR_CACHED_TOKENS_"
 class ExtendToken: NSObject, NSCoding {
         
         var Balance:NSNumber = 0.0
-        
         var PaymentContract:String = ""// common.Address
         var TokenI:String = ""//          common.Address
         var Symbol:String = ""//          [8]byte
@@ -34,6 +33,7 @@ class ExtendToken: NSObject, NSCoding {
                 self.Symbol = dict["Symbol"] as? String ?? ""
                 
                 self.MBytesPerToken = dict["MBytesPerToken"] as? Int ?? 0
+                self.Balance = dict["Balance"] as? NSNumber ?? 0
                 self.Decimal = dict["Decimal"] as? Int ?? 0
         }
         
@@ -43,6 +43,7 @@ class ExtendToken: NSObject, NSCoding {
                aCoder.encode(Symbol, forKey: "Symbol")
                aCoder.encode(MBytesPerToken, forKey: "MBytesPerToken")
                aCoder.encode(Decimal, forKey: "Decimal")
+               aCoder.encode(Balance, forKey: "Balance")
         }
 
         required init?(coder aDecoder: NSCoder) {
@@ -52,32 +53,38 @@ class ExtendToken: NSObject, NSCoding {
                 
                 MBytesPerToken = aDecoder.decodeInteger(forKey:"MBytesPerToken")
                 Decimal = aDecoder.decodeInteger(forKey: "Decimal")
+                Balance = NSNumber(value: aDecoder.decodeDouble(forKey: "Balance"))
         }
         
         public static func loadTokens(){
                guard let md = UserDefaults.standard.data(forKey: KEY_FOR_CACHED_TOKENS_OF) else{
-                        AllExTokens = syncTokens()
+                        syncTokens()
                         return
                }
                AllExTokens = NSKeyedUnarchiver.unarchiveObject(with: md) as! [ExtendToken]
         }
         
-        public static func syncTokens()-> [ExtendToken]{
+        public static func syncTokens(){
+                               
+                var tokens:[ExtendToken] = []
+                defer {
+                        let md = NSKeyedArchiver.archivedData(withRootObject: tokens)
+                        UserDefaults.standard.set(md, forKey: KEY_FOR_CACHED_TOKENS_OF)
+                        AllExTokens = tokens
+                }
                 
-                guard let ret = ExtendTokens() else{
-                        return []
+                guard let ret = ExtendTokens(Wallet.CurrentWallet.MainAddress.toGoString()) else{
+                        return
                 }
                 
                 guard let data = String(cString: ret).data(using: .utf8) else{
-                        return []
+                        return
                 }
                 
                 guard let tokenArray = try? JSONSerialization.jsonObject(with: data,
                         options: .mutableContainers) as? NSArray else {
-                        return []
+                        return
                 }
-                               
-                var tokens:[ExtendToken] = []
                 for (_, value) in tokenArray.enumerated() {
                         guard let dict = value as? NSDictionary else{
                                 continue
@@ -85,10 +92,5 @@ class ExtendToken: NSObject, NSCoding {
                         let miner = ExtendToken.init(dict:dict)
                         tokens.append(miner)
                 }
-                
-                let md = NSKeyedArchiver.archivedData(withRootObject: tokens)
-                UserDefaults.standard.set(md, forKey: KEY_FOR_CACHED_TOKENS_OF)
-                
-                return tokens
         }
 }
