@@ -22,6 +22,7 @@ class PacketMarketController: NSWindowController {
         @IBOutlet weak var PacketCanGet: NSTextField!
         @IBOutlet weak var TokenToSpend: NSTextField!
         @IBOutlet weak var BuyForAddrField: NSTextField!
+        @IBOutlet weak var PacketPrice: NSTextField!
         
         @IBOutlet weak var PacketBalance: NSTextField!
         @IBOutlet weak var TokenDeposit: NSTextField!
