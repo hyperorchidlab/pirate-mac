@@ -28,6 +28,7 @@ class MenuController: NSObject {
         var minerSelectCtrl:MinerSelectCtrl!
         var settingCtrl:Setting!
         var exWalletCtrl:ExtendWalletController!
+        var freeTokenCtrl:FreeTokenWindowController!
         
         var CurPoolInSubMenu:NSMenuItem?
         
@@ -266,6 +267,16 @@ class MenuController: NSObject {
                 exWalletCtrl.showWindow(self)
                 NSApp.activate(ignoringOtherApps: true)
                 exWalletCtrl.window?.makeKeyAndOrderFront(nil)
+        }
+        
+        @IBAction func ShowFreeToken(_ sender: Any) {
+                if freeTokenCtrl != nil {
+                        freeTokenCtrl.close()
+                }
+                freeTokenCtrl = FreeTokenWindowController(windowNibName: "FreeTokenWindowController")
+                freeTokenCtrl.showWindow(self)
+                NSApp.activate(ignoringOtherApps: true)
+                freeTokenCtrl.window?.makeKeyAndOrderFront(nil)
         }
         
         func updateWalletStatus(){

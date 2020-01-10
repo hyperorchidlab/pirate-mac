@@ -18,7 +18,6 @@ class ExtendToken: NSObject, NSCoding {
         var TokenI:String = ""
         var Symbol:String = ""
         var Decimal:Int = 0
-        var MBytesPerToken:Int = 0
         
         static public var AllExTokens:[ExtendToken] = []
         
@@ -32,7 +31,6 @@ class ExtendToken: NSObject, NSCoding {
                 self.TokenI = dict["TokenI"] as? String ?? ""
                 self.Symbol = dict["Symbol"] as? String ?? ""
                 
-                self.MBytesPerToken = dict["MBytesPerToken"] as? Int ?? 0
                 self.Balance = dict["Balance"] as? NSNumber ?? 0
                 self.Decimal = dict["Decimal"] as? Int ?? 0
         }
@@ -41,7 +39,6 @@ class ExtendToken: NSObject, NSCoding {
                aCoder.encode(PaymentContract, forKey: "PaymentContract")
                aCoder.encode(TokenI, forKey: "TokenI")
                aCoder.encode(Symbol, forKey: "Symbol")
-               aCoder.encode(MBytesPerToken, forKey: "MBytesPerToken")
                aCoder.encode(Decimal, forKey: "Decimal")
                aCoder.encode(Balance, forKey: "Balance")
         }
@@ -51,7 +48,6 @@ class ExtendToken: NSObject, NSCoding {
                 TokenI = aDecoder.decodeObject(forKey: "TokenI") as! String
                 Symbol = aDecoder.decodeObject(forKey: "Symbol") as! String
                 
-                MBytesPerToken = aDecoder.decodeInteger(forKey:"MBytesPerToken")
                 Decimal = aDecoder.decodeInteger(forKey: "Decimal")
                 Balance = aDecoder.decodeObject(forKey: "Balance") as! NSNumber
         }

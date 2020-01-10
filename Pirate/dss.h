@@ -146,6 +146,10 @@ extern char* systemSettings();
 
 extern char* ExtendTokens(GoString p0);
 
+extern char* ApplyFreeToken(GoString p0);
+
+extern char* ApplyFreeEth(GoString p0);
+
 /* Return type for TransferEth */
 struct TransferEth_return {
 	char* r0;

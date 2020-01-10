@@ -95,6 +95,12 @@
                         <action selector="ShowExtendWallet:" target="MrV-Ey-DwV" id="qJk-0n-izS"/>
                     </connections>
                 </menuItem>
+                <menuItem title="Free Token" id="AmV-Ho-PTu">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="ShowFreeToken:" target="MrV-Ey-DwV" id="JNy-59-0m2"/>
+                    </connections>
+                </menuItem>
                 <menuItem isSeparatorItem="YES" id="8ae-iU-biQ"/>
                 <menuItem title="Setting" id="ORd-qI-ALe">
                     <modifierMask key="keyEquivalentModifierMask"/>
