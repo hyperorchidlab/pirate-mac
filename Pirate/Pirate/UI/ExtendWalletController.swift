@@ -42,14 +42,17 @@ class ExtendWalletController: NSWindowController {
                 if self.CurTokenRadio?.tag == sender.tag{
                         return
                 }
+                
+                self.CurTokenRadio?.state = .off
+                sender.state = .on
+                
                 let ok = dialogOKCancel(question: "Warning", text: "Are you sure to change main token setting? This change will make application restart!")
                 if !ok{
                         self.CurTokenRadio?.state = .on
                         sender.state = .off
                        return
                 }
-                sender.state = .on
-                self.CurTokenRadio?.state = .off
+                
                 let tokenInfo = ExtendToken.AllExTokens[sender.tag]
                 Service.sharedInstance.srvConf.SetMainToken(token: tokenInfo.TokenI, contract: tokenInfo.PaymentContract)
                 dialogOK(question: "Tips", text: "Change success, please restart the application")

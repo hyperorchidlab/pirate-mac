@@ -58,7 +58,7 @@ class MenuController: NSObject {
         
         func updateMinerList(){
                 guard let miner = Service.sharedInstance.srvConf.CurMiner() else{
-                        self.curMinerMenu.title = "Chose Miner->"
+                        self.curMinerMenu.title = "Config Miner->"
                         return
                 }
                 self.curMinerMenu.title = String(miner.prefix(8)) + "..."

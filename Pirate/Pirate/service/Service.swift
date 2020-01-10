@@ -12,7 +12,7 @@ import DecentralizedShadowSocks
 let KEY_FOR_SWITCH_STATE = "KEY_FOR_SWITCH_STATE"
 let KEY_FOR_Pirate_MODEL = "KEY_FOR_Pirate_MODEL"
 let KEY_FOR_DNS_IP = "KEY_FOR_DNS_IP"
-let KEY_FOR_CURRENT_POOL_INUSE = "KEY_FOR_CURRENT_SEL_POOL_v2"
+let KEY_FOR_CURRENT_POOL_INUSE = "KEY_FOR_CURRENT_SEL_POOL_v2_"
 let KEY_FOR_CURRENT_MINER_INUSE = "KEY_FOR_CURRENT_SEL_Miner_v2"
 let KEY_FOR_CURRENT_TOKEN_INUSE = "KEY_FOR_CURRENT_TOKEN_INUSE"
 let KEY_FOR_CURRENT_PAYCONTRACT_INUSE = "KEY_FOR_CURRENT_PAYCONTRACT_INUSE"
@@ -53,9 +53,12 @@ struct BasicConfig{
         
         mutating func loadConf(){
                 self.isGlobal = UserDefaults.standard.bool(forKey: KEY_FOR_Pirate_MODEL)
-                self.poolInUsed = UserDefaults.standard.string(forKey: KEY_FOR_CURRENT_POOL_INUSE)
+                
                 self.CurToken = UserDefaults.standard.string(forKey: KEY_FOR_CURRENT_TOKEN_INUSE) ?? TOKEN_ADDRESS
                 self.CurPayContract = UserDefaults.standard.string(forKey: KEY_FOR_CURRENT_PAYCONTRACT_INUSE) ?? MICROPAY_SYSTEM_ADDRESS
+                
+                let poolKey = "\(KEY_FOR_CURRENT_POOL_INUSE)\(self.CurToken)"
+                self.poolInUsed = UserDefaults.standard.string(forKey: poolKey)
                 
                 self.dns = UserDefaults.standard.string(forKey: KEY_FOR_DNS_IP) ?? "167.179.112.108"
                 do {
@@ -76,8 +79,8 @@ struct BasicConfig{
         
         mutating func changeUsedPool(addr:String){
                 self.poolInUsed = addr
-                UserDefaults.standard.set(addr, forKey: KEY_FOR_CURRENT_POOL_INUSE)
-                
+                let poolKey = "\(KEY_FOR_CURRENT_POOL_INUSE)\(self.CurToken)"
+                UserDefaults.standard.set(addr, forKey: poolKey)
                 NotificationCenter.default.post(name: SelectPoolOrMinerChanged, object:
                         self, userInfo:nil)
         }
@@ -202,8 +205,8 @@ class Service: NSObject {
         
         public func amountService() throws{
                 let ret = initConf(srvConf.baseDir.toGoString(),
-                         TOKEN_ADDRESS.toGoString(),
-                         MICROPAY_SYSTEM_ADDRESS.toGoString(),
+                         srvConf.CurToken.toGoString(),
+                         srvConf.CurPayContract.toGoString(),
                          BLOCKCHAIN_API_URL.toGoString(),
                          srvConf.dns.toGoString(),
                          systemCallBack)
