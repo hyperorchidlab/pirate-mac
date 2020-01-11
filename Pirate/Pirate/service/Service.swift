@@ -158,10 +158,9 @@ class Service: NSObject {
                                 NotificationCenter.default.post(name: DataCounterChanged, object:
                                         self, userInfo:["count":String(cString:v!)])
                         case 5:
-                                Service.sharedInstance.srvConf.isTurnon = false
-                                NotificationCenter.default.post(name: VPNStatusChanged, object:
-                                        self, userInfo:["msg":"TX Wire Closed", "errNo":-3])
-                                print("TX Wire Closed!")
+                                NotificationCenter.default.post(name: WalletBalanceChanged, object:
+                                        self, userInfo:nil)
+                                print("User's Balance changed!")
                         default:
                                 print("unkown action type:\(logTyp)")
                         }
