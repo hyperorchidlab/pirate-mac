@@ -15,7 +15,6 @@ let KEY_FOR_DNS_IP = "KEY_FOR_DNS_IP"
 let KEY_FOR_CURRENT_POOL_INUSE = "KEY_FOR_CURRENT_SEL_POOL_v2_"
 let KEY_FOR_CURRENT_MINER_INUSE = "KEY_FOR_CURRENT_SEL_Miner_v2"
 let KEY_FOR_CURRENT_TOKEN_INUSE = "KEY_FOR_CURRENT_TOKEN_INUSE"
-let KEY_FOR_CURRENT_PAYCONTRACT_INUSE = "KEY_FOR_CURRENT_PAYCONTRACT_INUSE"
 
 public let EXTEND_TOKEN_ADDRESS = "0x1FCdab99Da1ED72fd1E5E15e1EA7881A667c4aA9"
 public let TOKEN_APPLY_ADDRESS = "0x861C8E634b383D8f51b1553f14665E0716e736c7" 
@@ -41,9 +40,7 @@ struct BasicConfig{
         var isGlobal:Bool = false
         var baseDir:String = ".Pirate"
         var dns:String = "167.179.112.108"
-        var CurToken:String = TOKEN_ADDRESS
-        var CurPayContract:String = MICROPAY_SYSTEM_ADDRESS
-        
+        var CurToken:ExtendToken?
         var poolInUsed:String? = nil
         
         var packetPrice:Double = -1.0
@@ -54,10 +51,18 @@ struct BasicConfig{
         mutating func loadConf(){
                 self.isGlobal = UserDefaults.standard.bool(forKey: KEY_FOR_Pirate_MODEL)
                 
-                self.CurToken = UserDefaults.standard.string(forKey: KEY_FOR_CURRENT_TOKEN_INUSE) ?? TOKEN_ADDRESS
-                self.CurPayContract = UserDefaults.standard.string(forKey: KEY_FOR_CURRENT_PAYCONTRACT_INUSE) ?? MICROPAY_SYSTEM_ADDRESS
+                var token = UserDefaults.standard.object(forKey: KEY_FOR_CURRENT_TOKEN_INUSE) as? ExtendToken
+                if token == nil{
+                        token = ExtendToken.init()
+                        token!.PaymentContract = MICROPAY_SYSTEM_ADDRESS
+                        token!.Symbol = "HOP"
+                        token!.TokenI = TOKEN_ADDRESS
+                        token!.Balance = 0
+                        token!.Decimal = 18
+                }
+                self.CurToken = token!
                 
-                let poolKey = "\(KEY_FOR_CURRENT_POOL_INUSE)\(self.CurToken)"
+                let poolKey = "\(KEY_FOR_CURRENT_POOL_INUSE)\(self.CurToken!.TokenI)"
                 self.poolInUsed = UserDefaults.standard.string(forKey: poolKey)
                 
                 self.dns = UserDefaults.standard.string(forKey: KEY_FOR_DNS_IP) ?? "167.179.112.108"
@@ -69,17 +74,14 @@ struct BasicConfig{
                 }
         }
         
-        mutating func SetMainToken(token:String, contract:String){
+        mutating func SetMainToken(token:ExtendToken){
                 self.CurToken = token
-                self.CurPayContract = contract
-                
                 UserDefaults.standard.set(token, forKey: KEY_FOR_CURRENT_TOKEN_INUSE)
-                UserDefaults.standard.set(contract, forKey: KEY_FOR_CURRENT_PAYCONTRACT_INUSE)
         }
         
         mutating func changeUsedPool(addr:String){
                 self.poolInUsed = addr
-                let poolKey = "\(KEY_FOR_CURRENT_POOL_INUSE)\(self.CurToken)"
+                let poolKey = "\(KEY_FOR_CURRENT_POOL_INUSE)\(self.CurToken!.TokenI)"
                 UserDefaults.standard.set(addr, forKey: poolKey)
                 NotificationCenter.default.post(name: SelectPoolOrMinerChanged, object:
                         self, userInfo:nil)
@@ -205,11 +207,11 @@ class Service: NSObject {
         
         public func amountService() throws{
                 let ret = initConf(srvConf.baseDir.toGoString(),
-                         srvConf.CurToken.toGoString(),
-                         srvConf.CurPayContract.toGoString(),
-                         BLOCKCHAIN_API_URL.toGoString(),
-                         srvConf.dns.toGoString(),
-                         systemCallBack)
+                                   srvConf.CurToken!.TokenI.toGoString(),
+                                   srvConf.CurToken!.PaymentContract .toGoString(),
+                                   BLOCKCHAIN_API_URL.toGoString(),
+                                   srvConf.dns.toGoString(),
+                                   systemCallBack)
                 
                 if ret != nil{
                         throw ServiceError.SdkActionErr("init config err: msg:[\(String(cString:ret!))]")

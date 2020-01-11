@@ -123,22 +123,25 @@ extension PacketMarketController:NSTableViewDelegate {
                 
                 let pool = MinerPool.objAt(idx: idx)
                 self.currentPool = pool
-               
+                let symbol = Service.sharedInstance.srvConf.CurToken!.Symbol
                 self.poolAddressField.stringValue = pool.MainAddr
-                self.poolGNTField.stringValue = String(format: "%.4f HOP", pool.GuaranteedNo.CoinValue())
+                
+                
+                self.poolGNTField.stringValue = String(format: "%.4f \(symbol)", pool.GuaranteedNo.CoinValue())
                 self.poolEmail.stringValue = pool.Email
                 self.poolUrl.stringValue = pool.Url
+                self.PacketPrice.stringValue = "\(Service.sharedInstance.srvConf.packetPrice) MBytes/Token"
                 
                 guard let userData = UserData.LoadUserDataUnder(pool:pool.MainAddr)else{
                         self.PacketBalance.stringValue = "0 MBytes"
-                        self.TokenDeposit.stringValue = "0 HOP"
+                        self.TokenDeposit.stringValue = "0 \(symbol)"
                         self.Nonce.intValue = -1
                         self.RefundTime.stringValue = "-"
                         return
                 }
                 
                 self.PacketBalance.stringValue = ConvertBandWith(val: userData.PacketBalance)
-                self.TokenDeposit.stringValue = String(format: "%.4f HOP",userData.TokenInUsed.CoinValue())
+                self.TokenDeposit.stringValue = String(format: "%.4f %s",userData.TokenInUsed.CoinValue(), symbol)
                 self.Nonce.intValue = Int32(userData.Nonce)
                 self.RefundTime.stringValue = userData.RefundTime
         }

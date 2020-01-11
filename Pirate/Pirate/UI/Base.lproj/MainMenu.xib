@@ -95,7 +95,7 @@
                         <action selector="ShowExtendWallet:" target="MrV-Ey-DwV" id="qJk-0n-izS"/>
                     </connections>
                 </menuItem>
-                <menuItem title="Free Token" id="AmV-Ho-PTu">
+                <menuItem title="Get Free Token" id="AmV-Ho-PTu">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="ShowFreeToken:" target="MrV-Ey-DwV" id="JNy-59-0m2"/>

@@ -51,7 +51,7 @@
                                     <tableColumns>
                                         <tableColumn width="215" minWidth="10" maxWidth="3.4028234663852886e+38" id="eU0-pJ-UjH">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="ShortName">
-                                                <font key="font" metaFont="menu" size="11"/>
+                                                <font key="font" metaFont="label" size="11"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </tableHeaderCell>
@@ -176,7 +176,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="28N-5e-vKN">
-                        <rect key="frame" x="525" y="248" width="177" height="20"/>
+                        <rect key="frame" x="536" y="248" width="166" height="20"/>
                         <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" borderStyle="border" alignment="center" id="un1-Rp-bmm">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -231,8 +231,8 @@
                         </constraints>
                     </box>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tab-DI-Vdk">
-                        <rect key="frame" x="489" y="247" width="33" height="16"/>
-                        <textFieldCell key="cell" lineBreakMode="clipping" title="Hop:" id="BPY-l3-V1X">
+                        <rect key="frame" x="489" y="247" width="44" height="16"/>
+                        <textFieldCell key="cell" lineBreakMode="clipping" title="Token:" id="BPY-l3-V1X">
                             <font key="font" usesAppearanceFont="YES"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -349,14 +349,6 @@
                             <action selector="Exit:" target="-2" id="J2R-Fo-gZA"/>
                         </connections>
                     </button>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3ui-lU-iwa">
-                        <rect key="frame" x="489" y="69" width="90" height="16"/>
-                        <textFieldCell key="cell" lineBreakMode="clipping" title="MBytes/Token" id="Bxu-wp-SXL">
-                            <font key="font" usesAppearanceFont="YES"/>
-                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
                 </subviews>
                 <constraints>
                     <constraint firstItem="SST-60-gYh" firstAttribute="top" secondItem="hQE-E1-ORk" secondAttribute="bottom" constant="16" id="01t-KI-WJI"/>
@@ -407,7 +399,6 @@
                     <constraint firstItem="afa-sg-bXc" firstAttribute="leading" secondItem="0ML-LF-bqz" secondAttribute="trailing" constant="8" id="Yr2-G0-KQq"/>
                     <constraint firstItem="MXx-RA-Bj6" firstAttribute="top" secondItem="CZl-TI-vjb" secondAttribute="bottom" constant="25" id="Z2y-4w-yj9"/>
                     <constraint firstItem="LLR-7a-Dy1" firstAttribute="top" secondItem="dgn-SI-nk8" secondAttribute="bottom" constant="16" id="agc-Dh-WK9"/>
-                    <constraint firstItem="3ui-lU-iwa" firstAttribute="top" secondItem="SST-60-gYh" secondAttribute="bottom" constant="25" id="cRg-K8-YWM"/>
                     <constraint firstItem="wHe-Jh-LrE" firstAttribute="top" secondItem="tAi-yU-E71" secondAttribute="bottom" constant="15" id="dnv-Y9-CT1"/>
                     <constraint firstItem="8vW-gC-UHy" firstAttribute="leading" secondItem="Jpd-eC-SYd" secondAttribute="trailing" constant="20" id="e2f-fC-swr"/>
                     <constraint firstItem="Zgb-CI-cLI" firstAttribute="leading" secondItem="MXx-RA-Bj6" secondAttribute="trailing" constant="8" id="eJJ-UI-Nsv"/>
@@ -430,7 +421,6 @@
                     <constraint firstItem="tAi-yU-E71" firstAttribute="centerX" secondItem="1sQ-EU-Z58" secondAttribute="trailing" id="sCU-vf-3RL"/>
                     <constraint firstAttribute="trailing" secondItem="hQE-E1-ORk" secondAttribute="trailing" constant="20" id="sDP-Is-52g"/>
                     <constraint firstAttribute="trailing" secondItem="aOr-Pk-v8A" secondAttribute="trailing" constant="20" id="szP-ZJ-BST"/>
-                    <constraint firstItem="3ui-lU-iwa" firstAttribute="leading" secondItem="Zgb-CI-cLI" secondAttribute="trailing" constant="10" id="uql-Wx-O1P"/>
                     <constraint firstAttribute="trailing" secondItem="dgn-SI-nk8" secondAttribute="trailing" constant="20" id="vzQ-rO-nvz"/>
                     <constraint firstAttribute="trailing" secondItem="1FR-4y-4kA" secondAttribute="trailing" constant="20" id="w8O-QY-8Km"/>
                     <constraint firstItem="CZl-TI-vjb" firstAttribute="leading" secondItem="0ML-LF-bqz" secondAttribute="trailing" constant="8" id="wEB-e2-0a4"/>

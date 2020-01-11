@@ -54,7 +54,7 @@ class ExtendWalletController: NSWindowController {
                 }
                 
                 let tokenInfo = ExtendToken.AllExTokens[sender.tag]
-                Service.sharedInstance.srvConf.SetMainToken(token: tokenInfo.TokenI, contract: tokenInfo.PaymentContract)
+                Service.sharedInstance.srvConf.SetMainToken(token: tokenInfo)
                 dialogOK(question: "Tips", text: "Change success, please restart the application")
                 exit(0)
         }
@@ -91,7 +91,7 @@ extension ExtendWalletController:NSTableViewDelegate{
                         return cell
                 }else{
                         let StatusCell = cell as! NSButton
-                        let curToken = Service.sharedInstance.srvConf.CurToken
+                        let curToken = Service.sharedInstance.srvConf.CurToken!.TokenI
                         if curToken.caseInsensitiveCompare(tokenInfo.TokenI) ==  .orderedSame{
                                 StatusCell.state = .on
                                 self.CurTokenRadio = StatusCell
