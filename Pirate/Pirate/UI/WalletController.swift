@@ -48,11 +48,12 @@ class WalletController: NSWindowController {
         }
         
         func updateWallet(){
+                let symbol = Service.sharedInstance.srvConf.CurToken!.Symbol
                 let w = Wallet.CurrentWallet
                 MainAddressField.stringValue = w.MainAddress
                 SubAddressField.stringValue = w.SubAddress
                 EthBalanceField.stringValue = String(format: "%.4f ETH", Wallet.CurrentWallet.EthBalance.CoinValue())
-                TokenBalanceField.stringValue = String(format: "%.4f HOP", Wallet.CurrentWallet.TokenBalance.CoinValue())
+                TokenBalanceField.stringValue = String(format: "%.4f \(symbol)", Wallet.CurrentWallet.TokenBalance.CoinValue())
         }
         
         @objc func WalletBalanceUpdate(notification: Notification){
@@ -243,9 +244,9 @@ extension WalletController:NSTableViewDelegate{
                 guard let userData = UserData.LoadUserDataUnder(pool: pool.MainAddr) else{
                         return
                 }
-                
+                let symbol = Service.sharedInstance.srvConf.CurToken!.Symbol
                 self.NonceTF.intValue = Int32(userData.Nonce)
-                self.TokenTF.stringValue = "\(userData.TokenInUsed.CoinValue()) HOP"
+                self.TokenTF.stringValue = "\(userData.TokenInUsed.CoinValue()) \(symbol)"
                 self.PacketsTF.stringValue = ConvertBandWith(val: userData.PacketBalance)
                 self.RefundTimeTF.stringValue = userData.RefundTime
                 self.EpochTF.intValue = Int32(userData.Epoch)

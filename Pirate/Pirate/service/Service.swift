@@ -39,7 +39,7 @@ struct BasicConfig{
         var isTurnon: Bool = false
         var isGlobal:Bool = false
         var baseDir:String = ".Pirate"
-        var dns:String = "167.179.112.108"
+        var dns:String = "108.61.223.99"
         var CurToken:ExtendToken?
         var poolInUsed:String? = nil
         
@@ -65,7 +65,7 @@ struct BasicConfig{
                 let poolKey = "\(KEY_FOR_CURRENT_POOL_INUSE)\(self.CurToken!.TokenI)"
                 self.poolInUsed = UserDefaults.standard.string(forKey: poolKey)
                 
-                self.dns = UserDefaults.standard.string(forKey: KEY_FOR_DNS_IP) ?? "167.179.112.108"
+                self.dns = UserDefaults.standard.string(forKey: KEY_FOR_DNS_IP) ?? "108.61.223.99"
                 do {
                         self.baseDir = try touchDirectory(directory: ".Pirate").path
                 }catch let err{
