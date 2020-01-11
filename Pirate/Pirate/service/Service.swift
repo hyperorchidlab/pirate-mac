@@ -51,16 +51,18 @@ struct BasicConfig{
         mutating func loadConf(){
                 self.isGlobal = UserDefaults.standard.bool(forKey: KEY_FOR_Pirate_MODEL)
                 
-                var token = UserDefaults.standard.object(forKey: KEY_FOR_CURRENT_TOKEN_INUSE) as? ExtendToken
-                if token == nil{
-                        token = ExtendToken.init()
-                        token!.PaymentContract = MICROPAY_SYSTEM_ADDRESS
-                        token!.Symbol = "HOP"
-                        token!.TokenI = TOKEN_ADDRESS
-                        token!.Balance = 0
-                        token!.Decimal = 18
+                let tokenData = UserDefaults.standard.data(forKey: KEY_FOR_CURRENT_TOKEN_INUSE)
+                if tokenData == nil{
+                        self.CurToken = ExtendToken.init()
+                        self.CurToken?.PaymentContract = MICROPAY_SYSTEM_ADDRESS
+                        self.CurToken?.Symbol = "HOP"
+                        self.CurToken?.TokenI = TOKEN_ADDRESS
+                        self.CurToken?.Balance = 0
+                        self.CurToken?.Decimal = 18
+                }else{
+                        self.CurToken = NSKeyedUnarchiver.unarchiveObject(with: tokenData!) as? ExtendToken
                 }
-                self.CurToken = token!
+               
                 
                 let poolKey = "\(KEY_FOR_CURRENT_POOL_INUSE)\(self.CurToken!.TokenI)"
                 self.poolInUsed = UserDefaults.standard.string(forKey: poolKey)
@@ -76,7 +78,8 @@ struct BasicConfig{
         
         mutating func SetMainToken(token:ExtendToken){
                 self.CurToken = token
-                UserDefaults.standard.set(token, forKey: KEY_FOR_CURRENT_TOKEN_INUSE)
+                let data = NSKeyedArchiver.archivedData(withRootObject: token)
+                UserDefaults.standard.set(data, forKey: KEY_FOR_CURRENT_TOKEN_INUSE)
         }
         
         mutating func changeUsedPool(addr:String){
