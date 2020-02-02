@@ -141,7 +141,7 @@ extension PacketMarketController:NSTableViewDelegate {
                 }
                 
                 self.PacketBalance.stringValue = ConvertBandWith(val: userData.PacketBalance)
-                self.TokenDeposit.stringValue = String(format: "%.4f %s",userData.TokenInUsed.CoinValue(), symbol)
+                self.TokenDeposit.stringValue = "\(String(format: "%.4f",userData.TokenInUsed.CoinValue())) \(symbol)"
                 self.Nonce.intValue = Int32(userData.Nonce)
                 self.RefundTime.stringValue = userData.RefundTime
         }
