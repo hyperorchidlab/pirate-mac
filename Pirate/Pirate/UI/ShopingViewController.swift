@@ -98,8 +98,8 @@ class ShopingViewController: NSViewController {
                 }
         }
         func startBlockChainAction(buyFrom pool:String, For user:String, auth:String, tokenNo:Double) {
-                
-                if  Wallet.CurrentWallet.HasApproved.doubleValue < tokenNo{
+                let approved = Wallet.CurrentWallet.HasApproved.doubleValue
+                if  approved < (tokenNo * Double(coinUnit)){
                         self.setStatusInof(status: .InitApprove, desc: "")
                         let appRet = AuthorizeTokenSpend(auth.toGoString(), tokenNo)
                         guard let txData = appRet.r0 else{
