@@ -91,7 +91,8 @@ class MenuController: NSObject {
                 let errMsg = ui["msg"] as! String
                 let errNo = ui["errNo"] as! Int
                 if errNo == 0 {
-                        dialogOK(question: "Tips", text: "VPN Start Success")
+//                        dialogOK(question: "Tips", text: "VPN Start Success")
+                        NSLog("--->VPN Start Success......")
                 }else{
                         dialogOK(question: "VPN Closed", text: "Code:[\(errNo)], Message:[\(errMsg)]")
                 }
