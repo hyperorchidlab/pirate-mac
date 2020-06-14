@@ -104,6 +104,8 @@ extern char* dnsAddr();
 
 extern char* ethConfig();
 
+extern char* showReceipt(GoString p0);
+
 extern char* PoolDataOfUser(GoString p0);
 
 /* Return type for AuthorizeTokenSpend */
