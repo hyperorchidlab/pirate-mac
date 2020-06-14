@@ -184,32 +184,7 @@ func touchDirectory(directory:String) throws ->URL{
         
         return url
 }
-
-func ProcessTransRet(tx:String, err:String, noti:NSNotification.Name){
-        if err != ""{
-                NotificationCenter.default.post(name: noti, object:
-                        nil, userInfo:["success":false, "msg": err])
-        }else{
-                NotificationCenter.default.post(name:noti, object:
-                        nil, userInfo:["success":true, "msg": tx])
-        }
-}
-
-func ShowTransResult(notification: Notification){
-        
-        let userInfo = notification.userInfo as! [String: AnyObject]
-        let ret = userInfo["success"] as! Bool
-        let msg = userInfo["msg"] as! String
-        if ret == false{
-                dialogOK(question: "Tips", text: msg)
-                return
-        }
-        
-        dialogOK(question: "Tips", text: "Buy request is pending on transaction:[\(msg)]")
-        if let url = URL(string: "\(BaseEtherScanUrl)/tx/\(msg)") {
-                NSWorkspace.shared.open(url)
-        }
-}
+ 
 let TUINT = Double(1000000000000)
 let GUINT = Double(1000000000)
 let MUINT = Double(1000000)

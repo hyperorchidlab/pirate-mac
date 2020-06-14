@@ -323,6 +323,7 @@
 				TargetAttributes = {
 					BB10823E23406B31004CBB54 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1130;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
 								enabled = 0;
@@ -631,7 +632,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/GCDWebServer\"",
-					"$(PROJECT_DIR)/sysproxyconfig/",
 				);
 				INFOPLIST_FILE = Pirate/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
@@ -644,7 +644,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INCLUDE_PATHS = "${SRCROOT}";
 				SWIFT_OBJC_BRIDGING_HEADER = "Pirate/Bridging-Header.h";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -661,7 +661,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/GCDWebServer\"",
-					"$(PROJECT_DIR)/sysproxyconfig/",
 				);
 				INFOPLIST_FILE = Pirate/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
@@ -674,7 +673,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INCLUDE_PATHS = "${SRCROOT}";
 				SWIFT_OBJC_BRIDGING_HEADER = "Pirate/Bridging-Header.h";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};

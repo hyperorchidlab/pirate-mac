@@ -48,10 +48,13 @@ class Wallet:NSObject{
         private func resetWallet(replaced:Bool) throws{
                 if replaced{
                         self.MainAddress = ""
-                        
+                        self.SubAddress = ""
+                        self.EthBalance = 0
+                        self.TokenBalance = 0
                 }
                 
                 stopApp()
+                Thread.sleep(forTimeInterval: 3)
                 try Service.sharedInstance.StartApp()
                 load()
                 NotificationCenter.default.post(name: WalletBalanceChanged, object:self, userInfo:nil)
@@ -85,7 +88,7 @@ class Wallet:NSObject{
                 guard let data = String(cString:ret).data(using: .utf8) else{
                         return
                 }
-                guard let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String:Any]else{
+            guard let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String:Any]else{
                         return
                 }
                 self.EthBalance = json["eth"] as? NSNumber ?? 0
@@ -113,24 +116,6 @@ class Wallet:NSObject{
                 throw ServiceError.ImportWalletErr(str)
         }
         
-        func EthTransfer(password:String, target:String, no:Double){
-                Service.sharedInstance.contractQueue.async {
-                        let ret = TransferEth(password.toGoString(), target.toGoString(), no)
-                        ProcessTransRet(tx: String(cString: ret.r0),
-                                             err: String(cString: ret.r1),
-                                             noti: TransactionStatusChanged)
-                }
-        }
-        
-        func TokenTransfer(password:String, target:String, no:Double){
-                Service.sharedInstance.contractQueue.async {
-                        let ret = TransferToken(password.toGoString(), target.toGoString(), no)
-                        ProcessTransRet(tx: String(cString: ret.r0),
-                                             err: String(cString: ret.r1),
-                                             noti: TransactionStatusChanged)
-                }
-        }
-        
         func allMyPools(){
                 Wallet.PoolsOfUser.removeAll()
                 guard let ret = PoolDataOfUser(self.MainAddress.toGoString()) else {
@@ -140,7 +125,7 @@ class Wallet:NSObject{
                         return
                 }
                 
-                guard let poolMap = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) as! NSDictionary else {
+            guard let poolMap = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? NSDictionary else {
                         return
                 }
                 for (_, value) in poolMap.allValues.enumerated() {

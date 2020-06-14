@@ -16,12 +16,11 @@ let KEY_FOR_CURRENT_POOL_INUSE = "KEY_FOR_CURRENT_SEL_POOL_v2"
 let KEY_FOR_CURRENT_MINER_INUSE = "KEY_FOR_CURRENT_SEL_Miner_v2"
 
 public let TOKEN_ADDRESS = "0x3adc98d5e292355e59ae2ca169d241d889b092e3"
-public let MICROPAY_SYSTEM_ADDRESS = "0x2af669877aFe2fe2aF750b4d7dCa8aE19501b054"
+public let MICROPAY_SYSTEM_ADDRESS = "0x660c2B067b0EE6a602305Fe167279385C123e322"
 public let BLOCKCHAIN_API_URL = "https://ropsten.infura.io/v3/f3245cef90ed440897e43efc6b3dd0f7"
 public let BaseEtherScanUrl = "https://ropsten.etherscan.io"  //"https://ropsten.etherscan.io"//"https://etherscan.io"
 
 public let PoolsInMarketChanged = Notification.Name(rawValue: "PoolsInMarketChanged")
-public let TransactionStatusChanged = Notification.Name(rawValue: "TransactionStatusChanged")
 public let WalletBalanceChanged = Notification.Name(rawValue: "WalletBalanceChanged")
 public let WalletStatusChanged = Notification.Name(rawValue: "WalletStatusChanged")
 public let UserDataSyncSuccess = Notification.Name(rawValue: "UserDataSyncSuccess")
@@ -30,6 +29,8 @@ public let NewLibLogs = Notification.Name(rawValue: "NewLibLogs")
 public let SelectPoolOrMinerChanged = Notification.Name(rawValue: "SelectPoolOrMinerChanged")
 public let DataCounterChanged = Notification.Name(rawValue: "DataCounterChanged")
 
+
+public let ProxyLocalPort = 41080;
 
 struct BasicConfig{
         
@@ -98,29 +99,11 @@ struct BasicConfig{
                 
                 let setting = String(cString:ret)
                 guard let dict = try? JSONSerialization.jsonObject(with: setting.data(using: .utf8)!, options: .mutableContainers)
-                        as! NSDictionary else { return }
+                    as? NSDictionary else { return }
                 self.packetPrice = (dict["MBytesPerToken"] as! Double)
                 self.refundTime = (dict["RefundDuration"] as! Double)/(24*3600)
                 self.PoolGTN = dict["PoolGTN"] as? Double ?? 0.0
                 self.MinerGTN = dict["MinerGTN"] as? Double ?? 0.0
-        }
-}
-
-
-func LogTypeStr(typ:Int) -> String{
-        switch typ {
-        case 1:
-                return "User Data"
-        case 2:
-                return "Receipt"
-        case 3:
-                return "Basic Block Chain Data"
-        case 4:
-                return "Pools Under User"
-        case 5:
-                return "Pools Sync Thread"
-        default:
-                return "unkown now"
         }
 }
 
@@ -130,15 +113,15 @@ class Service: NSObject {
         var systemCallBack:UserInterfaceAPI = {actTyp, logTyp, v in
 //                print("\naction type:\(actTyp)\t log type:\(logTyp)")
 //                print("\n",String(cString:v!))
-                
+                Service.sharedInstance.serviceQueue.async {
                 switch actTyp {
                 case Int32(ProtocolLog.rawValue):
-                        let strLog = "[\(LogTypeStr(typ:Int(logTyp)))]=\(String(cString:v!))"
-                        
+                        let strLog = String(cString:v!) 
                         if LogCache.count > 1000{
                                 LogCache.remove(at: 0)
                         }
-                        LogCache.append(strLog) 
+                        LogCache.append(strLog)
+                        Swift.print(strLog)
                         NotificationCenter.default.post(name: NewLibLogs, object:
                         self, userInfo:["log":strLog])
                         return
@@ -149,6 +132,11 @@ class Service: NSObject {
                         case 3:
                                 NotificationCenter.default.post(name: DataCounterChanged, object:
                                         self, userInfo:["count":String(cString:v!)])
+                        case 5:
+                                Service.sharedInstance.srvConf.isTurnon = false
+                                NotificationCenter.default.post(name: VPNStatusChanged, object:
+                                        self, userInfo:["msg":"TX Wire Closed", "errNo":-3])
+                                print("TX Wire Closed!")
                         default:
                                 print("unkown action type:\(logTyp)")
                         }
@@ -169,6 +157,7 @@ class Service: NSObject {
                 default:
                         print("unknown system call back typ:", actTyp)
                         return
+                }
                 }
         }
         

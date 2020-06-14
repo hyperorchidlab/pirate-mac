@@ -13,6 +13,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         @IBOutlet weak var window: NSWindow!
         func applicationDidFinishLaunching(_ aNotification: Notification) {
+               
+                signal(SIGPIPE, SIG_IGN);
+
                 do {
                         try Service.sharedInstance.amountService()
                 }catch{

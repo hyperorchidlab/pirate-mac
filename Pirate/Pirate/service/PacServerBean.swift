@@ -8,9 +8,10 @@
 
 import Foundation
 class  PacServer :NSObject{
+        
         var webServer:GCDWebServer? = nil
         var originalData:Data? = nil
-        
+        let PACServerPort = 41087;
         override init() {
                 super.init()
                 do{ try initWebServer() }catch{
@@ -35,6 +36,6 @@ class  PacServer :NSObject{
         }
         
         public func startPACServer() throws{
-                try webServer?.start(options: ["BindToLocalhost" : true as AnyObject, "Port":PACServerPort as AnyObject])
+                try webServer?.start(options: ["BindToLocalhost" : true as AnyObject, "Port":self.PACServerPort as AnyObject])
         }
 }

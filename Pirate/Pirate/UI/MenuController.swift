@@ -1,9 +1,9 @@
 //
 //  MenuController.swift
-//  Pangolin
+//  Pirate
 //
 //  Created by Bencong Ri on 2019/1/30.
-//  Copyright © 2019 pangolink.org All rights reserved.
+//  Copyright © 2019 Pirate All rights reserved.
 //
 
 import Cocoa
@@ -154,10 +154,15 @@ class MenuController: NSObject {
                                 try server.StopServer()
                                 return
                         }
-                        let status = Wallet.CurrentWallet.Status
+                        var status = Wallet.CurrentWallet.Status
                         if !status{
                                 self.SwitchWallet(sender)
+                                status = Wallet.CurrentWallet.Status
                         }
+                        if !status{
+                                return
+                        }
+                        
                         try server.StartServer()
                         
                 }catch{
