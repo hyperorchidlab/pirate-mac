@@ -18,13 +18,17 @@ class Setting: NSWindowController {
         @IBOutlet weak var RefundTimeTF: NSTextField!
         @IBOutlet weak var PoolDepositTF: NSTextField!
         @IBOutlet weak var MinerDepositTF: NSTextField!
+        @IBOutlet weak var TokenSymbol: NSTextField!
         
         @IBOutlet weak var ApiUrlTF: NSTextField!
         
         override func windowDidLoad() {
                 super.windowDidLoad()
-                self.TokenAddrTF.stringValue = TOKEN_ADDRESS
-                self.MircroPayAddrTF.stringValue = MICROPAY_SYSTEM_ADDRESS
+                let token = Service.sharedInstance.srvConf.CurToken!
+                self.TokenAddrTF.stringValue = token.TokenI
+                self.MircroPayAddrTF.stringValue = token.PaymentContract
+                self.TokenSymbol.stringValue = token.Symbol
+                
                 self.DNSTF.stringValue = Service.sharedInstance.srvConf.dns
                 self.ApiUrlTF.stringValue = BLOCKCHAIN_API_URL
                 self.PriceTF.stringValue = String(format: "%0.4f", Service.sharedInstance.srvConf.packetPrice)

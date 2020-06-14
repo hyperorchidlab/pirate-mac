@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -43,6 +43,9 @@
                         <action selector="SwitchWallet:" target="MrV-Ey-DwV" id="jWc-UZ-D9B"/>
                     </connections>
                 </menuItem>
+                <menuItem title="[0]" id="dB0-ZQ-nTG">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
                 <menuItem isSeparatorItem="YES" id="mce-7C-PoB"/>
                 <menuItem title="Smart" state="on" id="dun-4t-46q">
                     <modifierMask key="keyEquivalentModifierMask"/>
@@ -57,13 +60,13 @@
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="a8M-0p-ROJ"/>
-                <menuItem title="CurPool" id="CPn-B5-6Vi">
+                <menuItem title="Config Pool -&gt;" id="CPn-B5-6Vi">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <menu key="submenu" title="CurPool" id="wBT-o3-yXY"/>
+                    <menu key="submenu" title="Config Pool -&gt;" id="wBT-o3-yXY"/>
                 </menuItem>
-                <menuItem title="CurMiner" id="gWs-i0-4Rc">
+                <menuItem title="Config Miner -&gt;" id="gWs-i0-4Rc">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <menu key="submenu" title="CurMiner" id="YqL-gQ-t3A">
+                    <menu key="submenu" title="Config Miner -&gt;" id="YqL-gQ-t3A">
                         <items>
                             <menuItem title="Config" id="SWc-Bk-WGZ">
                                 <modifierMask key="keyEquivalentModifierMask"/>
@@ -86,8 +89,17 @@
                         <action selector="ShowPacketMarket:" target="MrV-Ey-DwV" id="wex-et-Qhh"/>
                     </connections>
                 </menuItem>
-                <menuItem title="CurMiner" id="dB0-ZQ-nTG">
+                <menuItem title="Extend Wallet" id="1DU-ey-Tli">
                     <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="ShowExtendWallet:" target="MrV-Ey-DwV" id="qJk-0n-izS"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Get Free Token" id="AmV-Ho-PTu">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="ShowFreeToken:" target="MrV-Ey-DwV" id="JNy-59-0m2"/>
+                    </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="8ae-iU-biQ"/>
                 <menuItem title="Setting" id="ORd-qI-ALe">

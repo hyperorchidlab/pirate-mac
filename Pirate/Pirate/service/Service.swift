@@ -11,12 +11,15 @@ import DecentralizedShadowSocks
 
 let KEY_FOR_SWITCH_STATE = "KEY_FOR_SWITCH_STATE"
 let KEY_FOR_Pirate_MODEL = "KEY_FOR_Pirate_MODEL"
-let KEY_FOR_DNS_IP = "KEY_FOR_DNS_IP"
-let KEY_FOR_CURRENT_POOL_INUSE = "KEY_FOR_CURRENT_SEL_POOL_v2"
+let KEY_FOR_DNS_IP = "KEY_FOR_DNS_IP_v2_"
+let KEY_FOR_CURRENT_POOL_INUSE = "KEY_FOR_CURRENT_SEL_POOL_v2_"
 let KEY_FOR_CURRENT_MINER_INUSE = "KEY_FOR_CURRENT_SEL_Miner_v2"
+let KEY_FOR_CURRENT_TOKEN_INUSE = "KEY_FOR_CURRENT_TOKEN_INUSE_v2"
 
-public let TOKEN_ADDRESS = "0x3adc98d5e292355e59ae2ca169d241d889b092e3"
-public let MICROPAY_SYSTEM_ADDRESS = "0x660c2B067b0EE6a602305Fe167279385C123e322"
+public let EXTEND_TOKEN_ADDRESS = "0x1FCdab99Da1ED72fd1E5E15e1EA7881A667c4aA9"
+public let TOKEN_APPLY_ADDRESS = "0xE4d20a76c18E73ce82035ef43e8C3ca7Fd94035E" 
+public let TOKEN_ADDRESS = "0xAd44c8493dE3FE2B070f33927A315b50Da9a0e25"
+public let MICROPAY_SYSTEM_ADDRESS = "0x4291d9Ff189D90Ba875E0fc1Da4D602406DD7D6e"
 public let BLOCKCHAIN_API_URL = "https://ropsten.infura.io/v3/f3245cef90ed440897e43efc6b3dd0f7"
 public let BaseEtherScanUrl = "https://ropsten.etherscan.io"  //"https://ropsten.etherscan.io"//"https://etherscan.io"
 
@@ -29,7 +32,6 @@ public let NewLibLogs = Notification.Name(rawValue: "NewLibLogs")
 public let SelectPoolOrMinerChanged = Notification.Name(rawValue: "SelectPoolOrMinerChanged")
 public let DataCounterChanged = Notification.Name(rawValue: "DataCounterChanged")
 
-
 public let ProxyLocalPort = 41080;
 
 struct BasicConfig{
@@ -37,7 +39,8 @@ struct BasicConfig{
         var isTurnon: Bool = false
         var isGlobal:Bool = false
         var baseDir:String = ".Pirate"
-        var dns:String = "167.179.112.108"
+        var dns:String = "108.61.223.99"
+        var CurToken:ExtendToken?
         var poolInUsed:String? = nil
         
         var packetPrice:Double = -1.0
@@ -47,8 +50,24 @@ struct BasicConfig{
         
         mutating func loadConf(){
                 self.isGlobal = UserDefaults.standard.bool(forKey: KEY_FOR_Pirate_MODEL)
-                self.poolInUsed = UserDefaults.standard.string(forKey: KEY_FOR_CURRENT_POOL_INUSE)
-                self.dns = UserDefaults.standard.string(forKey: KEY_FOR_DNS_IP) ?? "167.179.112.108"
+                
+                let tokenData = UserDefaults.standard.data(forKey: KEY_FOR_CURRENT_TOKEN_INUSE)
+                if tokenData == nil{
+                        self.CurToken = ExtendToken.init()
+                        self.CurToken?.PaymentContract = MICROPAY_SYSTEM_ADDRESS
+                        self.CurToken?.Symbol = "HOP"
+                        self.CurToken?.TokenI = TOKEN_ADDRESS
+                        self.CurToken?.Balance = 0
+                        self.CurToken?.Decimal = 18
+                }else{
+                        self.CurToken = NSKeyedUnarchiver.unarchiveObject(with: tokenData!) as? ExtendToken
+                }
+               
+                
+                let poolKey = "\(KEY_FOR_CURRENT_POOL_INUSE)\(self.CurToken!.TokenI)"
+                self.poolInUsed = UserDefaults.standard.string(forKey: poolKey)
+                
+                self.dns = UserDefaults.standard.string(forKey: KEY_FOR_DNS_IP) ?? "108.61.223.99"
                 do {
                         self.baseDir = try touchDirectory(directory: ".Pirate").path
                 }catch let err{
@@ -57,10 +76,16 @@ struct BasicConfig{
                 }
         }
         
+        mutating func SetMainToken(token:ExtendToken){
+                self.CurToken = token
+                let data = NSKeyedArchiver.archivedData(withRootObject: token)
+                UserDefaults.standard.set(data, forKey: KEY_FOR_CURRENT_TOKEN_INUSE)
+        }
+        
         mutating func changeUsedPool(addr:String){
                 self.poolInUsed = addr
-                UserDefaults.standard.set(addr, forKey: KEY_FOR_CURRENT_POOL_INUSE)
-                
+                let poolKey = "\(KEY_FOR_CURRENT_POOL_INUSE)\(self.CurToken!.TokenI)"
+                UserDefaults.standard.set(addr, forKey: poolKey)
                 NotificationCenter.default.post(name: SelectPoolOrMinerChanged, object:
                         self, userInfo:nil)
         }
@@ -133,10 +158,9 @@ class Service: NSObject {
                                 NotificationCenter.default.post(name: DataCounterChanged, object:
                                         self, userInfo:["count":String(cString:v!)])
                         case 5:
-                                Service.sharedInstance.srvConf.isTurnon = false
-                                NotificationCenter.default.post(name: VPNStatusChanged, object:
-                                        self, userInfo:["msg":"TX Wire Closed", "errNo":-3])
-                                print("TX Wire Closed!")
+                                NotificationCenter.default.post(name: WalletBalanceChanged, object:
+                                        self, userInfo:nil)
+                                print("User's Balance changed!")
                         default:
                                 print("unkown action type:\(logTyp)")
                         }
@@ -185,11 +209,11 @@ class Service: NSObject {
         
         public func amountService() throws{
                 let ret = initConf(srvConf.baseDir.toGoString(),
-                         TOKEN_ADDRESS.toGoString(),
-                         MICROPAY_SYSTEM_ADDRESS.toGoString(),
-                         BLOCKCHAIN_API_URL.toGoString(),
-                         srvConf.dns.toGoString(),
-                         systemCallBack)
+                                   srvConf.CurToken!.TokenI.toGoString(),
+                                   srvConf.CurToken!.PaymentContract .toGoString(),
+                                   BLOCKCHAIN_API_URL.toGoString(),
+                                   srvConf.dns.toGoString(),
+                                   systemCallBack)
                 
                 if ret != nil{
                         throw ServiceError.SdkActionErr("init config err: msg:[\(String(cString:ret!))]")
