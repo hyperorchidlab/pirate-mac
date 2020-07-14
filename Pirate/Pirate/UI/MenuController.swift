@@ -224,6 +224,12 @@ class MenuController: NSObject {
                 NSApplication.shared.terminate(self)
         }
         
+        @IBAction func CopyCmdProxy(_ sender: NSMenuItem) {
+                let pasteboard = NSPasteboard.general
+                pasteboard.clearContents()
+                pasteboard.setString("export https_proxy=socks5h://127.0.0.1:\(ProxyLocalPort);http_proxy=socks5h://127.0.0.1:\(ProxyLocalPort)", forType: .string)//.string = ""
+//                dialogOK(question: "Tips", text: "Copy Success")
+        }
         @IBAction func ShowSysLog(_ sender: Any) {
                 if logCtrl != nil {
                         logCtrl.close()

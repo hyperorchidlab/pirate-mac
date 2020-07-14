@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="16097" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -102,10 +102,16 @@
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="8ae-iU-biQ"/>
-                <menuItem title="Setting" id="ORd-qI-ALe">
+                <menuItem title="Copy Http Proxy Shell Export Line" id="ORd-qI-ALe">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="ShowSettings:" target="MrV-Ey-DwV" id="yoq-j5-yXr"/>
+                        <action selector="CopyCmdProxy:" target="MrV-Ey-DwV" id="TJN-sf-LwN"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Setting" id="KhD-Mo-c7I">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="ShowSettings:" target="MrV-Ey-DwV" id="1ho-Yx-LLT"/>
                     </connections>
                 </menuItem>
                 <menuItem title="SysLogs" id="a10-EH-dcI">
