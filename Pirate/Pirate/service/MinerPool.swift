@@ -35,7 +35,9 @@ class MinerPool: NSObject {
                 self.Email = dict["Email"] as? String ?? ""
                 self.Url = dict["Url"] as? String ?? ""
         }
-        
+        static func SyncAllPoolData(){
+                syncAllPoolsData()
+        }
         static func PoolInfoInMarket(){
                 
                 guard let ret = PoolInfosInMarket() else {

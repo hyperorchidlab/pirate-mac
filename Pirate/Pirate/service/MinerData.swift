@@ -8,7 +8,7 @@
 
 import Cocoa
 import DecentralizedShadowSocks
-let MAX_MINER_NO = 16
+let MAX_MINER_NO = 100
 
 let KEY_FOR_CACHED_MINER_OF = "KEY_FOR_CACHED_MINER_OF_"
 

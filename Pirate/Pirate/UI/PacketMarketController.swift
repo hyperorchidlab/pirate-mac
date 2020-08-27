@@ -60,14 +60,15 @@ class PacketMarketController: NSWindowController {
                 }
         }
         
+        @IBAction func RefreshMarketData(_ sender: NSButton) {
+                MinerPool.SyncAllPoolData()
+        }
         @objc func UserDataChanged(notification: Notification){
-               
         }
         
         @IBAction func Exit(_ sender: Any) {
                 self.close()
         }
-        
         
         @IBAction func BuyPacketAction(_ sender: NSButton) {
                 guard let details = self.currentPool else {
