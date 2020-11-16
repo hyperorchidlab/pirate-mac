@@ -77,7 +77,7 @@ var rules = [
   "||g-area.org",
   "||gettyimages.com",
   "||getuploader.com",
-  "|https:\/\/raw.githubusercontent.com\/programthink\/zhao",
+  "|https:\/\/raw.githubusercontent.com",
   "||glass8.eu",
   "||glype.com",
   "||go141.com",
