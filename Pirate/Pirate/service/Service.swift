@@ -204,11 +204,10 @@ class Service: NSObject {
                 if !SysProxyHelper.install(){
                         throw ServiceError.SysPorxyMountErr
                 }
+                try pacServ.startPACServer()
         }
         
         public func StartApp()throws{
-                
-                try pacServ.startPACServer()
                 
                 guard let ret = startApp() else{
                         
