@@ -3,13 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		692884F723C87E3D00FD4FAA /* FreeTokenWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692884F523C87E3D00FD4FAA /* FreeTokenWindowController.swift */; };
 		692884F823C87E3D00FD4FAA /* FreeTokenWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 692884F623C87E3D00FD4FAA /* FreeTokenWindowController.xib */; };
-		6A36A7D801E362061B402737 /* Pods_sysproxyconfig.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F66B4ECC0A09EA30ADA0099 /* Pods_sysproxyconfig.framework */; };
+		69899A7C257879FC009BF918 /* GCDWebServers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69899A692578769E009BF918 /* GCDWebServers.framework */; };
+		69899A7D257879FC009BF918 /* GCDWebServers.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 69899A692578769E009BF918 /* GCDWebServers.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7C6288912380236F00069E08 /* gfw_test.js in Resources */ = {isa = PBXBuildFile; fileRef = 7C6288902380236F00069E08 /* gfw_test.js */; };
 		7C7A28C623C04EBE0063CA7B /* ExtendWalletController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7A28C423C04EBE0063CA7B /* ExtendWalletController.swift */; };
 		7C7A28C723C04EBE0063CA7B /* ExtendWalletController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C7A28C523C04EBE0063CA7B /* ExtendWalletController.xib */; };
@@ -51,7 +52,6 @@
 		BBDF613C237815C5006E7E30 /* UserDataLocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDF613B237815C5006E7E30 /* UserDataLocal.swift */; };
 		BBDF613F23781DA2006E7E30 /* UserDataStatic.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDF613D23781DA2006E7E30 /* UserDataStatic.swift */; };
 		BBDF614023781DA2006E7E30 /* UserDataStatic.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBDF613E23781DA2006E7E30 /* UserDataStatic.xib */; };
-		D05C6370FD014BD8D31A153F /* Pods_Pirate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 253E4BA7E0494070A79F68E1 /* Pods_Pirate.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +65,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		69899A7E257879FC009BF918 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				69899A7D257879FC009BF918 /* GCDWebServers.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BBD71222234093AC003C80E9 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -77,18 +88,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0AF297507DDAAA64D192512F /* Pods-Pirate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pirate.release.xcconfig"; path = "Target Support Files/Pods-Pirate/Pods-Pirate.release.xcconfig"; sourceTree = "<group>"; };
-		253E4BA7E0494070A79F68E1 /* Pods_Pirate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pirate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		692884F523C87E3D00FD4FAA /* FreeTokenWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeTokenWindowController.swift; sourceTree = "<group>"; };
 		692884F623C87E3D00FD4FAA /* FreeTokenWindowController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FreeTokenWindowController.xib; sourceTree = "<group>"; };
-		7493AD175ACDFD9706837C3D /* Pods-Pirate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pirate.debug.xcconfig"; path = "Target Support Files/Pods-Pirate/Pods-Pirate.debug.xcconfig"; sourceTree = "<group>"; };
+		69899A692578769E009BF918 /* GCDWebServers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GCDWebServers.framework; path = Carthage/Build/Mac/GCDWebServers.framework; sourceTree = "<group>"; };
 		7C6288902380236F00069E08 /* gfw_test.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = gfw_test.js; sourceTree = "<group>"; };
 		7C7A28C423C04EBE0063CA7B /* ExtendWalletController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendWalletController.swift; sourceTree = "<group>"; };
 		7C7A28C523C04EBE0063CA7B /* ExtendWalletController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExtendWalletController.xib; sourceTree = "<group>"; };
 		7C7A28C823C05E890063CA7B /* ExtendToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendToken.swift; sourceTree = "<group>"; };
 		7CC03A6F237ADF3E00233E51 /* SysLogController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SysLogController.swift; sourceTree = "<group>"; };
 		7CC03A70237ADF3E00233E51 /* SysLogController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SysLogController.xib; sourceTree = "<group>"; };
-		7F66B4ECC0A09EA30ADA0099 /* Pods_sysproxyconfig.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sysproxyconfig.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB10823F23406B31004CBB54 /* Pirate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pirate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB10824223406B31004CBB54 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BB10824423406B37004CBB54 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -101,7 +109,6 @@
 		BBA7CCF9237D366D002A5F44 /* MinerSelectCtrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinerSelectCtrl.swift; sourceTree = "<group>"; };
 		BBA7CCFA237D366D002A5F44 /* MinerSelectCtrl.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MinerSelectCtrl.xib; sourceTree = "<group>"; };
 		BBD71224234093AC003C80E9 /* sysproxyconfig */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = sysproxyconfig; sourceTree = BUILT_PRODUCTS_DIR; };
-		BBD7122B234093C8003C80E9 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		BBD7122C234093C9003C80E9 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		BBD7122D234093C9003C80E9 /* SysProxyConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SysProxyConfig.h; sourceTree = "<group>"; };
 		BBD71232234096FA003C80E9 /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
@@ -131,8 +138,6 @@
 		BBDF613B237815C5006E7E30 /* UserDataLocal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataLocal.swift; sourceTree = "<group>"; };
 		BBDF613D23781DA2006E7E30 /* UserDataStatic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataStatic.swift; sourceTree = "<group>"; };
 		BBDF613E23781DA2006E7E30 /* UserDataStatic.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserDataStatic.xib; sourceTree = "<group>"; };
-		CCC365C376B35BF42AEE2C85 /* Pods-sysproxyconfig.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sysproxyconfig.debug.xcconfig"; path = "Target Support Files/Pods-sysproxyconfig/Pods-sysproxyconfig.debug.xcconfig"; sourceTree = "<group>"; };
-		DEEB7CF616F65E46FB9C9654 /* Pods-sysproxyconfig.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sysproxyconfig.release.xcconfig"; path = "Target Support Files/Pods-sysproxyconfig/Pods-sysproxyconfig.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,7 +146,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BBD71246234097E3003C80E9 /* dss.a in Frameworks */,
-				D05C6370FD014BD8D31A153F /* Pods_Pirate.framework in Frameworks */,
+				69899A7C257879FC009BF918 /* GCDWebServers.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,7 +154,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6A36A7D801E362061B402737 /* Pods_sysproxyconfig.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -159,24 +163,12 @@
 		7428D099AB984B1657E0A53E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				69899A692578769E009BF918 /* GCDWebServers.framework */,
 				BBD71243234097E3003C80E9 /* callback.h */,
 				BBD71245234097E3003C80E9 /* dss.a */,
 				BBD71244234097E3003C80E9 /* dss.h */,
-				253E4BA7E0494070A79F68E1 /* Pods_Pirate.framework */,
-				7F66B4ECC0A09EA30ADA0099 /* Pods_sysproxyconfig.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		AFD477FE6FDCF52B3CF515AD /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				7493AD175ACDFD9706837C3D /* Pods-Pirate.debug.xcconfig */,
-				0AF297507DDAAA64D192512F /* Pods-Pirate.release.xcconfig */,
-				CCC365C376B35BF42AEE2C85 /* Pods-sysproxyconfig.debug.xcconfig */,
-				DEEB7CF616F65E46FB9C9654 /* Pods-sysproxyconfig.release.xcconfig */,
-			);
-			path = Pods;
 			sourceTree = "<group>";
 		};
 		BB10823623406B31004CBB54 = {
@@ -185,7 +177,6 @@
 				BB10824123406B31004CBB54 /* Pirate */,
 				BBD71225234093AC003C80E9 /* sysproxyconfig */,
 				BB10824023406B31004CBB54 /* Products */,
-				AFD477FE6FDCF52B3CF515AD /* Pods */,
 				7428D099AB984B1657E0A53E /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -204,7 +195,6 @@
 			children = (
 				BBD712472340995A003C80E9 /* scripts */,
 				BBD71242234097AD003C80E9 /* module.modulemap */,
-				BBD7122B234093C8003C80E9 /* Bridging-Header.h */,
 				BBD7123123409642003C80E9 /* service */,
 				BB10825023406B5C004CBB54 /* UI */,
 				BB10824223406B31004CBB54 /* AppDelegate.swift */,
@@ -289,11 +279,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BB10824D23406B37004CBB54 /* Build configuration list for PBXNativeTarget "Pirate" */;
 			buildPhases = (
-				2A69D47DD8B55064201B8891 /* [CP] Check Pods Manifest.lock */,
 				BB10823B23406B31004CBB54 /* Sources */,
 				BB10823C23406B31004CBB54 /* Frameworks */,
 				BB10823D23406B31004CBB54 /* Resources */,
-				CC9C383F94056CBF4B73FE53 /* [CP] Embed Pods Frameworks */,
+				69899A7E257879FC009BF918 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -309,7 +298,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BBD7122A234093AC003C80E9 /* Build configuration list for PBXNativeTarget "sysproxyconfig" */;
 			buildPhases = (
-				DFAAA81443615343CC5C9613 /* [CP] Check Pods Manifest.lock */,
 				BBD71220234093AC003C80E9 /* Sources */,
 				BBD71221234093AC003C80E9 /* Frameworks */,
 				BBD71222234093AC003C80E9 /* CopyFiles */,
@@ -330,7 +318,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1010;
-				LastUpgradeCheck = 1100;
+				LastUpgradeCheck = 1220;
 				ORGANIZATIONNAME = hyperorchid;
 				TargetAttributes = {
 					BB10823E23406B31004CBB54 = {
@@ -394,70 +382,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		2A69D47DD8B55064201B8891 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Pirate-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		CC9C383F94056CBF4B73FE53 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Pirate/Pods-Pirate-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Pirate/Pods-Pirate-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Pirate/Pods-Pirate-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DFAAA81443615343CC5C9613 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-sysproxyconfig-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		BB10823B23406B31004CBB54 /* Sources */ = {
@@ -546,6 +470,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -607,6 +532,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -637,7 +563,6 @@
 		};
 		BB10824E23406B37004CBB54 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7493AD175ACDFD9706837C3D /* Pods-Pirate.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Pirate/Pirate.entitlements;
@@ -648,27 +573,29 @@
 				ENABLE_HARDENED_RUNTIME = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/GCDWebServer\"",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				INFOPLIST_FILE = Pirate/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				MARKETING_VERSION = 0.4.3;
+				MARKETING_VERSION = 0.5.1;
 				PRODUCT_BUNDLE_IDENTIFIER = comd.hyperorchid.Pirate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INCLUDE_PATHS = "${SRCROOT}";
-				SWIFT_OBJC_BRIDGING_HEADER = "Pirate/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
 		BB10824F23406B37004CBB54 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0AF297507DDAAA64D192512F /* Pods-Pirate.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Pirate/Pirate.entitlements;
@@ -679,27 +606,29 @@
 				ENABLE_HARDENED_RUNTIME = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/GCDWebServer\"",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				INFOPLIST_FILE = Pirate/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				MARKETING_VERSION = 0.4.3;
+				MARKETING_VERSION = 0.5.1;
 				PRODUCT_BUNDLE_IDENTIFIER = comd.hyperorchid.Pirate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INCLUDE_PATHS = "${SRCROOT}";
-				SWIFT_OBJC_BRIDGING_HEADER = "Pirate/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
 		BBD71228234093AC003C80E9 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CCC365C376B35BF42AEE2C85 /* Pods-sysproxyconfig.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "-";
@@ -715,7 +644,6 @@
 		};
 		BBD71229234093AC003C80E9 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DEEB7CF616F65E46FB9C9654 /* Pods-sysproxyconfig.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "-";
