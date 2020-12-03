@@ -36,12 +36,6 @@ class SysLogController: NSWindowController {
         
         @IBAction func ShowReceiptAction(_ sender: Any) {
                 
-                guard let ret = showReceipt(self.PoolAddrTF!.stringValue.toGoString())else{
-                        self.logScrView.documentView?.insertText("\n------>: NO RECEIPT------>\n")
-                        return
-                }
-                
-                self.logScrView.documentView?.insertText(String(cString:ret))
         }
         
         

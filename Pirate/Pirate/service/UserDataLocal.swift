@@ -8,6 +8,7 @@
 
 import Foundation
 import DecentralizedShadowSocks
+import SwiftyJSON
 
 class UserData: NSObject {
         
@@ -26,18 +27,18 @@ class UserData: NSObject {
                 super.init()
         }
         
-        init(dict:NSDictionary, inch:Double){
+        init(json:JSON){
                 super.init()
-                self.InCharge = inch
-                self.MainAddr = dict["user"] as? String ?? ""
-                self.Nonce = dict["nonce"] as? Int64  ?? -1
-                self.TokenInUsed = dict["balance"] as? NSNumber ?? 0.00
-                self.PacketBalance = dict["reminder"] as? Double ?? 0.0
-                let expired = dict["expire"] as? String ?? "-"
-                self.RefundTime = expired//ConvertTime(val: expired)                
-                self.Epoch = dict["epoch"] as?Int64 ?? 0
-                self.Credit = dict["credit"] as?Double ?? 0.0
-                self.MicrNonce = dict["microNonce"] as?Int64 ?? 0
+                self.InCharge = 0.0
+                self.MainAddr = json["user"].string ?? ""
+                self.Nonce = json["nonce"].int64  ?? -1
+                self.TokenInUsed = json["balance"].number ?? 0.00
+                self.PacketBalance = json["reminder"].double ?? 0.0
+                let expired = json["expire"].string ?? "-"
+                self.RefundTime = expired
+                self.Epoch = json["epoch"].int64 ?? 0
+                self.Credit = json["credit"].double ?? 0.0
+                self.MicrNonce = json["microNonce"].int64 ?? 0
         }
         
         static func LoadUserDataUnder(pool:String) -> UserData?{
@@ -45,16 +46,9 @@ class UserData: NSObject {
                 if uAddr == "" || pool == ""{
                         return nil
                 }
-                let ret = UserDataOfPool(uAddr.toGoString(), pool.toGoString())
-                
-                guard let strRet = ret.r0 else {
+                guard let ret = UserDataOfPool(uAddr.toGoString(), pool.toGoString()) else {
                         return nil
                 }
-                
-                guard let data = String(cString: strRet).data(using: .utf8) else{ return nil }
-            guard let dic = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? NSDictionary else {
-                        return nil
-                }
-                return UserData(dict:dic, inch:Double(ret.r1))
+                return UserData(json:JSON(ret))
         }
 }

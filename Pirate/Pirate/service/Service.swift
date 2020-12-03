@@ -16,10 +16,9 @@ let KEY_FOR_CURRENT_POOL_INUSE = "KEY_FOR_CURRENT_SEL_POOL_v2_"
 let KEY_FOR_CURRENT_MINER_INUSE = "KEY_FOR_CURRENT_SEL_Miner_v2"
 let KEY_FOR_CURRENT_TOKEN_INUSE = "KEY_FOR_CURRENT_TOKEN_INUSE_v2"
 
-public let EXTEND_TOKEN_ADDRESS = "0x1FCdab99Da1ED72fd1E5E15e1EA7881A667c4aA9"
 public let TOKEN_APPLY_ADDRESS = "0xE4d20a76c18E73ce82035ef43e8C3ca7Fd94035E" 
-public let TOKEN_ADDRESS = "0xAd44c8493dE3FE2B070f33927A315b50Da9a0e25"
-public let MICROPAY_SYSTEM_ADDRESS = "0x4291d9Ff189D90Ba875E0fc1Da4D602406DD7D6e"
+public let TOKEN_ADDRESS = "0xad44c8493de3fe2b070f33927a315b50da9a0e25"
+public let MICROPAY_SYSTEM_ADDRESS = "0x72d5f9f633f537f87ef7415b8bdbfa438d0a1a6c"
 public let BLOCKCHAIN_API_URL = "https://ropsten.infura.io/v3/d64d364124684359ace20feae1f9ac20"
 public let BaseEtherScanUrl = "https://ropsten.etherscan.io"  //"https://ropsten.etherscan.io"//"https://etherscan.io"
 
@@ -38,8 +37,8 @@ struct BasicConfig{
         
         var isTurnon: Bool = false
         var isGlobal:Bool = false
-        var baseDir:String = ".Pirate"
-        var dns:String = "108.61.223.99"
+        var baseDir:String = "Pirate"
+        var dns:String = "167.179.75.39"
         var CurToken:ExtendToken?
         var poolInUsed:String? = nil
         
@@ -54,11 +53,6 @@ struct BasicConfig{
                 let tokenData = UserDefaults.standard.data(forKey: KEY_FOR_CURRENT_TOKEN_INUSE)
                 if tokenData == nil{
                         self.CurToken = ExtendToken.init()
-                        self.CurToken?.PaymentContract = MICROPAY_SYSTEM_ADDRESS
-                        self.CurToken?.Symbol = "HOP"
-                        self.CurToken?.TokenI = TOKEN_ADDRESS
-                        self.CurToken?.Balance = 0
-                        self.CurToken?.Decimal = 18
                 }else{
                         self.CurToken = NSKeyedUnarchiver.unarchiveObject(with: tokenData!) as? ExtendToken
                 }

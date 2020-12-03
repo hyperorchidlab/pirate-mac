@@ -75,11 +75,8 @@ typedef struct { void *data; GoInt len; GoInt cap; } GoSlice;
 extern "C" {
 #endif
 
-
-extern char* initConf(GoString p0, GoString p1, GoString p2, GoString p3, GoString p4, UserInterfaceAPI p5);
-
+extern char* initConf(GoString baseDir, GoString tokenAddr, GoString mpsAddr, GoString apiUrl, GoString dns, UserInterfaceAPI uiApi);
 extern char* startApp();
-
 extern void stopApp();
 
 /* Return type for startServing */
@@ -87,9 +84,7 @@ struct startServing_return {
 	GoInt r0;
 	char* r1;
 };
-
-extern struct startServing_return startServing(GoString p0, GoString p1, GoString p2);
-
+extern struct startServing_return startServing(GoString srvAddr, GoString poolAddr, GoString minerID);
 extern void stopService();
 
 /* Return type for testPings */
@@ -97,90 +92,58 @@ struct testPings_return {
 	char* r0;
 	GoFloat32 r1;
 };
-
-extern struct testPings_return testPings(GoString p0);
-
+extern struct testPings_return testPings(GoString mid);
 extern char* dnsAddr();
-
 extern char* ethConfig();
-
-extern char* showReceipt(GoString p0);
-
 extern void syncAllPoolsData();
-
-extern char* PoolDataOfUser(GoString p0);
+extern char* PoolDataOfUser();
 
 /* Return type for AuthorizeTokenSpend */
 struct AuthorizeTokenSpend_return {
 	char* r0;
 	char* r1;
 };
-
-extern struct AuthorizeTokenSpend_return AuthorizeTokenSpend(GoString p0, GoFloat64 p1);
-
-extern GoUint8 TxProcessStatus(GoString p0);
+extern struct AuthorizeTokenSpend_return AuthorizeTokenSpend(GoString auth, GoFloat64 tokenNo);
+extern GoUint8 TxProcessStatus(GoString tx);
 
 /* Return type for BuyPacket */
 struct BuyPacket_return {
 	char* r0;
 	char* r1;
 };
-
-extern struct BuyPacket_return BuyPacket(GoString p0, GoString p1, GoString p2, GoFloat64 p3);
-
-extern GoFloat64 QueryApproved(GoString p0);
-
-extern char* PoolDetails(GoString p0);
-
+extern struct BuyPacket_return BuyPacket(GoString userAddr, GoString poolAddr, GoString auth, GoFloat64 tokenNo);
+extern GoFloat64 QueryApproved(GoString address);
+extern char* PoolDetails(GoString addr);
 extern char* PoolInfosInMarket();
-
-extern char* RandomMiner(GoString p0, GoInt p1);
-
-/* Return type for UserDataOfPool */
-struct UserDataOfPool_return {
-	char* r0;
-	GoInt64 r1;
-};
-
-extern struct UserDataOfPool_return UserDataOfPool(GoString p0, GoString p1);
-
+extern char* RandomMiner(GoString pAddr, GoInt size);
+extern char* UserDataOfPool(GoString uAddr, GoString pAddr);
 extern char* systemSettings();
-
-extern char* ExtendTokens(GoString p0);
-
-extern char* ApplyFreeToken(GoString p0);
-
-extern char* ApplyFreeEth(GoString p0);
+extern char* ApplyFreeToken(GoString userAddr);
+extern char* ApplyFreeEth(GoString userAddr);
 
 /* Return type for TransferEth */
 struct TransferEth_return {
 	char* r0;
 	char* r1;
 };
-
-extern struct TransferEth_return TransferEth(GoString p0, GoString p1, GoFloat64 p2);
+extern struct TransferEth_return TransferEth(GoString auth, GoString target, GoFloat64 sum);
 
 /* Return type for TransferToken */
 struct TransferToken_return {
 	char* r0;
 	char* r1;
 };
-
-extern struct TransferToken_return TransferToken(GoString p0, GoString p1, GoFloat64 p2);
+extern struct TransferToken_return TransferToken(GoString auth, GoString target, GoFloat64 sum);
 
 /* Return type for NewWallet */
 struct NewWallet_return {
 	GoUint8 r0;
 	char* r1;
 };
-
-extern struct NewWallet_return NewWallet(GoString p0);
-
-extern char* SyncWalletBalance(GoString p0);
-
-extern char* ImportWalletFrom(GoString p0, GoString p1);
-
-extern char* ExportWalletTo(GoString p0);
+extern struct NewWallet_return NewWallet(GoString auth);
+extern char* SyncWalletBalance(GoString address);
+extern char* ImportWalletFrom(GoString path, GoString auth);
+extern char* ExportWalletTo(GoString path);
 
 /* Return type for WalletInfo */
 struct WalletInfo_return {
@@ -188,13 +151,9 @@ struct WalletInfo_return {
 	char* r1;
 	GoUint8 r2;
 };
-
 extern struct WalletInfo_return WalletInfo();
-
 extern GoUint8 isWalletOpen();
-
-extern char* openWallet(GoString p0);
-
+extern char* openWallet(GoString auth);
 extern void closeWallet();
 
 #ifdef __cplusplus

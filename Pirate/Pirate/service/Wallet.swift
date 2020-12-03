@@ -118,7 +118,7 @@ class Wallet:NSObject{
         
         func allMyPools(){
                 Wallet.PoolsOfUser.removeAll()
-                guard let ret = PoolDataOfUser(self.MainAddress.toGoString()) else {
+                guard let ret = PoolDataOfUser() else {
                         return
                 }
                 guard let data = String(cString: ret).data(using: .utf8) else{

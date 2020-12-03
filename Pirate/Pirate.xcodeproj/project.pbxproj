@@ -11,9 +11,8 @@
 		692884F823C87E3D00FD4FAA /* FreeTokenWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 692884F623C87E3D00FD4FAA /* FreeTokenWindowController.xib */; };
 		69899A7C257879FC009BF918 /* GCDWebServers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69899A692578769E009BF918 /* GCDWebServers.framework */; };
 		69899A7D257879FC009BF918 /* GCDWebServers.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 69899A692578769E009BF918 /* GCDWebServers.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		69899A92257896CE009BF918 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69899A91257896CE009BF918 /* SwiftyJSON.framework */; };
 		7C6288912380236F00069E08 /* gfw_test.js in Resources */ = {isa = PBXBuildFile; fileRef = 7C6288902380236F00069E08 /* gfw_test.js */; };
-		7C7A28C623C04EBE0063CA7B /* ExtendWalletController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7A28C423C04EBE0063CA7B /* ExtendWalletController.swift */; };
-		7C7A28C723C04EBE0063CA7B /* ExtendWalletController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C7A28C523C04EBE0063CA7B /* ExtendWalletController.xib */; };
 		7C7A28C923C05E890063CA7B /* ExtendToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7A28C823C05E890063CA7B /* ExtendToken.swift */; };
 		7CC03A71237ADF3E00233E51 /* SysLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC03A6F237ADF3E00233E51 /* SysLogController.swift */; };
 		7CC03A72237ADF3E00233E51 /* SysLogController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CC03A70237ADF3E00233E51 /* SysLogController.xib */; };
@@ -91,9 +90,8 @@
 		692884F523C87E3D00FD4FAA /* FreeTokenWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeTokenWindowController.swift; sourceTree = "<group>"; };
 		692884F623C87E3D00FD4FAA /* FreeTokenWindowController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FreeTokenWindowController.xib; sourceTree = "<group>"; };
 		69899A692578769E009BF918 /* GCDWebServers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GCDWebServers.framework; path = Carthage/Build/Mac/GCDWebServers.framework; sourceTree = "<group>"; };
+		69899A91257896CE009BF918 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/Mac/SwiftyJSON.framework; sourceTree = "<group>"; };
 		7C6288902380236F00069E08 /* gfw_test.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = gfw_test.js; sourceTree = "<group>"; };
-		7C7A28C423C04EBE0063CA7B /* ExtendWalletController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendWalletController.swift; sourceTree = "<group>"; };
-		7C7A28C523C04EBE0063CA7B /* ExtendWalletController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExtendWalletController.xib; sourceTree = "<group>"; };
 		7C7A28C823C05E890063CA7B /* ExtendToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendToken.swift; sourceTree = "<group>"; };
 		7CC03A6F237ADF3E00233E51 /* SysLogController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SysLogController.swift; sourceTree = "<group>"; };
 		7CC03A70237ADF3E00233E51 /* SysLogController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SysLogController.xib; sourceTree = "<group>"; };
@@ -147,6 +145,7 @@
 			files = (
 				BBD71246234097E3003C80E9 /* dss.a in Frameworks */,
 				69899A7C257879FC009BF918 /* GCDWebServers.framework in Frameworks */,
+				69899A92257896CE009BF918 /* SwiftyJSON.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -163,6 +162,7 @@
 		7428D099AB984B1657E0A53E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				69899A91257896CE009BF918 /* SwiftyJSON.framework */,
 				69899A692578769E009BF918 /* GCDWebServers.framework */,
 				BBD71243234097E3003C80E9 /* callback.h */,
 				BBD71245234097E3003C80E9 /* dss.a */,
@@ -227,8 +227,6 @@
 				7CC03A70237ADF3E00233E51 /* SysLogController.xib */,
 				BBA7CCF9237D366D002A5F44 /* MinerSelectCtrl.swift */,
 				BBA7CCFA237D366D002A5F44 /* MinerSelectCtrl.xib */,
-				7C7A28C423C04EBE0063CA7B /* ExtendWalletController.swift */,
-				7C7A28C523C04EBE0063CA7B /* ExtendWalletController.xib */,
 				692884F523C87E3D00FD4FAA /* FreeTokenWindowController.swift */,
 				692884F623C87E3D00FD4FAA /* FreeTokenWindowController.xib */,
 			);
@@ -360,7 +358,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7C7A28C723C04EBE0063CA7B /* ExtendWalletController.xib in Resources */,
 				BBA7CCFC237D366D002A5F44 /* MinerSelectCtrl.xib in Resources */,
 				BBD7124E23409978003C80E9 /* sysproxyconfig in Resources */,
 				692884F823C87E3D00FD4FAA /* FreeTokenWindowController.xib in Resources */,
@@ -397,7 +394,6 @@
 				BBD7123E234096FA003C80E9 /* utils.swift in Sources */,
 				BBD7123B234096FA003C80E9 /* ServiceError.swift in Sources */,
 				BBD7125F23409B13003C80E9 /* PacketMarketController.swift in Sources */,
-				7C7A28C623C04EBE0063CA7B /* ExtendWalletController.swift in Sources */,
 				BBD7125D23409B13003C80E9 /* PasswordViewController.swift in Sources */,
 				692884F723C87E3D00FD4FAA /* FreeTokenWindowController.swift in Sources */,
 				BBD71240234096FA003C80E9 /* MinerPool.swift in Sources */,
