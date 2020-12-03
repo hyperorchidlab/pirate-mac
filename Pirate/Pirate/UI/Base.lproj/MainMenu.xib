@@ -23,7 +23,7 @@
                 <outlet property="globalModel" destination="CDL-O9-gLJ" id="O0o-NX-RwJ"/>
                 <outlet property="minerPoolMenu" destination="vbi-aX-P3T" id="f84-3c-0Vc"/>
                 <outlet property="smartModel" destination="dun-4t-46q" id="InF-5x-HBA"/>
-                <outlet property="statusMenu" destination="jSI-9o-dzW" id="PEK-73-eDY"/>
+                <outlet property="statusMenu" destination="jSI-9o-dzW" id="7Z2-ln-0OM"/>
                 <outlet property="switchBtn" destination="OF0-0M-VrQ" id="nES-MM-RvC"/>
                 <outlet property="walletMenu" destination="6XY-as-n9m" id="yEJ-I2-Xiu"/>
                 <outlet property="walletStatusMenu" destination="erQ-Vy-WNf" id="yDW-Sa-LJS"/>

@@ -41,7 +41,6 @@ class SysLogController: NSWindowController {
                 
         }
         
-        
         @IBAction func ExitWin(_ sender: Any) {
                 self.close()
         }

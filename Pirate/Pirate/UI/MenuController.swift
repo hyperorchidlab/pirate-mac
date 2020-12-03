@@ -234,10 +234,6 @@ class MenuController: NSObject {
                         logCtrl.close()
                 }
                 logCtrl = SysLogController(windowNibName: "SysLogController")
-                if let err = sender as? Error{
-                        print(err)
-                        logCtrl.errorTips = err.localizedDescription
-                }
                 logCtrl.showWindow(self)
                 NSApp.activate(ignoringOtherApps: true)
                 logCtrl.window?.makeKeyAndOrderFront(nil)

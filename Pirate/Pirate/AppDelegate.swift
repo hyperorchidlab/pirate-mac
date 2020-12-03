@@ -24,6 +24,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                         print(error)
                         exit(-1)
                 }
+                
+                do{
+                        try Service.sharedInstance.StartApp()
+                }catch let err{
+                        print(err)
+                }
         }
 
         func applicationWillTerminate(_ aNotification: Notification) {
