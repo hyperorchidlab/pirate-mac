@@ -29,7 +29,7 @@
                 <outlet property="walletStatusMenu" destination="erQ-Vy-WNf" id="yDW-Sa-LJS"/>
             </connections>
         </customObject>
-        <menu id="jSI-9o-dzW">
+        <menu title="Pirate" id="jSI-9o-dzW">
             <items>
                 <menuItem title="Turn On" id="OF0-0M-VrQ">
                     <modifierMask key="keyEquivalentModifierMask"/>
@@ -132,7 +132,7 @@
                 </menuItem>
             </items>
             <connections>
-                <outlet property="delegate" destination="MrV-Ey-DwV" id="zWe-4O-8Ka"/>
+                <outlet property="delegate" destination="MrV-Ey-DwV" id="iKQ-1n-dFI"/>
             </connections>
             <point key="canvasLocation" x="135.5" y="148"/>
         </menu>

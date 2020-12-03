@@ -11,7 +11,7 @@ import DecentralizedShadowSocks
 
 class SysLogController: NSWindowController {
         @IBOutlet weak var logScrView: NSScrollView!
-        @IBOutlet weak var PoolAddrTF: NSTextField!
+        var errorTips: String?
         
         override func windowDidLoad() {
                 super.windowDidLoad()
@@ -20,6 +20,9 @@ class SysLogController: NSWindowController {
                 
                 for (_, value) in Service.LogCache.enumerated(){
                         self.logScrView.documentView?.insertText(value)
+                }
+                if let err = errorTips{
+                        self.logScrView.documentView?.insertText(err)
                 }
         }
     

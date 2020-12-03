@@ -11,7 +11,8 @@
 		692884F823C87E3D00FD4FAA /* FreeTokenWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 692884F623C87E3D00FD4FAA /* FreeTokenWindowController.xib */; };
 		69899A7C257879FC009BF918 /* GCDWebServers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69899A692578769E009BF918 /* GCDWebServers.framework */; };
 		69899A7D257879FC009BF918 /* GCDWebServers.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 69899A692578769E009BF918 /* GCDWebServers.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		69899A92257896CE009BF918 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69899A91257896CE009BF918 /* SwiftyJSON.framework */; };
+		69899A952578AB82009BF918 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69899A91257896CE009BF918 /* SwiftyJSON.framework */; };
+		69899A962578AB82009BF918 /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 69899A91257896CE009BF918 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7C6288912380236F00069E08 /* gfw_test.js in Resources */ = {isa = PBXBuildFile; fileRef = 7C6288902380236F00069E08 /* gfw_test.js */; };
 		7C7A28C923C05E890063CA7B /* ExtendToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7A28C823C05E890063CA7B /* ExtendToken.swift */; };
 		7CC03A71237ADF3E00233E51 /* SysLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC03A6F237ADF3E00233E51 /* SysLogController.swift */; };
@@ -70,6 +71,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				69899A962578AB82009BF918 /* SwiftyJSON.framework in Embed Frameworks */,
 				69899A7D257879FC009BF918 /* GCDWebServers.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -145,7 +147,7 @@
 			files = (
 				BBD71246234097E3003C80E9 /* dss.a in Frameworks */,
 				69899A7C257879FC009BF918 /* GCDWebServers.framework in Frameworks */,
-				69899A92257896CE009BF918 /* SwiftyJSON.framework in Frameworks */,
+				69899A952578AB82009BF918 /* SwiftyJSON.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

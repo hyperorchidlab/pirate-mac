@@ -14,7 +14,6 @@ let KEY_FOR_Pirate_MODEL = "KEY_FOR_Pirate_MODEL"
 let KEY_FOR_DNS_IP = "KEY_FOR_DNS_IP_v2_"
 let KEY_FOR_CURRENT_POOL_INUSE = "KEY_FOR_CURRENT_SEL_POOL_v2_"
 let KEY_FOR_CURRENT_MINER_INUSE = "KEY_FOR_CURRENT_SEL_Miner_v2"
-let KEY_FOR_CURRENT_TOKEN_INUSE = "KEY_FOR_CURRENT_TOKEN_INUSE_v2"
 
 public let TOKEN_APPLY_ADDRESS = "0xE4d20a76c18E73ce82035ef43e8C3ca7Fd94035E" 
 public let TOKEN_ADDRESS = "0xad44c8493de3fe2b070f33927a315b50da9a0e25"
@@ -49,31 +48,18 @@ struct BasicConfig{
         
         mutating func loadConf(){
                 self.isGlobal = UserDefaults.standard.bool(forKey: KEY_FOR_Pirate_MODEL)
-                
-                let tokenData = UserDefaults.standard.data(forKey: KEY_FOR_CURRENT_TOKEN_INUSE)
-                if tokenData == nil{
-                        self.CurToken = ExtendToken.init()
-                }else{
-                        self.CurToken = NSKeyedUnarchiver.unarchiveObject(with: tokenData!) as? ExtendToken
-                }
-               
+                self.CurToken = ExtendToken.init()
                 
                 let poolKey = "\(KEY_FOR_CURRENT_POOL_INUSE)\(self.CurToken!.TokenI)"
                 self.poolInUsed = UserDefaults.standard.string(forKey: poolKey)
                 
-                self.dns = UserDefaults.standard.string(forKey: KEY_FOR_DNS_IP) ?? "108.61.223.99"
+                self.dns = UserDefaults.standard.string(forKey: KEY_FOR_DNS_IP) ?? "167.179.75.39"
                 do {
-                        self.baseDir = try touchDirectory(directory: ".Pirate").path
+                        self.baseDir = try touchDirectory(directory: "Pirate").path
                 }catch let err{
                         print(err)
-                        self.baseDir = ".Pirate"
+                        self.baseDir = "Pirate"
                 }
-        }
-        
-        mutating func SetMainToken(token:ExtendToken){
-                self.CurToken = token
-                let data = NSKeyedArchiver.archivedData(withRootObject: token)
-                UserDefaults.standard.set(data, forKey: KEY_FOR_CURRENT_TOKEN_INUSE)
         }
         
         mutating func changeUsedPool(addr:String){
@@ -218,18 +204,18 @@ class Service: NSObject {
                 if !SysProxyHelper.install(){
                         throw ServiceError.SysPorxyMountErr
                 }
-                
-                try pacServ.startPACServer()
-                
-                try StartApp()
-                
-                self.srvConf.loadSetting()
-                
-                _ = Wallet.CurrentWallet
         }
         
         public func StartApp()throws{
-                guard let ret   = startApp() else{
+                
+                try pacServ.startPACServer()
+                
+                guard let ret = startApp() else{
+                        
+                        self.srvConf.loadSetting()
+                        
+                        _ = Wallet.CurrentWallet
+                        
                         return
                 }
                 

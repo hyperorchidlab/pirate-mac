@@ -176,7 +176,7 @@ func show2PasswordDialog() -> (String, String, Bool) {
 
 func touchDirectory(directory:String) throws ->URL{
         
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let paths = FileManager.default.urls(for: .downloadsDirectory, in: .allDomainsMask)
         let url = paths[0].appendingPathComponent(directory)
         
         if !FileManager.default.fileExists(atPath: url.path){

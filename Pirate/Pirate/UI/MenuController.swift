@@ -35,6 +35,7 @@ class MenuController: NSObject {
         let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         
         override func awakeFromNib() {
+                
                 let icon = NSImage(named: "statusOff")
                 icon?.isTemplate = true // best for dark mode
                 statusItem.button?.image = icon
@@ -53,7 +54,6 @@ class MenuController: NSObject {
                                                       name: WalletStatusChanged, object: nil)
                 NotificationCenter.default.addObserver(self, selector:#selector(DataCounterShow(noti:)),
                                                        name: DataCounterChanged, object: nil)
-                
         }
         
         func updateMinerList(){
@@ -234,6 +234,10 @@ class MenuController: NSObject {
                         logCtrl.close()
                 }
                 logCtrl = SysLogController(windowNibName: "SysLogController")
+                if let err = sender as? Error{
+                        print(err)
+                        logCtrl.errorTips = err.localizedDescription
+                }
                 logCtrl.showWindow(self)
                 NSApp.activate(ignoringOtherApps: true)
                 logCtrl.window?.makeKeyAndOrderFront(nil)
@@ -295,6 +299,4 @@ class MenuController: NSObject {
                         self.DashBoardMenu.title = "Used:[\(counter)] Bytes"
                 }
         }
-        
-        
 }
