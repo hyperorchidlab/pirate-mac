@@ -38,5 +38,6 @@ class  PacServer :NSObject{
         
         public func startPACServer() throws{
                 try webServer?.start(options: ["BindToLocalhost" : true as AnyObject, "Port":self.PACServerPort as AnyObject])
+                NSLog("======>PAC Service start success......")
         }
 }

@@ -52,8 +52,9 @@ class Wallet:NSObject{
                         self.EthBalance = 0
                         self.TokenBalance = 0
                 }
-                
-                stopApp()
+                DispatchQueue.global().async {
+                        stopApp()
+                }
                 Thread.sleep(forTimeInterval: 3)
                 try Service.sharedInstance.StartApp()
                 load()
